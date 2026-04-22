@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_elements_timeline_items",
+  "info": {
+    "displayName": "Timeline Item",
+    "description": "A single event or milestone in a timeline block"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

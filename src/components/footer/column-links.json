@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_footer_column_links",
+  "info": {
+    "displayName": "Footer Column Links",
+    "description": "Footer column with a heading and list of links"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.button"
+    }
+  }
+}

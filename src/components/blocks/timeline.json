@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_timelines",
+  "info": {
+    "displayName": "Timeline",
+    "description": "Chronological list of events or milestones"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.timeline-item"
+    }
+  }
+}

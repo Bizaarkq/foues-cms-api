@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_footer_column_institutions",
+  "info": {
+    "displayName": "Footer Column Institution",
+    "description": "Logo, institution name, description and social links"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "institution_name": {
+      "type": "string"
+    },
+    "sub_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "social_links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.button"
+    }
+  }
+}

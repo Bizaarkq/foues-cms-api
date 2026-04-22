@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_steps",
+  "info": {
+    "displayName": "Step",
+    "description": "A single numbered step in a process-steps block"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "integer",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Optional icon name or class"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "footer",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer",
+    "description": "Global site footer — singleton, configurable by columns."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "columns": {
+      "type": "dynamiczone",
+      "components": [
+        "footer.column-institution",
+        "footer.column-links",
+        "footer.column-contact",
+        "footer.column-text"
+      ]
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "bottom_links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.button"
+    }
+  }
+}

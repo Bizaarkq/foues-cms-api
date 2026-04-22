@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_rich_texts",
+  "info": {
+    "displayName": "Rich Text",
+    "description": "Free-form rich text content using Strapi's editor"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

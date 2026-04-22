@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_hero_pages",
+  "info": {
+    "displayName": "Hero Page",
+    "description": "Compact hero for interior pages with title and optional breadcrumb"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

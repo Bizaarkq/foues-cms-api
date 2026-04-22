@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_footer_column_contacts",
+  "info": {
+    "displayName": "Footer Column Contact",
+    "description": "Footer column with contact information"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}

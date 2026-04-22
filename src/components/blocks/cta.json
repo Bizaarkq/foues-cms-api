@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_ctas",
+  "info": {
+    "displayName": "CTA",
+    "description": "Call-to-action section with heading, description and action buttons"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.button"
+    }
+  }
+}

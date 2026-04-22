@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_maps",
+  "info": {
+    "displayName": "Map",
+    "description": "Embedded map with location info and contact details"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "embed_url": {
+      "type": "string",
+      "required": true
+    },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
+    }
+  }
+}

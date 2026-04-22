@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_hero_landings",
+  "info": {
+    "displayName": "Hero Landing",
+    "description": "Full-page hero for landing/home pages with prominent CTA buttons"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.button"
+    }
+  }
+}

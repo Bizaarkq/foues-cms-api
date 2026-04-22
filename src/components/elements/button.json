@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "displayName": "Button",
+    "description": "Standard action button with link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "variant-filled-primary",
+        "variant-filled-secondary",
+        "variant-ghost-primary",
+        "variant-ghost-secondary",
+        "variant-soft-primary",
+        "variant-ringed-primary"
+      ],
+      "default": "variant-filled-primary"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

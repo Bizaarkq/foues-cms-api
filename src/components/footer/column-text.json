@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_footer_column_texts",
+  "info": {
+    "displayName": "Footer Column Text",
+    "description": "Footer column with free text content"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

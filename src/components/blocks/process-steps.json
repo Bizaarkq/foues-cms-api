@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_process_steps",
+  "info": {
+    "displayName": "Process Steps",
+    "description": "Numbered or ordered sequence of process steps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.step"
+    }
+  }
+}

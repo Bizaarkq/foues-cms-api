@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_photo_galleries",
+  "info": {
+    "displayName": "Photo Gallery",
+    "description": "Grid or masonry layout of images"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "photo_columns": {
+      "type": "enumeration",
+      "enum": ["col_2", "col_3", "col_4"],
+      "default": "col_3"
+    }
+  }
+}

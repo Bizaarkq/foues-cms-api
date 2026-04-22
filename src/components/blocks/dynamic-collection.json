@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_dynamic_collections",
+  "info": {
+    "displayName": "Dynamic Collection",
+    "description": "Render a fetchable collection list like News or Events"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "collectionType": {
+      "type": "enumeration",
+      "enum": [
+        "noticias",
+        "eventos"
+      ]
+    },
+    "limit": {
+      "type": "integer",
+      "default": 3
+    },
+    "layoutClass": {
+      "type": "string",
+      "default": "grid grid-cols-1 md:grid-cols-3 gap-4"
+    }
+  }
+}

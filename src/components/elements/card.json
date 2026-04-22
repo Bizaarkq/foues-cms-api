@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_elements_cards",
+  "info": {
+    "displayName": "Card",
+    "description": "Card with image, title, and link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "url": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Optional label tag displayed on the card (e.g. category, badge)"
+    },
+    "customClasses": {
+      "type": "string",
+      "description": "Additional CSS utility classes"
+    }
+  }
+}

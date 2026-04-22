@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_mission_visions",
+  "info": {
+    "displayName": "Mission Vision",
+    "description": "Institutional mission and vision statement block"
+  },
+  "options": {},
+  "attributes": {
+    "mission_title": {
+      "type": "string",
+      "default": "Misión"
+    },
+    "mission_text": {
+      "type": "text",
+      "required": true
+    },
+    "vision_title": {
+      "type": "string",
+      "default": "Visión"
+    },
+    "vision_text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

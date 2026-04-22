@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_quick_links",
+  "info": {
+    "displayName": "Quick Links",
+    "description": "A set of prominent shortcut links for navigation"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.quick-link-item"
+    }
+  }
+}
