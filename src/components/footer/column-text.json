@@ -7,10 +7,20 @@
   "options": {},
   "attributes": {
     "heading": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la columna de texto libre en el footer",
+        "description": "Título de la columna"
+      }
     },
     "body": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Contenido de texto libre para esta columna del footer. Útil para notas legales, copyright u otra información institucional",
+        "description": "Contenido de la columna"
+      }
     }
   }
 }

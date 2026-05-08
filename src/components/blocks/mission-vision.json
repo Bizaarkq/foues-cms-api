@@ -7,20 +7,40 @@
   "options": {},
   "attributes": {
     "mission_title": {
-      "type": "string",
-      "default": "Misión"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Etiqueta del panel de misión. Por defecto 'Misión', pero se puede personalizar",
+        "description": "Título del panel de misión",
+        "default": "Misión"
+      }
     },
     "mission_text": {
-      "type": "text",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto completo de la misión institucional. Describí el propósito y razón de ser de la organización",
+        "description": "Texto de la misión",
+        "required": true
+      }
     },
     "vision_title": {
-      "type": "string",
-      "default": "Visión"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Etiqueta del panel de visión. Por defecto 'Visión', pero se puede personalizar",
+        "description": "Título del panel de visión",
+        "default": "Visión"
+      }
     },
     "vision_text": {
-      "type": "text",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto completo de la visión institucional. Describí hacia dónde apunta la organización a futuro",
+        "description": "Texto de la visión",
+        "required": true
+      }
     }
   }
 }

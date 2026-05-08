@@ -13,13 +13,28 @@
       "allowedTypes": ["images"]
     },
     "institution_name": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre completo de la institución tal como aparece en el footer. Ej: 'Facultad de Odontología'",
+        "description": "Nombre de la institución"
+      }
     },
     "sub_name": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre secundario o pertenencia institucional. Ej: 'Universidad de Buenos Aires'",
+        "description": "Nombre secundario (universidad, etc.)"
+      }
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Breve descripción institucional que aparece debajo del nombre en el footer",
+        "description": "Descripción institucional breve"
+      }
     },
     "social_links": {
       "type": "component",

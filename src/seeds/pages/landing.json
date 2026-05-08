@@ -1,0 +1,39 @@
+{
+  "routePath": "/",
+  "title": "Inicio",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-landing",
+      "title": "Facultad de Odontología",
+      "subtitle": "—",
+      "buttons": [
+        { "label": "INSCRIPCIÓN 2024", "url": "/admision",       "variant": "variant-filled-secondary" },
+        { "label": "MÁS INFORMACIÓN",  "url": "/quienes-somos",  "variant": "variant-ghost-primary"    }
+      ]
+    },
+    {
+      "__component": "blocks.content-grid",
+      "title": "NOTICIAS Y EVENTOS",
+      "collection_type": "news",
+      "card_style": "default",
+      "columns": "col_3"
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "NUESTRAS INSTALACIONES",
+      "subtitle": "—",
+      "photo_columns": "col_3"
+    },
+    {
+      "__component": "blocks.quick-links",
+      "title": "ACCESO RÁPIDO",
+      "links": [
+        { "label": "Expediente Académico",  "url": "#",                          "description": "—" },
+        { "label": "Trámites Estudiantiles","url": "#",                          "description": "—" },
+        { "label": "Clínicas",              "url": "/servicios/areas-clinicas",  "description": "—" },
+        { "label": "Horarios",              "url": "#",                          "description": "—" }
+      ]
+    }
+  ]
+}

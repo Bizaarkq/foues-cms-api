@@ -18,18 +18,35 @@
       "unique": true
     },
     "label": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre visible de la ruta en el menú de navegación. Ej: 'Inicio', 'Acerca de', 'Carreras'",
+        "description": "Etiqueta del menú"
+      }
     },
-    "hasPage": {
-      "type": "boolean",
-      "default": false,
-      "required": true
+    "type": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Tipo de ruta. 'page': página con contenido · 'section': agrupa sub-rutas sin página propia · 'header': ítem del encabezado de navegación",
+        "description": "Tipo de ruta",
+        "enumValues": "page\nsection\nheader",
+        "required": true
+      }
     },
-    "section": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::section.section",
-      "inversedBy": "routes"
+    "order": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-number-field",
+      "options": {
+        "tooltip-content": "Posición de esta ruta en el menú. Números menores aparecen primero. Ej: 1 = primer ítem, 2 = segundo",
+        "description": "Orden en el menú",
+        "default": 0
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "label"
     },
     "parent": {
       "type": "relation",

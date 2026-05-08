@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "block_groups",
+  "info": {
+    "singularName": "block-group",
+    "pluralName": "block-groups",
+    "displayName": "Block Group",
+    "description": "Grupo reutilizable de blocks SDUI usado dentro de blocks.section."
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre interno del grupo de bloques. Solo visible en el admin — usalo para identificarlo fácilmente. Ej: 'Columna izquierda home', 'Sidebar contacto'",
+        "description": "Nombre interno (solo admin)",
+        "required": true
+      }
+    },
+    "group_columns": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-number-field",
+      "options": {
+        "tooltip-content": "Columnas de la grilla CSS para este grupo (1–12). Controla el ancho dentro de la sección contenedora. Valor por defecto: 12 (ancho completo)",
+        "description": "Columnas de la grilla (1–12)",
+        "default": 12
+      }
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.hero-landing",
+        "blocks.hero-page",
+        "blocks.content-grid",
+        "blocks.photo-gallery",
+        "blocks.quick-links",
+        "blocks.timeline",
+        "blocks.mission-vision",
+        "blocks.process-steps",
+        "blocks.rich-text",
+        "blocks.cta",
+        "blocks.calendar",
+        "blocks.map",
+        "blocks.staff-section",
+        "blocks.bullet-list",
+        "blocks.key-dates",
+        "blocks.info-card",
+        "blocks.clinic-schedule",
+        "blocks.icon-strip",
+        "blocks.map-schedule",
+        "blocks.form"
+      ]
+    }
+  }
+}

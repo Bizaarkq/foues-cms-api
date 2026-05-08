@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_elements_schedule_entries",
+  "info": {
+    "displayName": "Schedule Entry",
+    "description": "A single clinic schedule row: day range + time range"
+  },
+  "options": {},
+  "attributes": {
+    "day_range": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Días de atención de esta fila. Ej: 'Lunes a Viernes', 'Sábados', 'Lunes, Miércoles y Viernes'",
+        "description": "Días de atención",
+        "required": true
+      }
+    },
+    "time_range": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Horario de atención correspondiente a los días indicados. Ej: '8:00 – 17:00', '9:00 – 13:00'",
+        "description": "Horario de atención",
+        "required": true
+      }
+    }
+  }
+}

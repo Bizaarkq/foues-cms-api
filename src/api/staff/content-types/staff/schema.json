@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "staffs",
+  "info": {
+    "singularName": "staff",
+    "pluralName": "staffs",
+    "displayName": "Staff",
+    "description": "Miembros del cuerpo docente y administrativo de la facultad"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre completo del miembro. Ej: 'Dr. Juan García', 'Lic. María Rodríguez'",
+        "description": "Nombre completo",
+        "required": true
+      }
+    },
+    "cargo": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Cargo o función que ocupa dentro de la institución. Ej: 'Decano', 'Profesor Titular', 'Coordinador Académico'",
+        "description": "Cargo en la institución",
+        "required": true
+      }
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "descripcion": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Breve biografía o descripción profesional del miembro. Se muestra en su perfil público",
+        "description": "Biografía breve (opcional)"
+      }
+    },
+    "contacto": {
+      "type": "component",
+      "repeatable": false,
+      "component": "staff.contacto"
+    },
+    "cv": {
+      "type": "component",
+      "repeatable": true,
+      "component": "staff.cv-item"
+    },
+    "unidades": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::organizational-unit.organizational-unit",
+      "mappedBy": "miembros"
+    }
+  }
+}

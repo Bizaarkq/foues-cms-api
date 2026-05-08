@@ -7,10 +7,20 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título del llamado a la acción. Debe ser directo e invitar al usuario a hacer algo. Ej: '¿Querés estudiar con nosotros?'",
+        "description": "Título del CTA"
+      }
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto de apoyo debajo del título. Ampliá brevemente el mensaje antes de los botones",
+        "description": "Texto de apoyo"
+      }
     },
     "buttons": {
       "type": "component",

@@ -7,16 +7,36 @@
   "options": {},
   "attributes": {
     "heading": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la columna de contacto. Ej: 'Contacto', 'Dónde encontrarnos'",
+        "description": "Título de la columna"
+      }
     },
     "address": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Dirección física completa de la institución. Podés usar saltos de línea para separar calle, ciudad y código postal",
+        "description": "Dirección física"
+      }
     },
     "phone": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Número de teléfono de contacto con código de área. Ej: '+54 11 4372-0000'",
+        "description": "Teléfono de contacto"
+      }
     },
     "email": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Dirección de correo electrónico de contacto institucional. Ej: 'info@facultad.edu.ar'",
+        "description": "Email de contacto"
+      }
     }
   }
 }

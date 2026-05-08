@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_blocks_key_dates",
+  "info": {
+    "displayName": "Key Dates",
+    "description": "Important dates rendered as a calendar (single month) or chronological list."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección de fechas importantes. Ej: 'Fechas de inscripción', 'Calendario de exámenes'",
+        "description": "Título de la sección"
+      }
+    },
+    "display_mode": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Cómo se muestran las fechas. 'calendar': vista de calendario mensual · 'list': lista cronológica simple",
+        "description": "Modo de visualización",
+        "enumValues": "calendar\nlist",
+        "default": "list"
+      }
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.date-entry"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_bullet_lists",
+  "info": {
+    "displayName": "Bullet List",
+    "description": "Titled list of bullet points with an optional call-to-action button."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la lista. Se muestra encima de los ítems. Ej: 'Requisitos de ingreso', 'Beneficios'",
+        "description": "Título de la lista"
+      }
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.list-item"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button"
+    }
+  }
+}

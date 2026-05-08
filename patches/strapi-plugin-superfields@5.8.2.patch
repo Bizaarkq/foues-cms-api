@@ -1,0 +1,189 @@
+diff --git a/admin/components/enumerationSelect.jsx b/admin/components/enumerationSelect.jsx
+index 6e1b7c5bbf67d85c081bb196f49e9e970e390e61..7041248d6248ef58a6a949bc31fb08aeb1a1dfaa 100644
+--- a/admin/components/enumerationSelect.jsx
++++ b/admin/components/enumerationSelect.jsx
+@@ -4,9 +4,6 @@ import {
+   SingleSelectOption as Option,
+   Tooltip,
+   Field,
+-  lightTheme,
+-  darkTheme,
+-  DesignSystemProvider,
+ } from "@strapi/design-system";
+ import { Information } from "@strapi/icons";
+ import { useSystemTheme } from "../hooks/use-system-theme";
+@@ -20,7 +17,6 @@ const CustomEnumField = React.forwardRef(({
+   required,
+ }, ref) => {
+   const systemTheme = useSystemTheme();
+-  const theme = systemTheme === "dark" ? darkTheme : lightTheme;
+ 
+   const tooltipContent = attribute?.options["tooltip-content"] ?? "";
+   const description = attribute?.options["description"] ?? "";
+@@ -56,17 +52,15 @@ const CustomEnumField = React.forwardRef(({
+           onChange({ target: { name, value: val, type: "string" } })
+         }
+         startIcon={
+-            <DesignSystemProvider theme={theme}>
+-              <Tooltip label={tooltipContent ?? ""}>
+-                <Information
+-                  aria-hidden
+-                  style={{
+-                    cursor: "pointer",
+-                    color: systemTheme === "dark" ? "#fff" : "#000",
+-                  }}
+-                />
+-              </Tooltip>
+-            </DesignSystemProvider>
++            <Tooltip label={tooltipContent ?? ""}>
++              <Information
++                aria-hidden
++                style={{
++                  cursor: "pointer",
++                  color: systemTheme === "dark" ? "#fff" : "#000",
++                }}
++              />
++            </Tooltip>
+         }
+       >
+         {normalizedOptions.map((opt, idx) => (
+diff --git a/admin/components/toltipNumberInput.jsx b/admin/components/toltipNumberInput.jsx
+index daecee04d8bba34edd411940353f64fcb3fe93a5..9e3d72e187b3185282afd11490b4e22a3f8bb085 100644
+--- a/admin/components/toltipNumberInput.jsx
++++ b/admin/components/toltipNumberInput.jsx
+@@ -1,11 +1,8 @@
+ import React from "react";
+ import {
+-  DesignSystemProvider,
+   Tooltip,
+   Field,
+   NumberInput,
+-  lightTheme,
+-  darkTheme
+ } from "@strapi/design-system";
+ import { Information } from "@strapi/icons";
+ import {useSystemTheme} from '../hooks/use-system-theme'
+@@ -25,9 +22,6 @@ const TooltipNumberInput = ({
+ 
+ 
+   const systemTheme = useSystemTheme();
+-  const theme = systemTheme === 'dark' ? darkTheme : lightTheme;
+-
+-
+ 
+   return (
+     <Field.Root id={name} error={error} hint={description}>
+@@ -42,14 +36,12 @@ const TooltipNumberInput = ({
+       required={required}
+       startAction={
+         tooltipContent ? (
+-          <DesignSystemProvider theme={theme}>
+-            <Tooltip label={tooltipContent ?? ""}  >
+-              <Information
+-                aria-hidden
+-                style={{ cursor: "pointer" , color: systemTheme === 'dark' ? '#fff' : '#000'}}
+-              />
+-            </Tooltip>
+-          </DesignSystemProvider>
++          <Tooltip label={tooltipContent ?? ""}>
++            <Information
++              aria-hidden
++              style={{ cursor: "pointer" , color: systemTheme === 'dark' ? '#fff' : '#000'}}
++            />
++          </Tooltip>
+         ) : null
+       }
+     />
+diff --git a/admin/components/tooltipBooleanToggle.jsx b/admin/components/tooltipBooleanToggle.jsx
+index f618e41761423caaab7c4cc85dca4829b91ad425..cfbb9203b13518cf0e6b929581ee69b0927e0798 100644
+--- a/admin/components/tooltipBooleanToggle.jsx
++++ b/admin/components/tooltipBooleanToggle.jsx
+@@ -4,9 +4,6 @@ import {
+   Tooltip,
+   Field,
+   Flex,
+-  DesignSystemProvider,
+-  lightTheme,
+-  darkTheme,
+ } from "@strapi/design-system";
+ import { Information } from "@strapi/icons";
+ import { useSystemTheme } from "../hooks/use-system-theme";
+@@ -23,7 +20,6 @@ const TooltipBooleanInput = ({
+   const description = attribute?.options["description"] ?? "";
+ 
+   const systemTheme = useSystemTheme();
+-  const theme = systemTheme === "dark" ? darkTheme : lightTheme;
+ 
+   return (
+     <Field.Root id={name} error={error} hint={description}>
+@@ -31,17 +27,15 @@ const TooltipBooleanInput = ({
+       <Field.Label>{name}</Field.Label>
+ 
+         {tooltipContent && (
+-          <DesignSystemProvider theme={theme}>
+-            <Tooltip label={tooltipContent}>
+-              <Information
+-                aria-hidden
+-                style={{
+-                  cursor: "pointer",
+-                  color: systemTheme === "dark" ? "#fff" : "#000",
+-                }}
+-              />
+-            </Tooltip>
+-          </DesignSystemProvider>
++          <Tooltip label={tooltipContent}>
++            <Information
++              aria-hidden
++              style={{
++                cursor: "pointer",
++                color: systemTheme === "dark" ? "#fff" : "#000",
++              }}
++            />
++          </Tooltip>
+         )}
+       </Flex>
+ 
+diff --git a/admin/components/tooltipTextInput.jsx b/admin/components/tooltipTextInput.jsx
+index e28ecdf7696814c02108046b062eff7d02cf087e..b6d953703c57d6b0c4071298f7ab3c89cb8c4595 100644
+--- a/admin/components/tooltipTextInput.jsx
++++ b/admin/components/tooltipTextInput.jsx
+@@ -3,9 +3,6 @@ import {
+   TextInput,
+   Tooltip,
+   Field,
+-  DesignSystemProvider,
+-  lightTheme ,
+-  darkTheme
+ } from "@strapi/design-system";
+ import { Information } from "@strapi/icons";
+ import {useSystemTheme} from '../hooks/use-system-theme'
+@@ -21,8 +18,6 @@ const TextInputComponent = ({
+   const description = attribute?.options["description"] ?? "";
+ 
+   const systemTheme = useSystemTheme();
+-  const theme = systemTheme === 'dark' ? darkTheme : lightTheme;
+-
+ 
+   return (
+     <Field.Root id={name} error={error} hint={description}>
+@@ -37,14 +32,12 @@ const TextInputComponent = ({
+         required={required}
+         endAction={
+           tooltipContent ? (
+-            <DesignSystemProvider theme={theme}>
+-              <Tooltip label={tooltipContent ?? ""}>
+-                <Information
+-                  aria-hidden
+-                  style={{ cursor: "pointer" , color: systemTheme === 'dark' ? '#fff' : '#000'}}
+-                />
+-              </Tooltip>
+-            </DesignSystemProvider>
++            <Tooltip label={tooltipContent ?? ""}>
++              <Information
++                aria-hidden
++                style={{ cursor: "pointer" , color: systemTheme === 'dark' ? '#fff' : '#000'}}
++              />
++            </Tooltip>
+           ) : null
+         }
+       />

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_icon_strips",
+  "info": {
+    "displayName": "Icon Strip",
+    "description": "Compact horizontal row of icon+label items (no card backgrounds)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título opcional de la franja de íconos. Se muestra encima de la fila de íconos",
+        "description": "Título (opcional)"
+      }
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.quick-link-item"
+    }
+  }
+}

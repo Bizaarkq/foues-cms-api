@@ -7,7 +7,12 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección de pasos. Ej: 'Cómo inscribirse', 'Proceso de admisión'",
+        "description": "Título de la sección"
+      }
     },
     "steps": {
       "type": "component",

@@ -7,16 +7,35 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección o página interior. Aparece como encabezado compacto",
+        "description": "Título de la página"
+      }
     },
     "subtitle": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto complementario debajo del título de la página. Opcional",
+        "description": "Subtítulo (opcional)"
+      }
     },
     "backgroundImage": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    },
+    "gradient": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Color de degradado superpuesto sobre la imagen de fondo. 'none': sin degradado · 'primary': color primario · 'secondary': color secundario",
+        "description": "Degradado del fondo",
+        "enumValues": "none\nprimary\nsecondary"
+      }
     }
   }
 }

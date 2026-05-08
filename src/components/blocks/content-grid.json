@@ -7,22 +7,41 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección de tarjetas. Se muestra encima de la grilla",
+        "description": "Título de la sección"
+      }
     },
     "collection_type": {
-      "type": "enumeration",
-      "enum": ["news", "events", "programs", "faculty"],
-      "required": false
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Tipo de contenido que se muestra en la grilla. 'news': noticias · 'events': eventos · 'programs': programas · 'faculty': docentes",
+        "description": "Tipo de colección a mostrar",
+        "enumValues": "news\nevents\nprograms\nfaculty"
+      }
     },
     "card_style": {
-      "type": "enumeration",
-      "enum": ["default", "compact", "featured", "horizontal"],
-      "default": "default"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Estilo visual de las tarjetas. 'default': estándar · 'compact': más pequeñas · 'featured': destacada grande · 'horizontal': imagen a la izquierda",
+        "description": "Estilo de las tarjetas",
+        "enumValues": "default\ncompact\nfeatured\nhorizontal",
+        "default": "default"
+      }
     },
     "columns": {
-      "type": "enumeration",
-      "enum": ["col_1", "col_2", "col_3", "col_4"],
-      "default": "col_3"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Cantidad de columnas de la grilla. 'col_1': 1 columna · 'col_2': 2 · 'col_3': 3 (recomendado) · 'col_4': 4",
+        "description": "Columnas de la grilla",
+        "enumValues": "col_1\ncol_2\ncol_3\ncol_4",
+        "default": "col_3"
+      }
     },
     "items": {
       "type": "component",

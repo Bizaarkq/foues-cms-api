@@ -16,8 +16,13 @@
   },
   "attributes": {
     "Title": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título del artículo o noticia. Aparece como encabezado principal y se usa para generar el slug automáticamente",
+        "description": "Título del artículo",
+        "required": true
+      }
     },
     "slug": {
       "type": "uid",
@@ -25,7 +30,12 @@
       "required": true
     },
     "excerpt": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Resumen breve del artículo. Se muestra en las tarjetas de listado y en el preview. Máximo 2-3 oraciones",
+        "description": "Resumen breve (para listados)"
+      }
     },
     "content": {
       "type": "richtext"
@@ -34,9 +44,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     }
   }
 }

@@ -1,0 +1,36 @@
+{
+  "routePath": "/quienes-somos",
+  "title": "Quiénes Somos",
+  "layout": "default",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Quiénes Somos",
+      "gradient": "primary"
+    },
+    {
+      "__component": "blocks.rich-text",
+      "content": "—"
+    },
+    {
+      "__component": "blocks.timeline",
+      "title": "NUESTRA HISTORIA",
+      "items": [
+        { "year": "1899", "title": "Fundación",  "description": "—" },
+        { "year": "1900", "title": "—",           "description": "—" },
+        { "year": "1916", "title": "—",           "description": "—" }
+      ]
+    },
+    {
+      "__component": "blocks.mission-vision",
+      "mission_title": "Misión",
+      "mission_text": "—",
+      "vision_title": "Visión",
+      "vision_text": "—"
+    },
+    {
+      "__component": "blocks.staff-section",
+      "titulo": "AUTORIDADES"
+    }
+  ]
+}

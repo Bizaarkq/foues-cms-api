@@ -7,14 +7,29 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título que aparece sobre el mapa. Ej: 'Cómo llegar', 'Nuestra ubicación'",
+        "description": "Título de la sección"
+      }
     },
     "address": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Dirección física del lugar. Se muestra como texto debajo del mapa. Ej: 'Av. Rivadavia 1234, Buenos Aires'",
+        "description": "Dirección del lugar"
+      }
     },
     "embed_url": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "URL de incrustación de Google Maps. En Google Maps: Compartir → Insertar un mapa → copiá el valor del atributo src",
+        "description": "URL de Google Maps (src del iframe)",
+        "required": true
+      }
     },
     "latitude": {
       "type": "decimal"

@@ -9,7 +9,8 @@ FROM node:22-alpine AS base
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /opt/app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY patches/ ./patches/
 
 # ---- Stage: Build para Producción ----
 FROM base AS build-production

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_staff_sections",
+  "info": {
+    "displayName": "Staff Section",
+    "description": "Muestra los miembros de una unidad organizacional (autoridades, junta directiva, etc.)"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección de personal. Ej: 'Autoridades', 'Cuerpo docente', 'Junta directiva'",
+        "description": "Título de la sección"
+      }
+    },
+    "unidad": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organizational-unit.organizational-unit"
+    }
+  }
+}

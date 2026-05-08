@@ -7,15 +7,30 @@
   "options": {},
   "attributes": {
     "year": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Año o fecha del evento en la línea de tiempo. Ej: '1998', '2003–2005'",
+        "description": "Año o período",
+        "required": true
+      }
     },
     "title": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre del hito o evento histórico que se muestra junto al año",
+        "description": "Título del evento",
+        "required": true
+      }
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Descripción ampliada del evento. Opcional — agregar si el hito necesita más contexto",
+        "description": "Descripción (opcional)"
+      }
     }
   }
 }

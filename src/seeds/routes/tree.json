@@ -1,0 +1,111 @@
+{
+  "path": "/",
+  "label": "FOUES",
+  "order": 0,
+  "type": "page",
+  "children": [
+    {
+      "path": "/quienes-somos",
+      "label": "Quiénes Somos",
+      "order": 1,
+      "type": "section",
+      "children": [
+        { "path": "/quienes-somos/mision-vision",  "label": "Misión y Visión",    "order": 1, "type": "page" },
+        { "path": "/quienes-somos/historia",        "label": "Historia",           "order": 2, "type": "page" },
+        {
+          "path": "/quienes-somos/organizacion",
+          "label": "Organización",
+          "order": 3,
+          "type": "section",
+          "children": [
+            { "path": "/quienes-somos/organizacion/organigrama",             "label": "Organigrama",              "order": 1, "type": "page" },
+            { "path": "/quienes-somos/organizacion/decanato-vicedecanato",   "label": "Decanato y Vicedecanato",  "order": 2, "type": "page" },
+            { "path": "/quienes-somos/organizacion/junta-directiva",         "label": "Junta Directiva",          "order": 3, "type": "page" },
+            { "path": "/quienes-somos/organizacion/comite-tecnico",          "label": "Comité Técnico",           "order": 4, "type": "page" },
+            { "path": "/quienes-somos/organizacion/unidades-administrativas","label": "Unidades Administrativas", "order": 5, "type": "page" }
+          ]
+        },
+        { "path": "/quienes-somos/infraestructura", "label": "Infraestructura", "order": 4, "type": "page" },
+        { "path": "/quienes-somos/noticias",         "label": "Noticias",        "order": 5, "type": "page" },
+        { "path": "/quienes-somos/galeria",          "label": "Galería",         "order": 6, "type": "page" },
+        { "path": "/quienes-somos/revista",          "label": "Revista",         "order": 7, "type": "page" }
+      ]
+    },
+    {
+      "path": "/admision",
+      "label": "Admisión",
+      "order": 2,
+      "type": "page"
+    },
+    {
+      "path": "/pregrado",
+      "label": "Pregrado",
+      "order": 3,
+      "type": "section",
+      "children": [
+        {
+          "path": "/pregrado/descripcion-carrera",
+          "label": "Descripción de la Carrera",
+          "order": 1,
+          "type": "section",
+          "children": [
+            { "path": "/pregrado/descripcion-carrera/plan-estudios",            "label": "Plan de Estudios",            "order": 1, "type": "page" },
+            { "path": "/pregrado/descripcion-carrera/perfil-estudiante",        "label": "Perfil del Estudiante",       "order": 2, "type": "page" },
+            { "path": "/pregrado/descripcion-carrera/perfil-profesional",       "label": "Perfil del Profesional",      "order": 3, "type": "page" },
+            { "path": "/pregrado/descripcion-carrera/campos-ejercicio-laboral", "label": "Campos de Ejercicio Laboral", "order": 4, "type": "page" }
+          ]
+        },
+        { "path": "/pregrado/areas-docentes", "label": "Áreas Docentes", "order": 2, "type": "page" }
+      ]
+    },
+    {
+      "path": "/servicios",
+      "label": "Servicios",
+      "order": 4,
+      "type": "section",
+      "children": [
+        { "path": "/servicios/administracion-academica", "label": "Administración Académica", "order": 1, "type": "page" },
+        { "path": "/servicios/areas-clinicas",           "label": "Áreas Clínicas",           "order": 2, "type": "page" },
+        { "path": "/servicios/servicios-pacientes",      "label": "Servicios para Pacientes", "order": 3, "type": "page" },
+        { "path": "/servicios/consulta-primera-vez",     "label": "Consulta por Primera Vez", "order": 4, "type": "page" }
+      ]
+    },
+    {
+      "path": "/proyeccion-social",
+      "label": "Proyección Social",
+      "order": 5,
+      "type": "section",
+      "children": [
+        { "path": "/proyeccion-social/programa-preventivo-escolar", "label": "Programa Preventivo Escolar", "order": 1, "type": "page" },
+        {
+          "path": "/proyeccion-social/clinicas-extramurales",
+          "label": "Clínicas Extramurales",
+          "order": 2,
+          "type": "section",
+          "children": [
+            { "path": "/proyeccion-social/clinicas-extramurales/santa-ana",        "label": "Santa Ana",         "order": 1, "type": "page" },
+            { "path": "/proyeccion-social/clinicas-extramurales/unidades-salud",   "label": "Unidades de Salud", "order": 2, "type": "page" },
+            { "path": "/proyeccion-social/clinicas-extramurales/hospital-rosales", "label": "Hospital Rosales",  "order": 3, "type": "page" }
+          ]
+        },
+        { "path": "/proyeccion-social/paipad",          "label": "PAIPAD",          "order": 3, "type": "page" },
+        { "path": "/proyeccion-social/servicio-social", "label": "Servicio Social",  "order": 4, "type": "page" }
+      ]
+    },
+    {
+      "path": "/centro-imagenes-3d",
+      "label": "Centro de Imágenes 3D",
+      "order": 6,
+      "type": "section",
+      "children": [
+        { "path": "/centro-imagenes-3d/historia",            "label": "Historia",            "order": 1, "type": "page" },
+        { "path": "/centro-imagenes-3d/servicios-prestados", "label": "Servicios Prestados", "order": 2, "type": "page" },
+        { "path": "/centro-imagenes-3d/contacto",            "label": "Contacto",            "order": 3, "type": "page" },
+        { "path": "/centro-imagenes-3d/calendario-citas",    "label": "Calendario de Citas", "order": 4, "type": "page" }
+      ]
+    },
+    { "path": "/centro-investigaciones", "label": "Centro de Investigaciones", "order": 7, "type": "page" },
+    { "path": "/posgrado",               "label": "Escuela de Postgrados",     "order": 8, "type": "page" },
+    { "path": "/contacto",               "label": "Contacto",                  "order": 9, "type": "page" }
+  ]
+}

@@ -7,7 +7,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
       endpoint: '/graphql',
       shadowCRUD: true,
       playgroundAlways: false,
-      depthLimit: 7,
+      depthLimit: 10, // was 7 — required for blocks.section nesting (ADR-5)
       amountLimit: 100,
     },
   },

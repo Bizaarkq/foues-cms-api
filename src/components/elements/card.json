@@ -7,11 +7,21 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la tarjeta. Aparece como encabezado principal de la card",
+        "description": "Título de la tarjeta",
+        "required": true
+      }
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto descriptivo que aparece debajo del título de la tarjeta",
+        "description": "Descripción (opcional)"
+      }
     },
     "image": {
       "type": "media",
@@ -20,15 +30,28 @@
       "allowedTypes": ["images"]
     },
     "url": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Enlace al que lleva la tarjeta al hacer clic. Puede ser relativo ('/noticias/1') o absoluto ('https://...')",
+        "description": "URL de destino"
+      }
     },
     "tag": {
-      "type": "string",
-      "description": "Optional label tag displayed on the card (e.g. category, badge)"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Etiqueta opcional que aparece como badge en la tarjeta. Ej: 'Nuevo', 'Destacado', una categoría",
+        "description": "Etiqueta / badge (opcional)"
+      }
     },
     "customClasses": {
-      "type": "string",
-      "description": "Additional CSS utility classes"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Clases CSS adicionales para personalizar el estilo de la tarjeta. Solo para uso técnico — dejá vacío si no sabés qué es esto",
+        "description": "Clases CSS personalizadas (solo técnico)"
+      }
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_blocks_sections",
+  "info": {
+    "displayName": "Section",
+    "description": "Contenedor de block-groups. Permite agrupar bloques en un nivel anidado (máx 2). Usar deep_children solo como escape hatch >2 niveles (sin tipado)."
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre interno de la sección. Solo visible en el admin, sirve para identificar el contenedor en páginas complejas",
+        "description": "Nombre interno (solo admin)"
+      }
+    },
+    "section_columns": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-number-field",
+      "options": {
+        "tooltip-content": "Columnas de la grilla CSS para esta sección (1–12). Controla el ancho proporcional de los block-groups hijos. Valor por defecto: 12 (ancho completo)",
+        "description": "Columnas de la grilla (1–12)",
+        "default": 12
+      }
+    },
+    "children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::block-group.block-group"
+    }
+  }
+}

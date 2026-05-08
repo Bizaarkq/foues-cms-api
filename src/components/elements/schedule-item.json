@@ -11,16 +11,31 @@
       "required": true
     },
     "title": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre del evento o actividad del calendario. Ej: 'Inicio de clases', 'Examen parcial'",
+        "description": "Nombre del evento",
+        "required": true
+      }
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Información adicional sobre el evento. Ej: horarios, lugar, instrucciones especiales",
+        "description": "Información adicional (opcional)"
+      }
     },
     "category": {
-      "type": "enumeration",
-      "enum": ["academic", "event", "deadline", "holiday", "other"],
-      "default": "academic"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Categoría del evento para filtrado y color visual. 'academic': académico · 'event': evento · 'deadline': fecha límite · 'holiday': feriado · 'other': otro",
+        "description": "Categoría del evento",
+        "enumValues": "academic\nevent\ndeadline\nholiday\nother",
+        "default": "academic"
+      }
     }
   }
 }

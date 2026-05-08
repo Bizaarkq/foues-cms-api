@@ -7,10 +7,20 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título principal que aparece grande en el centro del hero. Es lo primero que ve el visitante",
+        "description": "Título principal"
+      }
     },
     "subtitle": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto secundario debajo del título. Puede ser un slogan o descripción breve de la página",
+        "description": "Subtítulo o descripción breve"
+      }
     },
     "backgroundImage": {
       "type": "media",

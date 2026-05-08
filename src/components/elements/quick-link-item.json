@@ -7,17 +7,33 @@
   "options": {},
   "attributes": {
     "label": {
-      "type": "string",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto del acceso rápido. Debe ser breve y descriptivo. Ej: 'Inscripción', 'Mesa de ayuda', 'Plan de estudios'",
+        "description": "Texto del enlace",
+        "required": true
+      }
     },
     "url": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Destino del enlace al hacer clic. Puede ser relativo ('/inscripcion') o absoluto ('https://...')",
+        "description": "URL de destino"
+      }
     },
     "icon": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::strapi-lucide-icons.icon"
     },
     "description": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto de apoyo que aparece debajo del label en la tarjeta. Opcional",
+        "description": "Descripción breve (opcional)"
+      }
     }
   }
 }

@@ -7,7 +7,12 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título del calendario o cronograma. Ej: 'Calendario académico 2025'",
+        "description": "Título del calendario"
+      }
     },
     "items": {
       "type": "component",

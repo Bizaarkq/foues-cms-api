@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_clinic_schedules",
+  "info": {
+    "displayName": "Clinic Schedule",
+    "description": "Operating hours panel for a clinic with optional richtext footnote"
+  },
+  "options": {},
+  "attributes": {
+    "clinic_name": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Nombre de la clínica o servicio. Se muestra como encabezado del horario. Ej: 'Clínica de Odontología'",
+        "description": "Nombre de la clínica",
+        "required": true
+      }
+    },
+    "hours": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.schedule-entry",
+      "required": true
+    },
+    "schedule_text": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_elements_list_items",
+  "info": {
+    "displayName": "List Item",
+    "description": "Single bullet text. Reusable across any list-shaped block."
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Texto del ítem de lista. Escribí una oración breve por ítem",
+        "description": "Texto del ítem",
+        "required": true
+      }
+    }
+  }
+}

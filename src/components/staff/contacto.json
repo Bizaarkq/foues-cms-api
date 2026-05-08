@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_staff_contactos",
+  "info": {
+    "displayName": "Contacto",
+    "description": "Información de contacto opcional de un miembro del staff"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "telefono": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Número de teléfono o interno del docente. Ej: '+54 11 4372-0000 int. 123'",
+        "description": "Teléfono de contacto"
+      }
+    },
+    "horario": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Horarios de atención o disponibilidad. Ej: 'Lunes y Miércoles de 10 a 12 hs'",
+        "description": "Horario de atención"
+      }
+    },
+    "ubicacion": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Oficina o lugar físico donde se puede encontrar al miembro. Ej: 'Oficina 3B, 2do piso'",
+        "description": "Oficina o ubicación"
+      }
+    },
+    "descripcion": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Información adicional de contacto u observaciones. Ej: 'Consultas solo por email', 'Atención con turno previo'",
+        "description": "Observaciones de contacto (opcional)"
+      }
+    }
+  }
+}

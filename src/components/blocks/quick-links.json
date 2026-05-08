@@ -7,7 +7,22 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la sección de accesos rápidos. Se muestra encima de los botones",
+        "description": "Título de la sección"
+      }
+    },
+    "ql_columns": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Cantidad de columnas para los accesos rápidos. Cada número representa cuántas entradas se muestran por fila (col_4 = 4 por fila)",
+        "description": "Columnas por fila",
+        "enumValues": "col_1\ncol_2\ncol_3\ncol_4\ncol_5\ncol_6\ncol_7\ncol_8\ncol_9\ncol_10\ncol_11\ncol_12",
+        "default": "col_4"
+      }
     },
     "links": {
       "type": "component",

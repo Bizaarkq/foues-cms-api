@@ -7,10 +7,20 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la galería. Se muestra encima de las fotos",
+        "description": "Título de la galería"
+      }
     },
     "subtitle": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Descripción breve de la galería. Se muestra debajo del título",
+        "description": "Descripción (opcional)"
+      }
     },
     "images": {
       "type": "media",
@@ -19,9 +29,14 @@
       "allowedTypes": ["images"]
     },
     "photo_columns": {
-      "type": "enumeration",
-      "enum": ["col_2", "col_3", "col_4"],
-      "default": "col_3"
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Cantidad de columnas para mostrar las fotos. 'col_2': 2 columnas · 'col_3': 3 (recomendado) · 'col_4': 4",
+        "description": "Columnas de la galería",
+        "enumValues": "col_2\ncol_3\ncol_4",
+        "default": "col_3"
+      }
     }
   }
 }

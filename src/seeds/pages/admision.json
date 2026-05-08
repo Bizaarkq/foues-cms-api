@@ -1,0 +1,81 @@
+{
+  "routePath": "/pregrado",
+  "title": "Admisión",
+  "layout": "default",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Admisión",
+      "subtitle": "Formá parte de la comunidad de la Facultad de Odontología de la UES",
+      "gradient": "secondary"
+    },
+    {
+      "__component": "blocks.process-steps",
+      "title": "Proceso de Admisión",
+      "steps": [
+        {
+          "number": 1,
+          "title": "Registro",
+          "description": "Completá el formulario de solicitud de ingreso en el período habilitado."
+        },
+        {
+          "number": 2,
+          "title": "Exámenes",
+          "description": "Realizá las pruebas de aptitud académica y psicológica establecidas por la UES."
+        },
+        {
+          "number": 3,
+          "title": "Entrevista",
+          "description": "Participá en la entrevista de selección con el equipo de admisión de la facultad."
+        },
+        {
+          "number": 4,
+          "title": "Admisión",
+          "description": "Confirmá tu inscripción y completá los trámites de matrícula en los plazos indicados."
+        }
+      ]
+    },
+    {
+      "__component": "blocks.bullet-list",
+      "title": "Requisitos de Ingreso",
+      "items": [
+        {
+          "text": "Diploma de bachillerato legalmente reconocido."
+        },
+        {
+          "text": "Certificado de aptitud médica y odontológica."
+        },
+        {
+          "text": "Documentos personales de identidad vigentes (DUI o pasaporte)."
+        },
+        {
+          "text": "Cumplir con los requisitos generales de admisión de la Universidad de El Salvador."
+        },
+        {
+          "text": "Solicitud de inscripción completada dentro del período establecido."
+        }
+      ],
+      "cta": {
+        "label": "APLICAR AHORA",
+        "url": "#",
+        "variant": "variant-filled-primary"
+      }
+    },
+    {
+      "__component": "blocks.key-dates",
+      "title": "Fechas Clave",
+      "display_mode": "calendar",
+      "items": []
+    },
+    {
+      "__component": "blocks.info-card",
+      "title": "Becas",
+      "body": "La Facultad de Odontología cuenta con programas de becas y apoyo económico para estudiantes de alto rendimiento académico y escasos recursos. Consultá las convocatorias vigentes y los requisitos para postular.",
+      "cta": {
+        "label": "Leer más",
+        "url": "#",
+        "variant": "variant-ghost-primary"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "routePath": "/servicios/areas-clinicas",
+  "title": "Áreas Clínicas",
+  "layout": "default",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Clínicas",
+      "gradient": "primary"
+    },
+    {
+      "__component": "blocks.icon-strip",
+      "title": null,
+      "links": [
+        { "label": "Admisión",         "url": "/admision",                        "icon": null, "description": null },
+        { "label": "Pacientes",        "url": "/servicios/servicios-pacientes",   "icon": null, "description": null },
+        { "label": "Primera Consulta", "url": "/servicios/consulta-primera-vez",  "icon": null, "description": null },
+        { "label": "Horarios",         "url": "#horarios",                        "icon": null, "description": null },
+        { "label": "Ubicación",        "url": "#ubicacion",                       "icon": null, "description": null },
+        { "label": "Contacto",         "url": "#contacto",                        "icon": null, "description": null }
+      ]
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": null,
+      "subtitle": null,
+      "photo_columns": "col_3"
+    },
+    {
+      "__component": "blocks.staff-section",
+      "titulo": "Nuestro Equipo Clínico"
+    },
+    {
+      "__component": "blocks.icon-strip",
+      "title": null,
+      "links": [
+        { "label": "Endodoncia",      "url": "#endodoncia",      "icon": null, "description": null },
+        { "label": "Periodoncia",     "url": "#periodoncia",     "icon": null, "description": null },
+        { "label": "Ortodoncia",      "url": "#ortodoncia",      "icon": null, "description": null },
+        { "label": "Odontopediatría", "url": "#odontopediatria", "icon": null, "description": null }
+      ]
+    },
+    {
+      "__component": "blocks.map-schedule",
+      "clinic_name": "Clínica de la Facultad de Odontología",
+      "address": "Final 25 Avenida Norte, San Salvador, El Salvador",
+      "embed_url": "—",
+      "hours": [
+        { "day_range": "Lunes a Viernes", "time_range": "8:00 AM – 12:00 PM" },
+        { "day_range": "Lunes a Viernes", "time_range": "1:00 PM – 5:00 PM" },
+        { "day_range": "Sábados",         "time_range": "8:00 AM – 12:00 PM" }
+      ],
+      "schedule_text": null
+    }
+  ]
+}
