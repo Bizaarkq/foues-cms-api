@@ -120,6 +120,7 @@ export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    if (process.env.NODE_ENV === 'production') return;
     await seedRoutes(strapi);
     await seedPages(strapi);
   },
