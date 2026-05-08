@@ -20,6 +20,7 @@
     "@strapi/plugin-users-permissions": "5.41.1",
     "@strapi/strapi": "5.41.1",
     "mysql2": "3.20.0",
+    "pg": "^8.20.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
