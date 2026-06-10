@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazine_issues",
+  "info": {
+    "singularName": "magazine-issue",
+    "pluralName": "magazine-issues",
+    "displayName": "Magazine Issue",
+    "description": "Ediciones de la revista de la Facultad de Odontología UES"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Título de la edición de la revista. Ej: 'Revista FOUES — Edición 1'. Se usa para generar el slug automáticamente",
+        "description": "Título de la edición",
+        "required": true
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "number": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-number-field",
+      "options": {
+        "tooltip-content": "Número correlativo de la edición. Se usa para ordenar las revistas cronológicamente. Ej: 1, 2, 3",
+        "description": "Número de edición"
+      }
+    },
+    "date": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-datetime-field",
+      "options": {
+        "tooltip-content": "Fecha oficial de publicación de la edición. Se muestra en la portada del archivo y en el visor de la revista",
+        "description": "Fecha de publicación"
+      }
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-field",
+      "options": {
+        "tooltip-content": "Resumen breve del contenido de esta edición. Se muestra en la página del visor sobre el flipbook",
+        "description": "Descripción de la edición"
+      }
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "pdf": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files"]
+    },
+    "pages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "conversionStatus": {
+      "type": "customField",
+      "customField": "plugin::superfields.tooltip-enum-field",
+      "options": {
+        "tooltip-content": "Estado de conversión del PDF a imágenes. 'processing': conversión en progreso · 'ready': páginas disponibles en el visor · 'failed': error en la conversión, se puede reintentar subiendo el PDF nuevamente",
+        "description": "Estado de conversión del PDF",
+        "enumValues": "processing\nready\nfailed"
+      }
+    }
+  }
+}
