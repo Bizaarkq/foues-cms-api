@@ -6,7 +6,9 @@
 services:
   db:
     ports:
-      - "3306:3306"
+      # Bound to loopback: reachable from the host machine only, never from
+      # the network — test servers run with this override active.
+      - "127.0.0.1:3306:3306"
     networks:
       - backend
       # Non-internal network required: Docker silently skips port publishing

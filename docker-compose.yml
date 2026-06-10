@@ -11,7 +11,7 @@ name: foues
 services:
   db:
     image: mysql:8.0
-    container_name: foues-cms-db
+    container_name: db
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
@@ -31,7 +31,7 @@ services:
       start_period: 30s
 
   foues-cms-api:
-    container_name: foues-cms-api
+    container_name: cms
     build:
       context: .
       dockerfile: Dockerfile
@@ -71,7 +71,7 @@ services:
       start_period: 30s
 
   foues-cms-frontend:
-    container_name: foues-cms-frontend
+    container_name: foues
     build:
       context: ../foues-cms-frontend
       dockerfile: Dockerfile
