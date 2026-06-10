@@ -60,6 +60,8 @@ services:
     networks:
       - backend
       - foues
+    volumes:
+      - foues-cms-uploads:/opt/app/public/uploads
     depends_on:
       db:
         condition: service_healthy
@@ -100,6 +102,7 @@ services:
 
 volumes:
   foues-cms-db:
+  foues-cms-uploads:
 
 networks:
   foues:
