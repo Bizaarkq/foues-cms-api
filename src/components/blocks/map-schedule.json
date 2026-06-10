@@ -24,8 +24,7 @@
       }
     },
     "embed_url": {
-      "type": "text",
-      "required": true
+      "type": "text"
     },
     "hours": {
       "type": "component",

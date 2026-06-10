@@ -1,0 +1,22 @@
+{
+  "routePath": "/centro-imagenes-3d",
+  "title": "Centro de Imágenes 3D",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Centro de Imágenes 3D",
+      "gradient": "primary"
+    },
+    {
+      "__component": "blocks.rich-text",
+      "content": "—"
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "",
+      "subtitle": "",
+      "photo_columns": "col_2"
+    }
+  ]
+}

@@ -16,12 +16,11 @@
     },
     "ql_columns": {
       "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
+      "customField": "plugin::superfields.tooltip-number-field",
       "options": {
-        "tooltip-content": "Cantidad de columnas para los accesos rápidos. Cada número representa cuántas entradas se muestran por fila (col_4 = 4 por fila)",
-        "description": "Columnas por fila",
-        "enumValues": "col_1\ncol_2\ncol_3\ncol_4\ncol_5\ncol_6\ncol_7\ncol_8\ncol_9\ncol_10\ncol_11\ncol_12",
-        "default": "col_4"
+        "tooltip-content": "Columnas por fila (0 = automático, 1–12 = fijo). Ej: 4 muestra 4 elementos por fila en escritorio.",
+        "description": "Columnas por fila (0 = auto)",
+        "default": 0
       }
     },
     "links": {

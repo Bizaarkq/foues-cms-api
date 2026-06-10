@@ -1,0 +1,53 @@
+{
+  "routePath": "/servicios",
+  "title": "Servicios",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Servicios",
+      "gradient": "secondary"
+    },
+    {
+      "__component": "blocks.info-card",
+      "title": "Áreas Clínicas",
+      "body": "La Facultad de Odontología de la Universidad de El Salvador (UES) ofrece atención dental integral de bajo costo a la población en sus clínicas, con servicios que incluyen limpiezas, extracciones, restauraciones, endodoncias y prótesis. Estos tratamientos son realizados por estudiantes supervisados, cubriendo diagnóstico, periodoncia y odontopediatría.",
+      "cta": {
+        "label": "Ver Clínicas",
+        "url": "/servicios/areas-clinicas",
+        "variant": "variant-ghost-primary"
+      }
+    },
+    {
+      "__component": "blocks.quick-links",
+      "title": "Servicios para Pacientes",
+      "ql_columns": 2,
+      "links": [
+        {
+          "label": "Áreas Clínicas",
+          "url": "/servicios/areas-clinicas",
+          "icon": "stethoscope",
+          "description": ""
+        },
+        {
+          "label": "Servicios para Pacientes",
+          "url": "/servicios/servicios-pacientes",
+          "icon": "users",
+          "description": ""
+        },
+        {
+          "label": "Consulta por Primera Vez",
+          "url": "/servicios/consulta-primera-vez",
+          "icon": "calendar",
+          "description": ""
+        },
+        {
+          "label": "Administración Académica",
+          "url": "/servicios/administracion-academica",
+          "icon": "clipboard-list",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

@@ -6,11 +6,62 @@
     {
       "__component": "blocks.hero-landing",
       "title": "Facultad de Odontología",
-      "subtitle": "—",
+      "subtitle": "Formando profesionales de excelencia en salud bucal con ética, compromiso social y conocimiento científico de vanguardia",
       "buttons": [
-        { "label": "INSCRIPCIÓN 2024", "url": "/admision",       "variant": "variant-filled-secondary" },
-        { "label": "MÁS INFORMACIÓN",  "url": "/quienes-somos",  "variant": "variant-ghost-primary"    }
+        { "label": "INSCRIPCIÓN 2025", "url": "/admision", "variant": "variant-filled-secondary" },
+        { "label": "MÁS INFORMACIÓN", "url": "/quienes-somos", "variant": "variant-ghost-primary" }
       ]
+    },
+    {
+      "__component": "blocks.mission-vision",
+      "mission_title": "MISIÓN",
+      "mission_text": "La misión de la odontología se centra en formar profesionales éticos y competentes en salud bucal, utilizando tecnología avanzada para mejorar la calidad de vida a través de sonrisas saludables.",
+      "vision_title": "VISIÓN",
+      "vision_text": "La visión apunta a ser referentes de excelencia, innovación tecnológica, investigación y compromiso social en el cuidado estomatológico integral."
+    },
+    {
+      "__component": "blocks.timeline",
+      "title": "NUESTRA HISTORIA",
+      "items": [
+        {
+          "year": "1899",
+          "title": "NUESTRA HISTORIA",
+          "description": "La Facultad de Odontología de la Universidad de El Salvador (FOUES) fue fundada oficialmente el 16 de diciembre de 1899, siendo una de las instituciones de educación odontológica más antiguas del país."
+        },
+        {
+          "year": "1900",
+          "title": "",
+          "description": "Siendo una de las instituciones de educación odontológica más antiguas del país."
+        },
+        {
+          "year": "1915",
+          "title": "",
+          "description": "Surgió tras la necesidad de profesionalizar la odontología."
+        },
+        {
+          "year": "1971",
+          "title": "",
+          "description": "Pasando de ser una escuela adscrita a medicina a una facultad independiente, consolidando su labor docente, de investigación y de servicio social en El Salvador."
+        }
+      ]
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "NUESTRAS INSTALACIONES",
+      "subtitle": "Contamos con instalaciones de última hora equipadas con tecnología de vanguardia para garantizar una formación profesional de excelencia.",
+      "photo_columns": "col_3"
+    },
+    {
+      "__component": "blocks.cta",
+      "title": "ORGANIZACIÓN",
+      "description": "",
+      "buttons": [
+        { "label": "ORGANIZACIÓN", "url": "/quienes-somos/organizacion", "variant": "variant-filled-primary" }
+      ]
+    },
+    {
+      "__component": "blocks.staff-section",
+      "titulo": "AUTORIDADES"
     },
     {
       "__component": "blocks.content-grid",
@@ -20,19 +71,18 @@
       "columns": "col_3"
     },
     {
-      "__component": "blocks.photo-gallery",
-      "title": "NUESTRAS INSTALACIONES",
-      "subtitle": "—",
-      "photo_columns": "col_3"
+      "__component": "blocks.rich-text",
+      "content": "## REVISTA\n\nLa Revista Salvadoreña de Odontología nace en 2025 como el órgano de divulgación científica oficial de la Escuela de Postgrado de la Facultad de Odontología de la Universidad de El Salvador, en la cual se publican investigaciones científicas nacionales e internacionales que abordan temáticas de interés para las diferentes especialidades de la odontología, que son: Restaurativa y Biomateriales dentales, Endodoncia, Periodoncia, Odontopediatría, Cirugía Oral y Maxilofacial/Odontología Hospitalaria, Patología y Medicina Oral, Implantología Oral y Ortodoncia.\n\n# RSO\n\n**REVISTA SALVADOREÑA DE ODONTOLOGÍA**"
     },
     {
       "__component": "blocks.quick-links",
       "title": "ACCESO RÁPIDO",
+      "ql_columns": 4,
       "links": [
-        { "label": "Expediente Académico",  "url": "#",                          "description": "—" },
-        { "label": "Trámites Estudiantiles","url": "#",                          "description": "—" },
-        { "label": "Clínicas",              "url": "/servicios/areas-clinicas",  "description": "—" },
-        { "label": "Horarios",              "url": "#",                          "description": "—" }
+        { "label": "Expediente", "url": "#", "icon": "file-text", "description": "Consulta y gestiona tu expediente académico" },
+        { "label": "Trámites Estudiantiles", "url": "#", "icon": "clipboard-list", "description": "Realiza tus trámites académicos y administrativos" },
+        { "label": "Clínicas", "url": "/servicios/areas-clinicas", "icon": "stethoscope", "description": "Consulta los servicios clínicos disponibles" },
+        { "label": "Horarios", "url": "#", "icon": "clock", "description": "Consulta los horarios de clases y atención" }
       ]
     }
   ]

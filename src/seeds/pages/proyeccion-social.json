@@ -1,0 +1,65 @@
+{
+  "routePath": "/proyeccion-social",
+  "title": "Proyección Social",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Proyección Social",
+      "gradient": "primary"
+    },
+    {
+      "__component": "blocks.rich-text",
+      "content": "## Programa Preventivo Escolar\n\n**Prevenir es mejor que Curar.**\n\n¿Sabías que la probabilidad de que tú o algún miembro de tu familia necesiten ir al dentista por emergencia es del 90%?\n\n### ¿Qué servicios te incluye este plan?\n\nEl objetivo principal de este plan es que tengas un chequeo periódico de manera preventiva, y al mismo tiempo un resguardo de emergencia dental al año.\n\nPor esta razón el plan cubre en la parte preventiva los siguientes servicios:\n\n- Consultas odontológicas ilimitadas al año\n- 2 Sellantes de Fosetas y Fisuras\n- Dos limpiezas dentales\n- Cobertura para una atención de emergencia al año\n\nBeneficio económico y de ahorro incluido, ya que la balanza costo-beneficio siempre es a tu favor: con nuestro sistema de salud dental puedes ahorrarte al año mucho más en comparación con lo que te cuesta el precio real de todos estos servicios, pudiéndote ahorrar más del 95% en el costo real que trae incluido este servicio.\n\nTambién el programa trae incluida la membresía familiar, la cual le incluye una tarjeta de descuento para obtener descuentos en otros servicios.\n\nEsta tarjeta de descuento cuenta con cobertura familiar y le permite ahorrarse hasta un 50% de descuento en algunos servicios médicos. La tarjeta de descuento también le permite participar en el programa de incentivos para pacientes afiliados."
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "Clínicas Extramurales",
+      "subtitle": "",
+      "photo_columns": "col_2"
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "PAIPAD",
+      "subtitle": "",
+      "photo_columns": "col_2"
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "Servicio Social",
+      "subtitle": "",
+      "photo_columns": "col_2"
+    },
+    {
+      "__component": "blocks.quick-links",
+      "title": "ACCESO RÁPIDO",
+      "ql_columns": 4,
+      "links": [
+        {
+          "label": "Expediente Académico",
+          "url": "#",
+          "icon": "book",
+          "description": "Consulta y gestión de tu historial académico"
+        },
+        {
+          "label": "Trámites Estudiantiles",
+          "url": "#",
+          "icon": "clipboard-list",
+          "description": "Servicios administrativos y documentación"
+        },
+        {
+          "label": "Clínicas",
+          "url": "/servicios/areas-clinicas",
+          "icon": "stethoscope",
+          "description": "Información sobre clínicas odontológicas"
+        },
+        {
+          "label": "Horarios",
+          "url": "#",
+          "icon": "clock",
+          "description": "Consulta de horarios de clases y actividades"
+        }
+      ]
+    }
+  ]
+}

@@ -44,6 +44,10 @@
         "default": 0
       }
     },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
     "slug": {
       "type": "uid",
       "targetField": "label"
@@ -65,6 +69,12 @@
       "relation": "oneToOne",
       "target": "api::page.page",
       "mappedBy": "route"
+    },
+    "visibility": {
+      "type": "enumeration",
+      "enum": ["public", "requires-login"],
+      "default": "public",
+      "required": false
     }
   }
 }
