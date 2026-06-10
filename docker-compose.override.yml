@@ -1,0 +1,45 @@
+# =============================================================================
+# Development override — auto-merged when running `docker compose up`
+# Production ignores this file: `docker compose -f docker-compose.yml up`
+# =============================================================================
+
+services:
+  db:
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+      # Non-internal network required: Docker silently skips port publishing
+      # for containers attached only to internal networks.
+      - foues
+
+  foues-cms-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_ENV: development
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./public/uploads:/opt/app/public/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider --quiet http://localhost:1337/_health || wget --spider --quiet http://localhost:1337 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 120s
+    networks:
+      - backend
+      - foues
+
+# Frontend: intentionally absent — always runs in production mode (SDUI renderer)
+
+networks:
+  foues:
+    name: foues
+    driver: bridge
+  backend:
+    name: foues-backend
+    driver: bridge
+    internal: true

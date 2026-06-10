@@ -16,7 +16,7 @@ Package manager is **pnpm** (lockfile + `patches/` applied via pnpm).
 - `pnpm console` — Strapi REPL.
 - `npx tsc --noEmit` — type-check. There is no test runner or linter configured; this is the verification gate.
 
-Docker (from the repo root, not this folder): `docker compose up` merges `docker-compose.override.yml` for dev. API is exposed on `:8000` → container `:1337`, MySQL 8 service `db`. Production: `docker compose -f docker-compose.yml up --build`.
+Docker (from this folder — compose files live in this repo): `docker compose up` merges `docker-compose.override.yml` for dev. API is exposed on `:8000` → container `:1337`, MySQL 8 service `db`. Production: `docker compose -f docker-compose.yml up --build`, then seed with `docker compose -f docker-compose.yml run --rm foues-cms-api pnpm data:migrate`. The frontend repo must be cloned as a sibling (`../foues-cms-frontend`) and `.env` must sit next to the compose files. The compose project name is pinned (`name: foues`) so containers/volumes keep their identity.
 
 ## Architecture: SDUI pipeline
 
