@@ -21,6 +21,14 @@ const TOKENS = [
       'api::form-submission.form-submission.create',
     ],
   },
+  {
+    name: 'MAGAZINE_TRACK_TOKEN',
+    description: 'Restricted token for magazine read-depth and visit tracking',
+    type: 'custom',
+    permissions: [
+      'api::magazine-issue.track.track',
+    ],
+  },
 ];
 
 const appDir = path.resolve(__dirname, '..');
