@@ -12,6 +12,8 @@ Package manager is **pnpm** (lockfile + `patches/` applied via pnpm).
 
 - `pnpm develop` — dev server with autoReload. Bootstrap (`src/index.ts`) runs pending data migrations on every start when `NODE_ENV !== 'production'`.
 - `pnpm data:migrate` — run pending data migrations explicitly (the production path; in Docker: `docker compose run --rm foues-cms-api pnpm data:migrate`).
+- `./scripts/generate-env.sh` — bootstrap `.env` with openssl-generated secrets (refuses to overwrite without `--force`).
+- `node scripts/create-api-tokens.js` — create/rotate the `STRAPI_API_TOKEN` and `FORM_SUBMIT_TOKEN` API tokens via `admin::api-token` service and print them once (see `docs/forms-api-token.md`).
 - `pnpm build` / `pnpm start` — build admin panel / run without autoReload.
 - `pnpm console` — Strapi REPL.
 - `npx tsc --noEmit` — type-check. There is no test runner or linter configured; this is the verification gate.
