@@ -4,4 +4,14 @@ build
 dist
 .cache
 .git
+**/.git
 *.log
+
+# Environment files (secrets must not leak into image layers)
+.env
+.env.*
+
+# IDE and documentation
+*.md
+.vscode
+.idea

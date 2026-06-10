@@ -6,6 +6,7 @@
   "scripts": {
     "build": "strapi build",
     "console": "strapi console",
+    "data:migrate": "node scripts/run-data-migrations.js",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.41.1",
+    "@strapi/plugin-color-picker": "^5.47.0",
     "@strapi/plugin-graphql": "^5.41.1",
     "@strapi/plugin-users-permissions": "5.41.1",
     "@strapi/strapi": "5.41.1",

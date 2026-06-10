@@ -15,7 +15,8 @@ COPY patches/ ./patches/
 # ---- Stage: Build para Producción ----
 FROM base AS build-production
 ENV NODE_ENV=production
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm-api-store,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile
 ENV PATH=/opt/app/node_modules/.bin:$PATH
 COPY . .
 RUN pnpm run build
@@ -31,12 +32,17 @@ ENV PATH=/opt/app/node_modules/.bin:$PATH
 RUN chown -R node:node /opt/app
 USER node
 EXPOSE 1337
+
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
+    CMD wget --spider --quiet http://localhost:1337/_health || exit 1
+
 CMD ["pnpm", "run", "start"]
 
 # ---- Stage: Desarrollo ----
 FROM base AS development
 ENV NODE_ENV=development
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm-api-store,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile
 ENV PATH=/opt/app/node_modules/.bin:$PATH
 COPY . .
 RUN chown -R node:node /opt/app
