@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_theme_basic_colors",
+  "info": {
+    "displayName": "Basic Colors",
+    "description": "Primary brand and layout color tokens"
+  },
+  "options": {},
+  "attributes": {
+    "navy": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "accent": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "red": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "surface": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "surface_raised": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_base": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_body": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "border_input": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "input_focus_ring": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "action_primary": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    }
+  }
+}

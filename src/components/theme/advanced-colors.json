@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_theme_advanced_colors",
+  "info": {
+    "displayName": "Advanced Colors",
+    "description": "Detailed functional color tokens — surfaces, text scale, inputs, states"
+  },
+  "options": {},
+  "attributes": {
+    "surface_sunken": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "border": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "border_subtle": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_strong": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_secondary": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_muted": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "text_faint": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "input_bg": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "input_text": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "input_checked": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "action_primary_hover": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "state_success": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "state_error": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_theme",
+  "info": {
+    "singularName": "global-theme",
+    "pluralName": "global-themes",
+    "displayName": "Global Theme",
+    "description": "Brand color palette (light + dark) injected as CSS vars."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "light": {
+      "type": "component",
+      "repeatable": false,
+      "component": "theme.basic-colors"
+    },
+    "dark": {
+      "type": "component",
+      "repeatable": false,
+      "component": "theme.basic-colors"
+    },
+    "light_advanced": {
+      "type": "component",
+      "repeatable": false,
+      "component": "theme.advanced-colors"
+    },
+    "dark_advanced": {
+      "type": "component",
+      "repeatable": false,
+      "component": "theme.advanced-colors"
+    }
+  }
+}
