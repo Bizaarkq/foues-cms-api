@@ -26,7 +26,7 @@ services:
       - ./src:/opt/app/src
       - ./public/uploads:/opt/app/public/uploads
     healthcheck:
-      test: ["CMD-SHELL", "wget --spider --quiet http://localhost:1337/_health || wget --spider --quiet http://localhost:1337 || exit 1"]
+      test: ["CMD-SHELL", "wget --spider --quiet http://127.0.0.1:1337/_health || wget --spider --quiet http://127.0.0.1:1337 || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 10
