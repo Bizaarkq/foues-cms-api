@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazine_stats",
+  "info": {
+    "singularName": "magazine-stat",
+    "pluralName": "magazine-stats",
+    "displayName": "Magazine Stat",
+    "description": "Estadísticas de visitas y profundidad de lectura por edición y día. Gestionado por el sistema."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "issue": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::magazine-issue.magazine-issue"
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "visits": {
+      "type": "integer",
+      "default": 0
+    },
+    "depth25": {
+      "type": "integer",
+      "default": 0
+    },
+    "depth50": {
+      "type": "integer",
+      "default": 0
+    },
+    "depth75": {
+      "type": "integer",
+      "default": 0
+    },
+    "depth100": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
