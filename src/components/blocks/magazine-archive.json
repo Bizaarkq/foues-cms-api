@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_magazine_archives",
+  "info": {
+    "displayName": "Magazine Archive",
+    "description": "Displays the magazine editions archive grid (self-fetching)"
+  },
+  "options": {},
+  "attributes": {}
+}

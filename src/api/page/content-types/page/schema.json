@@ -54,7 +54,8 @@
         "blocks.icon-strip",
         "blocks.map-schedule",
         "blocks.section",
-        "blocks.form"
+        "blocks.form",
+        "blocks.magazine-archive"
       ]
     },
     "route": {

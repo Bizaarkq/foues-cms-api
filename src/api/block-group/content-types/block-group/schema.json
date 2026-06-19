@@ -50,7 +50,8 @@
         "blocks.clinic-schedule",
         "blocks.icon-strip",
         "blocks.map-schedule",
-        "blocks.form"
+        "blocks.form",
+        "blocks.magazine-archive"
       ]
     }
   }
