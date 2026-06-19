@@ -157,24 +157,23 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         ? existingPages.map((p: any) => p.id as number).filter(Boolean)
         : [];
 
-      // 8. Link ordered pages + set ready (pipeline write — guard is active)
-      await strapi
-        .documents('api::magazine-issue.magazine-issue')
-        .update({ documentId, data: { pages: uploadedIds, conversionStatus: 'ready' } as any });
+      // 8. Link pages + set ready via query engine (bypasses lifecycle stripping)
+      const UID = 'api::magazine-issue.magazine-issue' as const;
+      await strapi.db.query(UID).update({
+        where: { documentId, publishedAt: null },
+        data: { pages: uploadedIds, conversionStatus: 'ready' },
+      });
 
-      // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status.
-      // Wrapped in its own try/catch: a publish failure here is non-critical because
-      // pages are already linked and conversionStatus is 'ready'. The editor can
-      // manually re-publish from the admin panel.
+      strapi.log.info(`[conversion] ${documentId} → ready (${uploadedIds.length} pages)`);
+
+      // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status
       try {
         const publishedIssue = await strapi
-          .documents('api::magazine-issue.magazine-issue')
+          .documents(UID)
           .findOne({ documentId, status: 'published' });
 
         if (publishedIssue) {
-          await strapi
-            .documents('api::magazine-issue.magazine-issue')
-            .publish({ documentId });
+          await strapi.documents(UID).publish({ documentId });
         }
       } catch (publishErr) {
         strapi.log.warn(
@@ -197,11 +196,11 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     } catch (err) {
       strapi.log.error(`[conversion] Conversion failed for ${documentId}:`, err);
 
-      // Set failed status — old pages remain untouched
       try {
-        await strapi
-          .documents('api::magazine-issue.magazine-issue')
-          .update({ documentId, data: { conversionStatus: 'failed' } as any });
+        await strapi.db.query('api::magazine-issue.magazine-issue' as const).update({
+          where: { documentId, publishedAt: null },
+          data: { conversionStatus: 'failed' },
+        });
       } catch (updateErr) {
         strapi.log.error(
           `[conversion] Could not set failed status for ${documentId}:`,
