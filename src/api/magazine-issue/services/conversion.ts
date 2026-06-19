@@ -159,12 +159,29 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
       // 8. Link pages + set ready via query engine (bypasses lifecycle stripping)
       const UID = 'api::magazine-issue.magazine-issue' as const;
-      await strapi.db.query(UID).update({
+
+      const draftRow = await strapi.db.query(UID).findOne({
         where: { documentId, publishedAt: null },
-        data: { pages: uploadedIds, conversionStatus: 'ready' },
+        select: ['id'],
       });
 
-      strapi.log.info(`[conversion] ${documentId} → ready (${uploadedIds.length} pages)`);
+      if (!draftRow) {
+        throw new Error(`[conversion] Draft row not found for documentId=${documentId}`);
+      }
+
+      await strapi.db.query(UID).update({
+        where: { id: draftRow.id },
+        data: { conversionStatus: 'ready', pages: uploadedIds },
+      });
+
+      // Verify the update took effect
+      const verify = await strapi.db.query(UID).findOne({
+        where: { id: draftRow.id },
+        select: ['id', 'conversionStatus'],
+      });
+      strapi.log.info(
+        `[conversion] ${documentId} row=${draftRow.id} → status=${verify?.conversionStatus} (${uploadedIds.length} pages)`
+      );
 
       // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status
       try {
