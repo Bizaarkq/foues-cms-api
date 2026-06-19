@@ -133,15 +133,25 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         .documents('api::magazine-issue.magazine-issue')
         .update({ documentId, data: { pages: uploadedIds, conversionStatus: 'ready' } as any });
 
-      // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status
-      const publishedIssue = await strapi
-        .documents('api::magazine-issue.magazine-issue')
-        .findOne({ documentId, status: 'published' });
-
-      if (publishedIssue) {
-        await strapi
+      // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status.
+      // Wrapped in its own try/catch: a publish failure here is non-critical because
+      // pages are already linked and conversionStatus is 'ready'. The editor can
+      // manually re-publish from the admin panel.
+      try {
+        const publishedIssue = await strapi
           .documents('api::magazine-issue.magazine-issue')
-          .publish({ documentId });
+          .findOne({ documentId, status: 'published' });
+
+        if (publishedIssue) {
+          await strapi
+            .documents('api::magazine-issue.magazine-issue')
+            .publish({ documentId });
+        }
+      } catch (publishErr) {
+        strapi.log.warn(
+          `[conversion] Publish-sync failed for ${documentId} — pages are linked, status is ready:`,
+          publishErr
+        );
       }
 
       // 10. Delete old page files AFTER new pages are successfully linked
