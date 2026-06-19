@@ -1,5 +1,6 @@
 import type { StrapiApp } from '@strapi/strapi/admin';
 import { FormSubmissionsPanel } from './extensions/FormSubmissionsPanel';
+import { MagazineStatsPanel } from './extensions/MagazineStatsPanel';
 
 export default {
   config: {
@@ -40,6 +41,10 @@ export default {
     app.getPlugin('content-manager').injectComponent('editView', 'right-links', {
       name: 'FormSubmissionsPanel',
       Component: FormSubmissionsPanel,
+    });
+    app.getPlugin('content-manager').injectComponent('editView', 'right-links', {
+      name: 'MagazineStatsPanel',
+      Component: MagazineStatsPanel,
     });
   },
 };
