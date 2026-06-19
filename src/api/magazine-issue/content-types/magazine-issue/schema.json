@@ -13,13 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la edición de la revista. Ej: 'Revista FOUES — Edición 1'. Se usa para generar el slug automáticamente",
-        "description": "Título de la edición",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -27,28 +22,13 @@
       "required": true
     },
     "number": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Número correlativo de la edición. Se usa para ordenar las revistas cronológicamente. Ej: 1, 2, 3",
-        "description": "Número de edición"
-      }
+      "type": "integer"
     },
     "date": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-datetime-field",
-      "options": {
-        "tooltip-content": "Fecha oficial de publicación de la edición. Se muestra en la portada del archivo y en el visor de la revista",
-        "description": "Fecha de publicación"
-      }
+      "type": "date"
     },
     "description": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Resumen breve del contenido de esta edición. Se muestra en la página del visor sobre el flipbook",
-        "description": "Descripción de la edición"
-      }
+      "type": "text"
     },
     "cover": {
       "type": "media",
@@ -69,13 +49,8 @@
       "allowedTypes": ["images"]
     },
     "conversionStatus": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Estado de conversión del PDF a imágenes. 'processing': conversión en progreso · 'ready': páginas disponibles en el visor · 'failed': error en la conversión, se puede reintentar subiendo el PDF nuevamente",
-        "description": "Estado de conversión del PDF",
-        "enumValues": "processing\nready\nfailed"
-      }
+      "type": "enumeration",
+      "enum": ["processing", "ready", "failed"]
     }
   }
 }

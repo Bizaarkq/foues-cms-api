@@ -1,9 +1,9 @@
 /**
  * conversion service — async PDF-to-image pipeline for magazine issues.
  *
- * conversionWrites is a module-level Set used both as an in-flight guard
- * (prevents duplicate jobs) and as a write-allowlist checked by lifecycles.ts
- * to let the pipeline bypass the system-managed field strip.
+ * conversionWrites lives on the global `strapi` object so the lifecycle and
+ * the service share the SAME Set instance even after TypeScript compilation
+ * produces separate module copies in dist/.
  */
 
 import type { Core } from '@strapi/strapi';
@@ -15,8 +15,12 @@ import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
 
-/** Tracks documentIds whose pipeline is currently writing pages/conversionStatus. */
-export const conversionWrites = new Set<string>();
+export function getConversionWrites(): Set<string> {
+  if (!(strapi as any).__conversionWrites) {
+    (strapi as any).__conversionWrites = new Set<string>();
+  }
+  return (strapi as any).__conversionWrites;
+}
 
 const FOLDER_MODEL = 'plugin::upload.folder';
 
@@ -40,6 +44,7 @@ async function getOrCreateFolder(
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async convert(documentId: string): Promise<void> {
+    const conversionWrites = getConversionWrites();
     if (conversionWrites.has(documentId)) {
       strapi.log.warn(`[conversion] Job already in-flight for ${documentId}, skipping`);
       return;
@@ -157,8 +162,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         ? existingPages.map((p: any) => p.id as number).filter(Boolean)
         : [];
 
-      // 8. Link pages + set ready via query engine (bypasses lifecycle stripping)
+      // 8. Link pages + set ready via raw Knex (bypasses all Strapi layers)
       const UID = 'api::magazine-issue.magazine-issue' as const;
+      const model = strapi.getModel(UID);
+      const tableName = model.collectionName;
 
       const draftRow = await strapi.db.query(UID).findOne({
         where: { documentId, publishedAt: null },
@@ -169,21 +176,22 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         throw new Error(`[conversion] Draft row not found for documentId=${documentId}`);
       }
 
-      await strapi.db.query(UID).update({
-        where: { id: draftRow.id },
-        data: { conversionStatus: 'ready', pages: uploadedIds },
-      });
+      // Raw SQL update — set ALL rows (draft + published) to ready
+      const updated = await strapi.db.connection(tableName)
+        .where({ document_id: documentId })
+        .update({ conversion_status: 'ready' });
 
-      // Verify the update took effect
-      const verify = await strapi.db.query(UID).findOne({
-        where: { id: draftRow.id },
-        select: ['id', 'conversionStatus'],
-      });
       strapi.log.info(
-        `[conversion] ${documentId} row=${draftRow.id} → status=${verify?.conversionStatus} (${uploadedIds.length} pages)`
+        `[conversion] ${documentId} table=${tableName} knex_updated=${updated} rows (${uploadedIds.length} pages)`
       );
 
-      // 9. Publish-sync: if a published row exists, re-publish to propagate pages/status
+      // Link pages via Document Service (relation handling — guard is already active)
+      await strapi.documents(UID).update({
+        documentId,
+        data: { pages: uploadedIds } as any,
+      });
+
+      // 9. Publish-sync: re-publish to propagate pages relation to published row
       try {
         const publishedIssue = await strapi
           .documents(UID)
@@ -194,7 +202,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         }
       } catch (publishErr) {
         strapi.log.warn(
-          `[conversion] Publish-sync failed for ${documentId} — pages are linked, status is ready:`,
+          `[conversion] Publish-sync failed for ${documentId}:`,
           publishErr
         );
       }
@@ -214,10 +222,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       strapi.log.error(`[conversion] Conversion failed for ${documentId}:`, err);
 
       try {
-        await strapi.db.query('api::magazine-issue.magazine-issue' as const).update({
-          where: { documentId, publishedAt: null },
-          data: { conversionStatus: 'failed' },
-        });
+        const model = strapi.getModel('api::magazine-issue.magazine-issue' as const);
+        await strapi.db.connection(model.collectionName)
+          .where({ document_id: documentId, published_at: null })
+          .update({ conversion_status: 'failed' });
       } catch (updateErr) {
         strapi.log.error(
           `[conversion] Could not set failed status for ${documentId}:`,

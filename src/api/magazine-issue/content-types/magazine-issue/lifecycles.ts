@@ -7,12 +7,12 @@
  *   3. Fire the async conversion job (fire-and-forget) on afterCreate / afterUpdate.
  *
  * Loop-guard strategy (three independent layers):
- *   a. conversionWrites Set: pipeline adds documentId before any DB write, removes in finally.
+ *   a. conversionWrites Set on strapi global: shared with conversion service.
  *   b. Draft-row-only trigger: afterCreate/afterUpdate only fires when result.publishedAt is null.
  *   c. Publish copies PDF → triggers beforeUpdate, but conversionWrites is active → no recursion.
  */
 
-import { conversionWrites } from '../../services/conversion';
+import { getConversionWrites } from '../../services/conversion';
 
 type LifecycleData = Record<string, unknown>;
 
@@ -49,11 +49,12 @@ export default {
   async beforeCreate(event: BeforeCreateEvent) {
     const { data } = event.params;
 
-    // Strip system-managed fields unconditionally on create
+    // Publish copies draft → published row; preserve system fields as-is
+    if (data.publishedAt != null) return;
+
     delete data.pages;
     delete data.conversionStatus;
 
-    // If a PDF is being attached on creation, start the conversion flow
     if (data.pdf != null) {
       event.state.pdfChanged = true;
       data.conversionStatus = 'processing';
@@ -73,7 +74,7 @@ export default {
     if (event.result.publishedAt != null) return;
 
     // Skip if the pipeline is already running for this document
-    if (conversionWrites.has(documentId)) return;
+    if (getConversionWrites().has(documentId)) return;
 
     // Defer to next tick so the create transaction commits before convert() queries the row
     setTimeout(() => {
@@ -92,9 +93,11 @@ export default {
     const { data, documentId } = event.params;
 
     // Pipeline writes are allowed through without any stripping
-    if (documentId && conversionWrites.has(documentId)) return;
+    if (documentId && getConversionWrites().has(documentId)) return;
 
-    // Strip system-managed fields
+    // Publish/unpublish copies data between rows; preserve system fields
+    if (data.publishedAt !== undefined) return;
+
     delete data.pages;
     delete data.conversionStatus;
 
@@ -139,7 +142,7 @@ export default {
     if (event.result.publishedAt != null) return;
 
     // Skip if the pipeline is already running (e.g. publish triggered by pipeline itself)
-    if (conversionWrites.has(documentId)) return;
+    if (getConversionWrites().has(documentId)) return;
 
     setTimeout(() => {
       const svc = strapi.service('api::magazine-issue.conversion') as any;
