@@ -18,11 +18,27 @@ const execFileAsync = promisify(execFile);
 /** Tracks documentIds whose pipeline is currently writing pages/conversionStatus. */
 export const conversionWrites = new Set<string>();
 
+const FOLDER_MODEL = 'plugin::upload.folder';
+
+async function getOrCreateFolder(
+  name: string,
+  parentId: number | null,
+): Promise<{ id: number; path: string }> {
+  const where: Record<string, unknown> = { name };
+  if (parentId) {
+    where.parent = { id: parentId };
+  } else {
+    where.$or = [{ parent: null }, { parent: { id: { $null: true } } }];
+  }
+
+  const existing = await strapi.db.query(FOLDER_MODEL).findOne({ where });
+  if (existing) return existing;
+
+  const folderService = strapi.plugin('upload').service('folder') as any;
+  return folderService.create({ name, parent: parentId });
+}
+
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
-  /**
-   * Converts the PDF attached to a magazine-issue into ordered JPEG pages.
-   * Must be called fire-and-forget from lifecycles (no await at call site).
-   */
   async convert(documentId: string): Promise<void> {
     if (conversionWrites.has(documentId)) {
       strapi.log.warn(`[conversion] Job already in-flight for ${documentId}, skipping`);
@@ -78,9 +94,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         throw new Error('[conversion] pdftoppm produced no output files');
       }
 
-      // 6. Upload each page via the Strapi upload service
+      // 6. Ensure folder structure: magazines → {slug} → pages
       const uploadService = strapi.plugin('upload').service('upload') as any;
       const slug = ((issue as any).slug as string) ?? documentId;
+
+      const magazinesFolder = await getOrCreateFolder('magazines', null);
+      const issueFolder = await getOrCreateFolder(slug, magazinesFolder.id);
+      const pagesFolder = await getOrCreateFolder('pages', issueFolder.id);
+
       const uploadedIds: number[] = [];
 
       for (let i = 0; i < pageFiles.length; i++) {
@@ -96,6 +117,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
               name,
               alternativeText: name,
               caption: '',
+              folder: pagesFolder.id,
             },
           },
           files: [
@@ -120,6 +142,13 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
       if (uploadedIds.length === 0) {
         throw new Error('[conversion] No pages were successfully uploaded');
+      }
+
+      // 6b. Move the source PDF into the issue folder
+      try {
+        await uploadService.updateFileInfo(pdfFile.id, { folder: issueFolder.id });
+      } catch (movePdfErr) {
+        strapi.log.warn(`[conversion] Could not move PDF to issue folder:`, movePdfErr);
       }
 
       // 7. Capture old page file IDs before overwriting

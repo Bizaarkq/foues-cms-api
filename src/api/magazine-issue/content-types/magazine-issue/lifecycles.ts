@@ -75,10 +75,13 @@ export default {
     // Skip if the pipeline is already running for this document
     if (conversionWrites.has(documentId)) return;
 
-    const svc = strapi.service('api::magazine-issue.conversion') as any;
-    void svc.convert(documentId).catch((err: unknown) => {
-      strapi.log.error('[magazine-issue/lifecycle] Conversion error after create:', err);
-    });
+    // Defer to next tick so the create transaction commits before convert() queries the row
+    setTimeout(() => {
+      const svc = strapi.service('api::magazine-issue.conversion') as any;
+      void svc.convert(documentId).catch((err: unknown) => {
+        strapi.log.error('[magazine-issue/lifecycle] Conversion error after create:', err);
+      });
+    }, 100);
   },
 
   /**
@@ -138,9 +141,11 @@ export default {
     // Skip if the pipeline is already running (e.g. publish triggered by pipeline itself)
     if (conversionWrites.has(documentId)) return;
 
-    const svc = strapi.service('api::magazine-issue.conversion') as any;
-    void svc.convert(documentId).catch((err: unknown) => {
-      strapi.log.error('[magazine-issue/lifecycle] Conversion error after update:', err);
-    });
+    setTimeout(() => {
+      const svc = strapi.service('api::magazine-issue.conversion') as any;
+      void svc.convert(documentId).catch((err: unknown) => {
+        strapi.log.error('[magazine-issue/lifecycle] Conversion error after update:', err);
+      });
+    }, 100);
   },
 };
