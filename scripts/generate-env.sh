@@ -33,8 +33,11 @@ STRAPI_ENCRYPTION_KEY=$(rand 32)
 STRAPI_JWT_SECRET=$(rand 16)
 
 # --- Frontend ---
-# URL the frontend uses to reach the API — adjust to your environment.
+# Internal URL (server-to-server inside Docker — do NOT change).
 STRAPI_URL=http://foues-cms-api:1337
+# Public URL the browser uses to load media (images, PDFs).
+# In local dev: http://localhost:8000  |  On server: http://<server-ip>:8000
+STRAPI_PUBLIC_URL=http://localhost:8000
 # Fill these once the API is up, by running:
 #   docker compose run --rm foues-cms-api node scripts/create-api-tokens.js
 STRAPI_API_TOKEN=

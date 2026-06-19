@@ -79,11 +79,13 @@ services:
       dockerfile: Dockerfile
       args:
         STRAPI_URL: ${STRAPI_URL}
+        STRAPI_PUBLIC_URL: ${STRAPI_PUBLIC_URL:-}
         STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
         FORM_SUBMIT_TOKEN: ${FORM_SUBMIT_TOKEN}
     restart: unless-stopped
     environment:
       STRAPI_URL: ${STRAPI_URL}
+      STRAPI_PUBLIC_URL: ${STRAPI_PUBLIC_URL:-}
       STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
       FORM_SUBMIT_TOKEN: ${FORM_SUBMIT_TOKEN}
       AUTH_SECRET: ${AUTH_SECRET}
