@@ -39,8 +39,20 @@ STRAPI_URL=http://foues-cms-api:1337
 #   docker compose run --rm foues-cms-api node scripts/create-api-tokens.js
 STRAPI_API_TOKEN=
 FORM_SUBMIT_TOKEN=
+MAGAZINE_TRACK_TOKEN=
+
+# --- NextAuth ---
+# Set AUTH_URL / NEXTAUTH_URL to the public URL of the frontend (e.g. http://<server-ip>:3000).
+AUTH_SECRET=$(rand 32)
+AUTH_URL=http://localhost:3000
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=dummy
+GOOGLE_CLIENT_SECRET=dummy
+
+# --- Cache revalidation ---
+REVALIDATE_SECRET=$(rand 32)
 EOF
 
 echo ".env generated."
 echo "Next: start the stack, then create the API tokens:"
-echo "  docker compose run --rm foues-cms-api node scripts/create-api-tokens.js"
+echo "  docker compose -f docker-compose.yml run --rm foues-cms-api node scripts/create-api-tokens.js"
