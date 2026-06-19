@@ -67,10 +67,10 @@ services:
         condition: service_healthy
     healthcheck:
       test: [ "CMD-SHELL", "wget --spider --quiet http://localhost:1337/_health || exit 1" ]
-      interval: 10s
+      interval: 15s
       timeout: 5s
-      retries: 5
-      start_period: 90s
+      retries: 8
+      start_period: 180s
 
   foues-cms-frontend:
     container_name: foues
