@@ -1,6 +1,7 @@
 # =============================================================================
-# Development override — auto-merged when running `docker compose up`
-# Production ignores this file: `docker compose -f docker-compose.yml up`
+# Development override — must be passed explicitly:
+# `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`
+# Production default: `docker compose up -d --build`
 # =============================================================================
 
 services:
