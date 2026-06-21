@@ -2,7 +2,7 @@
 # repo must be cloned as a sibling directory (../foues-cms-frontend).
 # Dev mode:  docker compose up            (auto-merges docker-compose.override.yml)
 # Prod mode: docker compose -f docker-compose.yml up --build
-# Seeds:     docker compose -f docker-compose.yml run --rm foues-cms-api pnpm data:migrate
+# Seeds:     docker compose run --rm cms pnpm data:migrate
 
 # Pinned so containers, networks and the db volume keep the same identity as
 # when this file lived in the parent directory (default name = dir name).
@@ -30,7 +30,7 @@ services:
       retries: 5
       start_period: 30s
 
-  foues-cms-api:
+  cms:
     container_name: cms
     build:
       context: .
@@ -72,7 +72,7 @@ services:
       retries: 8
       start_period: 180s
 
-  foues-cms-frontend:
+  foues:
     container_name: foues
     build:
       context: ../foues-cms-frontend
@@ -100,7 +100,7 @@ services:
     networks:
       - foues
     depends_on:
-      foues-cms-api:
+      cms:
         condition: service_healthy
     healthcheck:
       test: [ "CMD-SHELL", "wget --spider --quiet http://localhost:3000 || exit 1" ]

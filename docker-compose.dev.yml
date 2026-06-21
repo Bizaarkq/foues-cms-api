@@ -16,7 +16,7 @@ services:
       # for containers attached only to internal networks.
       - foues
 
-  foues-cms-api:
+  cms:
     build:
       context: .
       dockerfile: Dockerfile
