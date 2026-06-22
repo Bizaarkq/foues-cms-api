@@ -96,7 +96,7 @@ services:
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
       MAGAZINE_TRACK_TOKEN: ${MAGAZINE_TRACK_TOKEN}
     ports:
-      - "3000:3000"
+      - "80:3000"
     networks:
       - foues
     depends_on:
