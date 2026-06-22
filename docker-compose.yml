@@ -55,6 +55,8 @@ services:
       ENCRYPTION_KEY: ${STRAPI_ENCRYPTION_KEY}
       JWT_SECRET: ${STRAPI_JWT_SECRET:-defaultjwtsecret}
       NODE_ENV: ${BUILD_ENV:-production}
+    ports:
+      - "8000:1337"
     networks:
       - backend
       - foues
@@ -69,20 +71,6 @@ services:
       timeout: 5s
       retries: 8
       start_period: 180s
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-    networks:
-      - foues
-    depends_on:
-      foues:
-        condition: service_healthy
 
   foues:
     container_name: foues
@@ -107,6 +95,8 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
       MAGAZINE_TRACK_TOKEN: ${MAGAZINE_TRACK_TOKEN}
+    ports:
+      - "80:3000"
     networks:
       - foues
     depends_on:
