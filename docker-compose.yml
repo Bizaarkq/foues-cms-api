@@ -107,6 +107,8 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
       MAGAZINE_TRACK_TOKEN: ${MAGAZINE_TRACK_TOKEN}
+      # Opcional: URL del Campus Virtual en el navbar; vacía = link oculto
+      CAMPUS_VIRTUAL_URL: ${CAMPUS_VIRTUAL_URL:-}
     networks:
       - foues
     depends_on:

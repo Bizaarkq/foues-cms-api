@@ -72,6 +72,10 @@ GOOGLE_CLIENT_SECRET=dummy
 
 # --- Cache revalidation ---
 REVALIDATE_SECRET=$(rand 32)
+
+# --- Frontend extras ---
+# URL del Campus Virtual mostrada en el navbar (opcional; vacía = link oculto)
+CAMPUS_VIRTUAL_URL=
 EOF
 
 echo ".env generated."
