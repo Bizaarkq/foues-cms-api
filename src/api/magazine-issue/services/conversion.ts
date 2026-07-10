@@ -162,7 +162,9 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         ? existingPages.map((p: any) => p.id as number).filter(Boolean)
         : [];
 
-      // 8. Link pages + set ready via raw Knex (bypasses all Strapi layers)
+      // 8. Link pages FIRST, then mark ready — never the other way around.
+      // A 'ready' row without pages passes the frontend filter and renders an
+      // empty viewer; a 'processing' row with pages is merely not visible yet.
       const UID = 'api::magazine-issue.magazine-issue' as const;
       const model = strapi.getModel(UID);
       const tableName = model.collectionName;
@@ -176,7 +178,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         throw new Error(`[conversion] Draft row not found for documentId=${documentId}`);
       }
 
-      // Raw SQL update — set ALL rows (draft + published) to ready
+      // Link pages via Document Service (relation handling — guard is already active)
+      await strapi.documents(UID).update({
+        documentId,
+        data: { pages: uploadedIds } as any,
+      });
+
+      // Raw SQL update — set ALL rows (draft + published) to ready, as the
+      // last step of the happy path (bypasses all Strapi layers)
       const updated = await strapi.db.connection(tableName)
         .where({ document_id: documentId })
         .update({ conversion_status: 'ready' });
@@ -184,12 +193,6 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       strapi.log.info(
         `[conversion] ${documentId} table=${tableName} knex_updated=${updated} rows (${uploadedIds.length} pages)`
       );
-
-      // Link pages via Document Service (relation handling — guard is already active)
-      await strapi.documents(UID).update({
-        documentId,
-        data: { pages: uploadedIds } as any,
-      });
 
       // 9. Publish-sync: re-publish to propagate pages relation to published row
       try {
