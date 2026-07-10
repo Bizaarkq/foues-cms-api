@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "mobile_navbar",
+  "info": {
+    "singularName": "mobile-navbar",
+    "pluralName": "mobile-navbars",
+    "displayName": "Mobile Navbar",
+    "description": "Barra de navegación móvil — hasta 3 accesos directos entre Inicio y Menú."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.mobile-nav-item",
+      "max": 3
+    }
+  }
+}

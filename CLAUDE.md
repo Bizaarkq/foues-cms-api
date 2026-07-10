@@ -49,6 +49,7 @@ route (nav tree + access control) → page (dynamic zone "content") → block co
 
 - **`api::route.route`** — tree of `path`/`label`/`order`/`type`/`active` driving navigation. `visibility` enum (`public` | `requires-login`) is the access-control source of truth; enforcement happens in the frontend Server Component after resolving the route (NOT in the proxy/middleware). The boolean field is named `active` because **Strapi v5 GraphQL reserves the field name `enabled`**.
 - **`api::page.page`** — `title`, `layout` (`default` | `full-width`), `content` dynamic zone holding the block components in `src/components/blocks/`.
+- **`api::mobile-navbar.mobile-navbar`** — single type governing the frontend's mobile bottom bar: repeatable `navigation.mobile-nav-item` component (**max 3, schema-enforced**) with `label`, `icon` (lucide), and either a `route` relation (internal target — must be an active `type: page` route; the frontend drops anything else) or `external_url` (external wins if both are set). "Inicio" and "Menú" are hardcoded in the frontend; seeded by data migration 005.
 - **Frontend contract**: every block maps to an inline GraphQL fragment in `foues-cms-frontend/lib/strapi.ts` (`LEAF_BLOCK_FRAGMENTS`), a `TYPENAME_TO_COMPONENT` entry, a `normalizeBlocks` pass, and a component registry entry. Adding or changing a block schema here is incomplete until those frontend pieces are updated.
 - **Nested blocks**: Strapi v5 cannot nest dynamic zones inside components, so nesting uses `blocks.section` → relation to the `block-group` collection type (a reusable container of flat blocks), max 2 levels. GraphQL `depthLimit` is 10 in `config/plugins.ts` specifically to allow this — don't lower it.
 - **Intentionally unused schemas**: `blocks/hero.json`, `blocks/dynamic-collection.json` and `api::article` are NOT in any dynamic zone or frontend query. They are kept on purpose for when the final frontend design lands — do not delete them as "dead code".
@@ -86,7 +87,7 @@ Seed data lives in `src/seeds/` (JSON) and is applied by ordered data migrations
 
 ## Cache invalidation
 
-Content changes notify the frontend through a Strapi webhook (configured in Admin → Settings → Webhooks, not in code) pointing at the frontend's `/api/revalidate` route handler. The handler maps `route`/`page`/`magazine-issue` to their tags and treats ANY other model as "expire all pages" — so the webhook must have create/update/delete/publish/unpublish entry events enabled for **all content types that feed rendering** (footer, global-theme, block-group, staff, organizational-unit, form, magazine-issue…), not just page/route.
+Content changes notify the frontend through a Strapi webhook (configured in Admin → Settings → Webhooks, not in code) pointing at the frontend's `/api/revalidate` route handler. The handler maps `route`/`page`/`magazine-issue` to their tags and treats ANY other model as "expire all pages" — so the webhook must have create/update/delete/publish/unpublish entry events enabled for **all content types that feed rendering** (footer, global-theme, block-group, staff, organizational-unit, form, magazine-issue, mobile-navbar…), not just page/route.
 
 ## Schema conventions
 
