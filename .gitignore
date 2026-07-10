@@ -131,3 +131,7 @@ build
 .strapi-cloud.json
 # pnpm patch edit dirs
 patches/*-edit/
+
+# Local-only files (secrets / machine-specific overrides)
+local.env
+docker-compose.local.yml
