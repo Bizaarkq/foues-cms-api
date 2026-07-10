@@ -4,21 +4,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Strapi v5 (5.41.x, TypeScript) headless CMS for the Facultad de Odontología UES site. It is the content backend of a two-app monorepo: `foues-cms-frontend` (Next.js 16) renders every public page from content served here via GraphQL (`/graphql`). The two apps share one business domain — see `../docs/agents/domain.md`; check `../CONTEXT.md` and `../docs/adr/` (both created lazily) before renaming domain terms or re-deciding architecture.
+Strapi v5 (5.41.x, TypeScript) headless CMS for the Facultad de Odontología UES site. It is the content backend of a two-repo system: `foues-cms-frontend` (Next.js 16, cloned as a sibling directory) renders every public page from content served here via GraphQL (`/graphql`).
+
+This file is the **single source of truth for architecture decisions** — there are no separate ADR files or CONTEXT.md (they were lost with a previous machine; decisions are consolidated in the "Decisions" section below). Bugs and pending work are tracked in **GitHub Issues**, not in memory tools.
+
+## Workflow
+
+- `develop` is the working branch (will be promoted to `main` when v1 is ready). GitHub account `Bizaarkq` is Edwin (solo dev).
+- Conventional commits, optionally gitmoji-prefixed (`✨ feat(...)`, `🐛 fix(...)`). No AI attribution.
+- Verification gate: `npx tsc --noEmit`. There is no test runner or linter configured yet — adding tests (here and in the frontend) is planned, not a decision against them.
 
 ## Commands
 
 Package manager is **pnpm** (lockfile + `patches/` applied via pnpm).
 
 - `pnpm develop` — dev server with autoReload. Bootstrap (`src/index.ts`) runs pending data migrations on every start when `NODE_ENV !== 'production'`.
-- `pnpm data:migrate` — run pending data migrations explicitly (the production path; in Docker: `docker compose run --rm foues-cms-api pnpm data:migrate`).
-- `./scripts/generate-env.sh` — bootstrap `.env` with openssl-generated secrets (refuses to overwrite without `--force`).
-- `node scripts/create-api-tokens.js` — create/rotate the `STRAPI_API_TOKEN` and `FORM_SUBMIT_TOKEN` API tokens via `admin::api-token` service and print them once (see `docs/forms-api-token.md`).
+- `pnpm data:migrate` — run pending data migrations explicitly (the production path; in Docker: `docker compose run --rm cms pnpm data:migrate`).
+- `./scripts/generate-env.sh` — bootstrap `.env` with openssl-generated secrets (refuses to overwrite without `--force`; preserves DB credentials on `--force` so the MySQL volume stays accessible).
+- `node scripts/create-api-tokens.js` — create/rotate the `STRAPI_API_TOKEN`, `FORM_SUBMIT_TOKEN` and `MAGAZINE_TRACK_TOKEN` API tokens via `admin::api-token` service and print them once (see `docs/forms-api-token.md`).
 - `pnpm build` / `pnpm start` — build admin panel / run without autoReload.
 - `pnpm console` — Strapi REPL.
-- `npx tsc --noEmit` — type-check. There is no test runner or linter configured; this is the verification gate.
+- `npx tsc --noEmit` — type-check (the verification gate).
 
-Docker (from this folder — compose files live in this repo): `docker compose up` merges `docker-compose.override.yml` for dev. API is exposed on `:8000` → container `:1337`, MySQL 8 service `db`. Production: `docker compose -f docker-compose.yml up --build`, then seed with `docker compose -f docker-compose.yml run --rm foues-cms-api pnpm data:migrate`. The frontend repo must be cloned as a sibling (`../foues-cms-frontend`) and `.env` must sit next to the compose files. The compose project name is pinned (`name: foues`) so containers/volumes keep their identity.
+## Docker & deployment
+
+Compose files live in this repo; `.env` sits next to them; the frontend repo must be cloned as a sibling (`../foues-cms-frontend`). Project name is pinned (`name: foues`) so containers/volumes keep their identity.
+
+Services: `db` (MySQL 8, internal `backend` network), `cms` (Strapi, container `:1337`), `foues` (Next.js frontend, built from `../foues-cms-frontend`), `nginx` (reverse proxy on host `:80`).
+
+- **Production (default)**: `docker compose up -d --build`, then seed with `docker compose run --rm cms pnpm data:migrate`.
+- **Dev**: the override must be passed explicitly — `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`. (It was renamed from `docker-compose.override.yml` to prevent accidental dev merge in prod.) Dev exposes the API on host `:8000` → container `:1337` and MySQL on loopback `:3306`.
+- **nginx** routes `test.odontologia.ues.edu.sv` → frontend and `cms.test.odontologia.ues.edu.sv` → Strapi (`nginx/default.conf`). Domains are currently **hardcoded** — a known wart; if this needs parametrizing, use the nginx image's envsubst templates (`/etc/nginx/templates/*.conf.template`).
+- Current environment: a **test server** using those domains, with a test Google OAuth client already working.
+- Healthchecks use `127.0.0.1` (not `localhost`) to avoid IPv6 resolution failures on Alpine.
+- `STRAPI_URL` (internal, `http://cms:1337`) vs `STRAPI_PUBLIC_URL` (browser-facing, for media URLs) — both flow to the frontend build and runtime.
 
 ## Architecture: SDUI pipeline
 
@@ -30,8 +49,20 @@ route (nav tree + access control) → page (dynamic zone "content") → block co
 
 - **`api::route.route`** — tree of `path`/`label`/`order`/`type`/`active` driving navigation. `visibility` enum (`public` | `requires-login`) is the access-control source of truth; enforcement happens in the frontend Server Component after resolving the route (NOT in the proxy/middleware). The boolean field is named `active` because **Strapi v5 GraphQL reserves the field name `enabled`**.
 - **`api::page.page`** — `title`, `layout` (`default` | `full-width`), `content` dynamic zone holding the block components in `src/components/blocks/`.
-- **Frontend contract**: every block maps to an inline GraphQL fragment in `foues-cms-frontend/lib/strapi.ts` (`BLOCK_FRAGMENTS`), a `normalizeBlocks` pass, and a component registry entry. Adding or changing a block schema here is incomplete until those three frontend pieces are updated.
-- **Nested blocks (ADR-5)**: Strapi v5 cannot nest dynamic zones inside components, so nesting uses `blocks.section` → relation to the `block-group` collection type (a reusable container of flat blocks), max 2 levels, with a JSON escape hatch beyond that. GraphQL `depthLimit` is 10 in `config/plugins.ts` specifically to allow this — don't lower it.
+- **Frontend contract**: every block maps to an inline GraphQL fragment in `foues-cms-frontend/lib/strapi.ts` (`LEAF_BLOCK_FRAGMENTS`), a `TYPENAME_TO_COMPONENT` entry, a `normalizeBlocks` pass, and a component registry entry. Adding or changing a block schema here is incomplete until those frontend pieces are updated.
+- **Nested blocks**: Strapi v5 cannot nest dynamic zones inside components, so nesting uses `blocks.section` → relation to the `block-group` collection type (a reusable container of flat blocks), max 2 levels. GraphQL `depthLimit` is 10 in `config/plugins.ts` specifically to allow this — don't lower it.
+- **Intentionally unused schemas**: `blocks/hero.json`, `blocks/dynamic-collection.json` and `api::article` are NOT in any dynamic zone or frontend query. They are kept on purpose for when the final frontend design lands — do not delete them as "dead code".
+
+## Magazine pipeline (revista)
+
+`api::magazine-issue.magazine-issue` (draft & publish) holds an uploaded PDF; an async pipeline converts it to page images for the frontend flipbook viewer.
+
+- **Trigger**: lifecycles (`content-types/magazine-issue/lifecycles.ts`) detect a PDF change on the draft row, set `conversionStatus = 'processing'`, and fire the conversion service after a 100 ms defer (so the write transaction commits first).
+- **Conversion** (`services/conversion.ts`): renders the PDF with `pdftoppm` (poppler-utils, installed in the Dockerfile) at 150 DPI JPEG q=85 into a temp dir, uploads pages into the media library folder tree `magazines/{slug}/pages`, links the `pages` relation, sets `conversionStatus = 'ready'`, re-publishes if a published row exists, then deletes the old page files.
+- **Loop guard**: a `Set` stored on the global `strapi` object (`__conversionWrites`) is shared between lifecycle and service — it MUST live on the global because TypeScript compilation produces separate module copies in `dist/`, so a module-level Set would not be shared. Pipeline DB writes go through raw Knex to bypass lifecycles.
+- **System-managed fields**: `pages` and `conversionStatus` are stripped from user writes in `beforeCreate`/`beforeUpdate` — editors cannot set them manually.
+- **Tracking**: `POST /api/magazine-issues/:documentId/track` (`controllers/track.ts`, custom route with token scope `api::magazine-issue.track.track`) aggregates daily stats into `api::magazine-stat.magazine-stat` (visits + cumulative depth buckets 25/50/75/100). The collection is hidden from the content manager; stats are viewed via the `MagazineStatsPanel` admin extension (CSV export).
+- The frontend never calls the track endpoint directly — it proxies through its own `/api/magazine-track` route so `MAGAZINE_TRACK_TOKEN` never reaches the browser.
 
 ## Data migrations (seeds)
 
@@ -53,7 +84,7 @@ Seed data lives in `src/seeds/` (JSON) and is applied by ordered data migrations
 
 ## Cache invalidation
 
-Content changes notify the frontend through a Strapi webhook (configured in Admin → Settings → Webhooks, not in code) pointing at the frontend's `/api/revalidate` route handler.
+Content changes notify the frontend through a Strapi webhook (configured in Admin → Settings → Webhooks, not in code) pointing at the frontend's `/api/revalidate` route handler. The handler maps `route`/`page`/`magazine-issue` to their tags and treats ANY other model as "expire all pages" — so the webhook must have create/update/delete/publish/unpublish entry events enabled for **all content types that feed rendering** (footer, global-theme, block-group, staff, organizational-unit, form, magazine-issue…), not just page/route.
 
 ## Schema conventions
 
@@ -64,3 +95,14 @@ Content changes notify the frontend through a Strapi webhook (configured in Admi
 ## Database gotchas
 
 - MySQL via Docker in dev. If you ever truncate component tables manually, truncate the component table, its `_cmps` junction table, and the parent links **together** (e.g. `components_blocks_quick_links` + `components_blocks_quick_links_cmps`), otherwise the auto_increment reset corrupts parent–child relations.
+
+## Decisions (consolidated — formerly ADRs)
+
+1. **Custom data-migration runner over Strapi native migrations** — native ones run before schema sync and lack the Document Service (see Data migrations above).
+2. **Form submissions as a JSON blob** — dynamic per-form collections would need a restart per new form in production.
+3. **Nesting via `blocks.section` → `block-group` relation** (not nested dynamic zones — Strapi can't) with `depthLimit: 10` in GraphQL to make room for it; max 2 UI levels.
+4. **`active` instead of `enabled`** on routes — `enabled` is reserved by Strapi v5 GraphQL.
+5. **Access control enforced in the frontend Server Component**, driven by `route.visibility`; the CMS only declares it.
+6. **Conversion loop-guard on the `strapi` global** — module-level state doesn't survive the dist/ module duplication.
+7. **Raw Knex for pipeline writes** — bypasses lifecycles that would otherwise strip system-managed fields or recurse.
+8. **Restricted per-purpose API tokens** (`STRAPI_API_TOKEN` read, `FORM_SUBMIT_TOKEN` submit-only, `MAGAZINE_TRACK_TOKEN` track-only) created by script, never by hand.
