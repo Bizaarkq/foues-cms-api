@@ -53,7 +53,9 @@ route (nav tree + access control) → page (dynamic zone "content") → block co
 - **Nested blocks**: Strapi v5 cannot nest dynamic zones inside components, so nesting uses `blocks.section` → relation to the `block-group` collection type (a reusable container of flat blocks), max 2 levels. GraphQL `depthLimit` is 10 in `config/plugins.ts` specifically to allow this — don't lower it.
 - **Intentionally unused schemas**: `blocks/hero.json`, `blocks/dynamic-collection.json` and `api::article` are NOT in any dynamic zone or frontend query. They are kept on purpose for when the final frontend design lands — do not delete them as "dead code".
 
-## Magazine pipeline (revista)
+## Magazine pipeline (revista / publicaciones)
+
+**Multi-publication model**: `api::publication.publication` (no draft & publish) groups editions — each publication (Revista Estudiantil, informes científicos, memorias…) owns its `magazine-issue` entries via a required manyToOne relation. The `blocks.magazine-archive` component has a `title` field and a `publications` relation: each placement of the block selects which publications it lists (none selected = all). Edition URLs are **derived from where the block lives** (`{page-path}/{issue-slug}`) — there is no hardcoded route prefix anywhere. The Publisher admin role gets publication CRUD via data migration 004.
 
 `api::magazine-issue.magazine-issue` (draft & publish) holds an uploaded PDF; an async pipeline converts it to page images for the frontend flipbook viewer.
 

@@ -51,6 +51,13 @@
     "conversionStatus": {
       "type": "enumeration",
       "enum": ["processing", "ready", "failed"]
+    },
+    "publication": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::publication.publication",
+      "inversedBy": "issues",
+      "required": true
     }
   }
 }
