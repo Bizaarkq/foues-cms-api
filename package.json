@@ -21,6 +21,7 @@
     "@strapi/plugin-graphql": "^5.48.1",
     "@strapi/plugin-users-permissions": "5.41.1",
     "@strapi/strapi": "5.41.1",
+    "@strapi/utils": "5.41.1",
     "mysql2": "3.20.0",
     "pg": "^8.22.0",
     "react": "^18.3.1",
