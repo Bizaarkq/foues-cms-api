@@ -34,7 +34,7 @@ Services: `db` (MySQL 8, internal `backend` network), `cms` (Strapi, container `
 
 - **Production (default)**: `docker compose up -d --build`, then seed with `docker compose run --rm cms pnpm data:migrate`.
 - **Dev**: the override must be passed explicitly — `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`. (It was renamed from `docker-compose.override.yml` to prevent accidental dev merge in prod.) Dev exposes the API on host `:8000` → container `:1337` and MySQL on loopback `:3306`.
-- **nginx** routes `test.odontologia.ues.edu.sv` → frontend and `cms.test.odontologia.ues.edu.sv` → Strapi (`nginx/default.conf`). Domains are currently **hardcoded** — a known wart; if this needs parametrizing, use the nginx image's envsubst templates (`/etc/nginx/templates/*.conf.template`).
+- **nginx** routes `${FRONTEND_DOMAIN}` → frontend and `${CMS_DOMAIN}` → Strapi via the envsubst template `nginx/templates/default.conf.template` (rendered by the nginx image at startup). Domains come from the `.env` (defaults: the test-server domains). `CMS_DOMAIN` must match `STRAPI_PUBLIC_URL`.
 - Current environment: a **test server** using those domains, with a test Google OAuth client already working.
 - Healthchecks use `127.0.0.1` (not `localhost`) to avoid IPv6 resolution failures on Alpine.
 - `STRAPI_URL` (internal, `http://cms:1337`) vs `STRAPI_PUBLIC_URL` (browser-facing, for media URLs) — both flow to the frontend build and runtime.

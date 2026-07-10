@@ -1,61 +1,42 @@
-# 🚀 Getting started with Strapi
+# foues-cms-api
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+CMS headless (Strapi v5, TypeScript, MySQL) de la **Facultad de Odontología — Universidad de El Salvador (FOUES)**. Sirve todo el contenido del sitio público vía GraphQL al frontend [`foues-cms-frontend`](https://github.com/Bizaarkq/foues-cms-frontend) (Next.js, arquitectura server-driven UI). Este repo también contiene los compose files del stack completo.
 
-### `develop`
+## Levantar el stack
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+```bash
+# Requisitos: Docker + el frontend clonado como directorio hermano (../foues-cms-frontend)
 
-```
-npm run develop
-# or
-yarn develop
-```
+./scripts/generate-env.sh        # genera .env con secretos aleatorios
 
-### `start`
+# Producción (default)
+docker compose up -d --build
+docker compose run --rm cms pnpm data:migrate                    # seeds/migraciones de datos
+docker compose run --rm cms node scripts/create-api-tokens.js   # tokens → copiarlos al .env
+docker compose up -d --build foues                               # rebuild frontend con tokens
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
+# Desarrollo (override explícito: expone API en :8000 y MySQL en loopback :3306)
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 ```
 
-### `build`
+Servicios: `db` (MySQL 8), `cms` (Strapi `:1337`), `foues` (frontend), `nginx` (reverse proxy en `:80`, dominios configurables vía `FRONTEND_DOMAIN` / `CMS_DOMAIN` en el `.env`).
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+## Desarrollo sin Docker
 
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
+```bash
+pnpm install
+pnpm develop        # dev server con autoReload; corre las data migrations pendientes
+npx tsc --noEmit    # gate de verificación — correr antes de commitear
 ```
 
-## 📚 Learn more
+## Estructura clave
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+- `src/api/` — content types (route, page, form, magazine-issue, publication…)
+- `src/components/blocks/` — bloques del dynamic zone (contrato SDUI con el frontend)
+- `src/data-migrations/` + `src/seeds/` — seeds versionados con runner propio
+- `src/admin/extensions/` — paneles custom del admin (envíos de formularios, stats de revista)
+- `scripts/` — generate-env.sh, create-api-tokens.js
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+## Documentación
 
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+La arquitectura, decisiones y convenciones viven en [`CLAUDE.md`](./CLAUDE.md). Bugs y pendientes en [GitHub Issues](https://github.com/Bizaarkq/foues-cms-api/issues).
