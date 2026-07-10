@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name test.odontologia.ues.edu.sv;
+    server_name ${FRONTEND_DOMAIN};
 
     location / {
         proxy_pass http://foues:3000;
@@ -17,7 +17,7 @@ server {
 
 server {
     listen 80;
-    server_name cms.test.odontologia.ues.edu.sv;
+    server_name ${CMS_DOMAIN};
 
     client_max_body_size 100M;
 

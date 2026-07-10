@@ -54,10 +54,11 @@ STRAPI_JWT_SECRET=$(rand 16)
 # Internal URL (server-to-server inside Docker — do NOT change).
 STRAPI_URL=http://cms:1337
 # Public URL the browser uses to load media (images, PDFs).
-# In local dev: http://localhost:8000  |  On server: http://<server-ip>:8000
+# Local dev: http://localhost:8000 | Server: the public CMS domain served by
+# nginx, e.g. http://cms.test.odontologia.ues.edu.sv (must match CMS_DOMAIN).
 STRAPI_PUBLIC_URL=http://localhost:8000
 # Fill these once the API is up, by running:
-#   docker compose run --rm foues-cms-api node scripts/create-api-tokens.js
+#   docker compose run --rm cms node scripts/create-api-tokens.js
 STRAPI_API_TOKEN=
 FORM_SUBMIT_TOKEN=
 MAGAZINE_TRACK_TOKEN=
@@ -76,8 +77,12 @@ REVALIDATE_SECRET=$(rand 32)
 # --- Frontend extras ---
 # URL del Campus Virtual mostrada en el navbar (opcional; vacía = link oculto)
 CAMPUS_VIRTUAL_URL=
+
+# --- nginx (dominios públicos del reverse proxy) ---
+FRONTEND_DOMAIN=test.odontologia.ues.edu.sv
+CMS_DOMAIN=cms.test.odontologia.ues.edu.sv
 EOF
 
 echo ".env generated."
 echo "Next: start the stack, then create the API tokens:"
-echo "  docker compose -f docker-compose.yml run --rm foues-cms-api node scripts/create-api-tokens.js"
+echo "  docker compose -f docker-compose.yml run --rm cms node scripts/create-api-tokens.js"
