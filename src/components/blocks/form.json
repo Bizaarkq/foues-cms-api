@@ -2,6 +2,7 @@
   "collectionName": "components_blocks_forms",
   "info": {
     "displayName": "Form Block",
+    "icon": "write",
     "description": "Bloque SDUI que embebe un formulario dinámico en una página."
   },
   "options": {},
@@ -12,20 +13,10 @@
       "target": "api::form.form"
     },
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título personalizado para el formulario en esta página. Si se deja vacío, se usa el título definido en el formulario",
-        "description": "Título (sobreescribe el del formulario)"
-      }
+      "type": "string"
     },
     "submit_label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto personalizado del botón de envío. Si se deja vacío, se usa el texto definido en el formulario. Ej: 'Enviar consulta', 'Inscribirme'",
-        "description": "Texto del botón (sobreescribe el del formulario)"
-      }
+      "type": "string"
     }
   }
 }

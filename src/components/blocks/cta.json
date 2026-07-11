@@ -2,25 +2,16 @@
   "collectionName": "components_blocks_ctas",
   "info": {
     "displayName": "CTA",
+    "icon": "cursor",
     "description": "Call-to-action section with heading, description and action buttons"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título del llamado a la acción. Debe ser directo e invitar al usuario a hacer algo. Ej: '¿Querés estudiar con nosotros?'",
-        "description": "Título del CTA"
-      }
+      "type": "string"
     },
     "description": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto de apoyo debajo del título. Ampliá brevemente el mensaje antes de los botones",
-        "description": "Texto de apoyo"
-      }
+      "type": "string"
     },
     "buttons": {
       "type": "component",

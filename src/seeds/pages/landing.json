@@ -48,7 +48,7 @@
     {
       "__component": "blocks.photo-gallery",
       "title": "NUESTRAS INSTALACIONES",
-      "subtitle": "Contamos con instalaciones de última hora equipadas con tecnología de vanguardia para garantizar una formación profesional de excelencia.",
+      "subtitle": "Contamos con instalaciones de primer nivel equipadas con tecnología de vanguardia para garantizar una formación profesional de excelencia.",
       "photo_columns": "col_3"
     },
     {
@@ -79,10 +79,10 @@
       "title": "ACCESO RÁPIDO",
       "ql_columns": 4,
       "links": [
-        { "label": "Expediente", "url": "#", "icon": "file-text", "description": "Consulta y gestiona tu expediente académico" },
-        { "label": "Trámites Estudiantiles", "url": "#", "icon": "clipboard-list", "description": "Realiza tus trámites académicos y administrativos" },
+        { "label": "Expediente", "url": null, "icon": "file-text", "description": "Consulta y gestiona tu expediente académico" },
+        { "label": "Trámites Estudiantiles", "url": null, "icon": "clipboard-list", "description": "Realiza tus trámites académicos y administrativos" },
         { "label": "Clínicas", "url": "/servicios/areas-clinicas", "icon": "stethoscope", "description": "Consulta los servicios clínicos disponibles" },
-        { "label": "Horarios", "url": "#", "icon": "clock", "description": "Consulta los horarios de clases y atención" }
+        { "label": "Horarios", "url": null, "icon": "clock", "description": "Consulta los horarios de clases y atención" }
       ]
     }
   ]

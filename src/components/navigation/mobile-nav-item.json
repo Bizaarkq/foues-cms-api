@@ -7,13 +7,8 @@
   "options": {},
   "attributes": {
     "label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto corto que aparece bajo el ícono en la barra móvil. Una palabra idealmente. Ej: 'Revista', 'Admisión', 'Noticias'",
-        "description": "Etiqueta del acceso",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "icon": {
       "type": "customField",
@@ -25,12 +20,7 @@
       "target": "api::route.route"
     },
     "external_url": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "URL externa de destino (https://...). Usá este campo O la ruta interna, no ambos. Si ambos están definidos, gana la URL externa. El acceso se ignora si no tiene destino",
-        "description": "URL externa"
-      }
+      "type": "string"
     }
   }
 }

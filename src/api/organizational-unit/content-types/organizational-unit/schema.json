@@ -13,31 +13,22 @@
   "pluginOptions": {},
   "attributes": {
     "nombre": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre oficial de la unidad organizacional. Ej: 'Decanato', 'Comité de Ética', 'Unidad de Admisiones'",
-        "description": "Nombre de la unidad",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "tipo": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Categoría de la unidad. 'decanato': máxima autoridad · 'vicedecanato': vice-autoridad · 'junta_directiva': órgano colegiado · 'comite_tecnico': comité especializado · 'unidad_administrativa': área de gestión",
-        "description": "Tipo de unidad",
-        "enumValues": "decanato\nvicedecanato\njunta_directiva\ncomite_tecnico\nunidad_administrativa",
-        "required": true
-      }
+      "type": "enumeration",
+      "enum": [
+        "decanato",
+        "vicedecanato",
+        "junta_directiva",
+        "comite_tecnico",
+        "unidad_administrativa"
+      ],
+      "required": true
     },
     "descripcion": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Descripción de las funciones y responsabilidades de esta unidad. Se muestra en la página de la unidad si corresponde",
-        "description": "Descripción y funciones (opcional)"
-      }
+      "type": "string"
     },
     "miembros": {
       "type": "relation",

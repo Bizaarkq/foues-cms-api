@@ -4,8 +4,8 @@
   "info": {
     "singularName": "form",
     "pluralName": "forms",
-    "displayName": "Form",
-    "description": "Formularios dinámicos definidos por editores."
+    "displayName": "Formulario",
+    "description": "Formularios del sitio: definí los campos y consultá los envíos desde esta pantalla."
   },
   "options": {
     "draftAndPublish": true
@@ -13,38 +13,30 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre interno del formulario. Solo visible en el panel de administración",
-        "description": "Ej: Formulario de contacto, Inscripción al programa",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
-    "description": { "type": "text" },
+    "description": {
+      "type": "text"
+    },
     "submit_label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto que aparece en el botón de envío del formulario",
-        "description": "Dejar vacío para usar 'Enviar' por defecto",
-        "default": "Enviar"
-      }
+      "type": "string",
+      "default": "Enviar"
     },
-    "success_message": { "type": "text", "default": "Gracias por tu envío." },
-    "error_message": { "type": "text" },
+    "success_message": {
+      "type": "text",
+      "default": "Gracias por tu envío."
+    },
+    "error_message": {
+      "type": "text"
+    },
     "fields": {
       "type": "component",
       "repeatable": true,
       "component": "elements.form-field"
     },
     "email_to": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Correo electrónico que recibirá una notificación por cada envío (funcionalidad disponible en fase 2)",
-        "description": "Notificaciones por correo — próximamente"
-      }
+      "type": "string"
     }
   }
 }

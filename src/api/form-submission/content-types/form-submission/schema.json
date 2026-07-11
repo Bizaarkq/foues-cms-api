@@ -4,40 +4,38 @@
   "info": {
     "singularName": "form-submission",
     "pluralName": "form-submissions",
-    "displayName": "Form Submission",
-    "description": "Envíos de formularios dinámicos."
+    "displayName": "Envíos de formulario",
+    "description": "Respuestas recibidas de los formularios. Gestionado por el sistema."
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
   "attributes": {
     "form_id": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Identificador único del formulario que generó este envío. Se asigna automáticamente",
-        "description": "ID del formulario de origen",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "form_title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre del formulario al momento del envío. Se copia automáticamente",
-        "description": "Nombre del formulario"
-      }
+      "type": "string"
     },
-    "data": { "type": "json", "required": true },
-    "submitted_at": { "type": "datetime", "required": true },
+    "data": {
+      "type": "json",
+      "required": true
+    },
+    "submitted_at": {
+      "type": "datetime",
+      "required": true
+    },
     "ip_address": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Dirección IP del usuario que realizó el envío. Útil para detectar spam o envíos duplicados",
-        "description": "IP del remitente (solo lectura)"
-      }
+      "type": "string"
     }
   }
 }

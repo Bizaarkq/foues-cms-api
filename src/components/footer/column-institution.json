@@ -10,31 +10,18 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "institution_name": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre completo de la institución tal como aparece en el footer. Ej: 'Facultad de Odontología'",
-        "description": "Nombre de la institución"
-      }
+      "type": "string"
     },
     "sub_name": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre secundario o pertenencia institucional. Ej: 'Universidad de Buenos Aires'",
-        "description": "Nombre secundario (universidad, etc.)"
-      }
+      "type": "string"
     },
     "description": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Breve descripción institucional que aparece debajo del nombre en el footer",
-        "description": "Descripción institucional breve"
-      }
+      "type": "string"
     },
     "social_links": {
       "type": "component",

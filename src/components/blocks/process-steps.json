@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_process_steps",
   "info": {
     "displayName": "Process Steps",
+    "icon": "manyWays",
     "description": "Numbered or ordered sequence of process steps"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la sección de pasos. Ej: 'Cómo inscribirse', 'Proceso de admisión'",
-        "description": "Título de la sección"
-      }
+      "type": "string"
     },
     "steps": {
       "type": "component",

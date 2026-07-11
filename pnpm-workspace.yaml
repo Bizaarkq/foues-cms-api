@@ -1,6 +1,3 @@
-patchedDependencies:
-  strapi-plugin-superfields@5.8.2: patches/strapi-plugin-superfields@5.8.2.patch
-
 onlyBuiltDependencies:
   - "@apollo/protobufjs"
   - "@swc/core"

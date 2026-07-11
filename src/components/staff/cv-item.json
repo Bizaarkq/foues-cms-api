@@ -7,32 +7,20 @@
   "options": {},
   "attributes": {
     "tipo": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Categoría del ítem del CV. 'academico': títulos, posgrados, cursos · 'profesional': cargos, experiencia laboral",
-        "description": "Tipo de entrada del CV",
-        "enumValues": "academico\nprofesional",
-        "required": true
-      }
+      "type": "enumeration",
+      "enum": [
+        "academico",
+        "profesional"
+      ],
+      "required": true
     },
     "titulo": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre del título, cargo o logro. Ej: 'Doctor en Odontología', 'Jefe de Trabajos Prácticos'",
-        "description": "Título o nombre del cargo",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "institucion": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Institución donde se obtuvo el título o donde se desempeñó el cargo. Ej: 'UBA', 'Hospital Alemán'",
-        "description": "Institución",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "fecha_inicio": {
       "type": "date",

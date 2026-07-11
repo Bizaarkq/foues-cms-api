@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_magazine_archives",
   "info": {
     "displayName": "Magazine Archive",
+    "icon": "book",
     "description": "Displays the editions archive grid of the selected publications (self-fetching)"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la sección del archivo. Ej: 'Revista Estudiantil', 'Informes Científicos'",
-        "description": "Título mostrado sobre la grilla de ediciones"
-      }
+      "type": "string"
     },
     "publications": {
       "type": "relation",

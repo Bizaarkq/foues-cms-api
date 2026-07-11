@@ -2,34 +2,20 @@
   "collectionName": "components_blocks_maps",
   "info": {
     "displayName": "Map",
+    "icon": "pinMap",
     "description": "Embedded map with location info and contact details"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título que aparece sobre el mapa. Ej: 'Cómo llegar', 'Nuestra ubicación'",
-        "description": "Título de la sección"
-      }
+      "type": "string"
     },
     "address": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Dirección física del lugar. Se muestra como texto debajo del mapa. Ej: 'Av. Rivadavia 1234, Buenos Aires'",
-        "description": "Dirección del lugar"
-      }
+      "type": "string"
     },
     "embed_url": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "URL de incrustación de Google Maps. En Google Maps: Compartir → Insertar un mapa → copiá el valor del atributo src",
-        "description": "URL de Google Maps (src del iframe)",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "latitude": {
       "type": "decimal"

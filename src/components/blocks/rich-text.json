@@ -2,6 +2,7 @@
   "collectionName": "components_blocks_rich_texts",
   "info": {
     "displayName": "Rich Text",
+    "icon": "pencil",
     "description": "Free-form rich text content using Strapi's editor"
   },
   "options": {},
