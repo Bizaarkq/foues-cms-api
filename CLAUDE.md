@@ -48,7 +48,7 @@ The whole system is server-driven UI. Content flows:
 route (nav tree + access control) → page (dynamic zone "content") → block components → GraphQL → frontend registry
 ```
 
-- **`api::route.route`** — tree of `path`/`label`/`order`/`type`/`active` driving navigation. `visibility` enum (`public` | `requires-login`) is the access-control source of truth; enforcement happens in the frontend Server Component after resolving the route (NOT in the proxy/middleware). The boolean field is named `active` because **Strapi v5 GraphQL reserves the field name `enabled`**.
+- **`api::route.route`** — tree of `path`/`label`/`order`/`type`/`active` driving navigation. Access control source of truth: `visibility` enum (`public` | `requires-login`) plus `allowed_roles` (manyToMany → `api::user-role.user-role`, inverse `routes`; empty = no role restriction, non-empty = the frontend requires a session AND a matching role key). Enforcement happens in the frontend Server Component after resolving the route (NOT in the proxy/middleware); the role is read at login, so role changes require a re-login (accepted limitation). The boolean field is named `active` because **Strapi v5 GraphQL reserves the field name `enabled`**.
 - **`api::page.page`** — `title`, `layout` (`default` | `full-width`), `content` dynamic zone holding the block components in `src/components/blocks/`.
 - **`api::mobile-navbar.mobile-navbar`** — single type governing the frontend's mobile bottom bar: repeatable `navigation.mobile-nav-item` component (**max 3, schema-enforced**) with `label`, `icon` (lucide), and either a `route` relation (internal target — must be an active `type: page` route; the frontend drops anything else) or `external_url` (external wins if both are set). "Inicio" and "Menú" are hardcoded in the frontend; seeded by data migration 005.
 - **Frontend contract**: every block maps to an inline GraphQL fragment in `foues-cms-frontend/lib/strapi.ts` (`LEAF_BLOCK_FRAGMENTS`), a `TYPENAME_TO_COMPONENT` entry, a `normalizeBlocks` pass, and a component registry entry. Adding or changing a block schema here is incomplete until those frontend pieces are updated.
@@ -108,7 +108,7 @@ Content changes notify the frontend through a Strapi webhook (configured in Admi
 2. **Form submissions as a JSON blob** — dynamic per-form collections would need a restart per new form in production.
 3. **Nesting via `blocks.section` → `block-group` relation** (not nested dynamic zones — Strapi can't) with `depthLimit: 10` in GraphQL to make room for it; max 2 UI levels.
 4. **`active` instead of `enabled`** on routes — `enabled` is reserved by Strapi v5 GraphQL.
-5. **Access control enforced in the frontend Server Component**, driven by `route.visibility`; the CMS only declares it.
+5. **Access control enforced in the frontend Server Component**, driven by `route.visibility` and `route.allowed_roles`; the CMS only declares it.
 6. **Conversion loop-guard on the `strapi` global** — module-level state doesn't survive the dist/ module duplication.
 7. **Raw Knex for pipeline writes** — bypasses lifecycles that would otherwise strip system-managed fields or recurse.
 8. **Restricted per-purpose API tokens** (`STRAPI_API_TOKEN` read, `FORM_SUBMIT_TOKEN` submit-only, `MAGAZINE_TRACK_TOKEN` track-only) created by script, never by hand.
