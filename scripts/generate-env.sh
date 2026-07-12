@@ -62,6 +62,7 @@ STRAPI_PUBLIC_URL=http://localhost:8000
 STRAPI_API_TOKEN=
 FORM_SUBMIT_TOKEN=
 MAGAZINE_TRACK_TOKEN=
+SITE_USER_TOKEN=
 
 # --- NextAuth ---
 # Set AUTH_URL / NEXTAUTH_URL to the public URL of the frontend (e.g. http://<server-ip>:3000).

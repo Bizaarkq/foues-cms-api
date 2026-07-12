@@ -29,6 +29,14 @@ const TOKENS = [
       'api::magazine-issue.track.track',
     ],
   },
+  {
+    name: 'SITE_USER_TOKEN',
+    description: 'Restricted token for login tracking (site-user upsert only)',
+    type: 'custom',
+    permissions: [
+      'api::site-user.track-login.trackLogin',
+    ],
+  },
 ];
 
 const appDir = path.resolve(__dirname, '..');
