@@ -7,76 +7,46 @@
   "options": {},
   "attributes": {
     "name": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre técnico del campo. Sin espacios ni caracteres especiales. Ej: nombre_completo, correo_electronico",
-        "description": "Identificador único del campo en el formulario",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Etiqueta que verá el usuario en el formulario. Ej: Nombre completo, Correo electrónico",
-        "description": "Texto visible para el usuario",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "field_type": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "text: texto corto · email: correo electrónico con validación · tel: teléfono · number: número · textarea: texto largo · select: lista desplegable · checkbox: casilla de verificación · radio: opción única · date: fecha",
-        "enumValues": "text\nemail\ntel\nnumber\ntextarea\nselect\ncheckbox\nradio\ndate",
-        "description": "Tipo de input que se mostrará al usuario",
-        "required": true
-      }
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "email",
+        "tel",
+        "number",
+        "textarea",
+        "select",
+        "checkbox",
+        "radio",
+        "date"
+      ],
+      "required": true
     },
     "required": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-boolean-field",
-      "options": {
-        "tooltip-content": "Si está activo, el usuario no podrá enviar el formulario sin completar este campo",
-        "description": "¿Es obligatorio?",
-        "default": false
-      }
+      "type": "boolean",
+      "default": false
     },
     "placeholder": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto de ejemplo que aparece dentro del campo cuando está vacío. Ej: ejemplo@correo.com",
-        "description": "Texto de orientación dentro del input"
-      }
+      "type": "string"
     },
     "help_text": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto de ayuda que aparece debajo del campo para orientar al usuario. Ej: Ingrese su correo institucional",
-        "description": "Instrucción adicional visible bajo el campo"
-      }
+      "type": "string"
     },
-    "options": { "type": "text" },
+    "options": {
+      "type": "text"
+    },
     "min_length": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Mínimo de caracteres requeridos. Solo aplica a campos de tipo texto, email, tel y textarea",
-        "description": "Longitud mínima",
-        "numberType": "integer"
-      }
+      "type": "integer"
     },
     "max_length": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Máximo de caracteres permitidos. Solo aplica a campos de tipo texto, email, tel y textarea",
-        "description": "Longitud máxima",
-        "numberType": "integer"
-      }
+      "type": "integer"
     }
   }
 }

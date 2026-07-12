@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article"
+    "displayName": "Artículo",
+    "description": "Artículos de noticias y eventos. Reservado para el diseño final del sitio."
   },
   "options": {
     "draftAndPublish": true
@@ -16,13 +17,8 @@
   },
   "attributes": {
     "Title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título del artículo o noticia. Aparece como encabezado principal y se usa para generar el slug automáticamente",
-        "description": "Título del artículo",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -30,12 +26,7 @@
       "required": true
     },
     "excerpt": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Resumen breve del artículo. Se muestra en las tarjetas de listado y en el preview. Máximo 2-3 oraciones",
-        "description": "Resumen breve (para listados)"
-      }
+      "type": "string"
     },
     "content": {
       "type": "richtext"
@@ -44,7 +35,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

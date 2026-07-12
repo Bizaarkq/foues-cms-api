@@ -7,31 +7,23 @@
   "options": {},
   "attributes": {
     "label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto que aparece dentro del botón. Debe ser una acción clara. Ej: 'Ver más', 'Inscribirme', 'Descargar PDF'",
-        "description": "Texto del botón",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "url": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Destino del botón al hacer clic. Puede ser relativo ('/contacto') o absoluto ('https://...'). Dejá vacío si el botón no tiene destino todavía",
-        "description": "URL de destino"
-      }
+      "type": "string"
     },
     "variant": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Estilo visual del botón. 'filled-primary': relleno color principal · 'filled-secondary': relleno secundario · 'ghost-primary': contorno primario · 'ghost-secondary': contorno secundario · 'soft-primary': suave primario · 'ringed-primary': anillo primario",
-        "description": "Estilo visual del botón",
-        "enumValues": "variant-filled-primary\nvariant-filled-secondary\nvariant-ghost-primary\nvariant-ghost-secondary\nvariant-soft-primary\nvariant-ringed-primary",
-        "default": "variant-filled-primary"
-      }
+      "type": "enumeration",
+      "enum": [
+        "variant-filled-primary",
+        "variant-filled-secondary",
+        "variant-ghost-primary",
+        "variant-ghost-secondary",
+        "variant-soft-primary",
+        "variant-ringed-primary"
+      ],
+      "default": "variant-filled-primary"
     },
     "icon": {
       "type": "customField",

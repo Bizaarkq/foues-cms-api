@@ -33,6 +33,7 @@ Compose files live in this repo; `.env` sits next to them; the frontend repo mus
 Services: `db` (MySQL 8, internal `backend` network), `cms` (Strapi, container `:1337`), `foues` (Next.js frontend, built from `../foues-cms-frontend`), `nginx` (reverse proxy on host `:80`).
 
 - **Production (default)**: `docker compose up -d --build`, then seed with `docker compose run --rm cms pnpm data:migrate`.
+- ⚠️ **`data:migrate` boots Strapi with the IMAGE's compiled `dist/`** — never run it with an image older than the DB schema: Strapi's bootstrap sync DROPS the tables (data included) of any content type missing from its schema. Always `--build` first. (Learned the hard way: a stale-image `data:migrate` wiped the local `mobile_navbar` single type on 2026-07-11.)
 - **Dev**: the override must be passed explicitly — `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`. (It was renamed from `docker-compose.override.yml` to prevent accidental dev merge in prod.) Dev exposes the API on host `:8000` → container `:1337` and MySQL on loopback `:3306`.
 - **nginx** routes `${FRONTEND_DOMAIN}` → frontend and `${CMS_DOMAIN}` → Strapi via the envsubst template `nginx/templates/default.conf.template` (rendered by the nginx image at startup). Domains come from the `.env` (defaults: the test-server domains). `CMS_DOMAIN` must match `STRAPI_PUBLIC_URL`.
 - Current environment: a **test server** using those domains, with a test Google OAuth client already working.
@@ -92,9 +93,10 @@ Content changes notify the frontend through a Strapi webhook (configured in Admi
 
 ## Schema conventions
 
-- Every schema field uses superfields custom fields (`plugin::superfields.tooltip-field` / `tooltip-enum-field`) with Spanish tooltip + description. Keep 100% coverage when adding fields. Exception: fields with `unique: true` (e.g. `route.path`) must stay plain `string` — tooltip-field does not support the unique constraint.
+- Fields use **native Strapi types only** (string/text/enumeration/integer/boolean…). The old superfields tooltip plugin was removed (its custom fields broke labels inside dynamic zones, showing `content.0.label`).
+- Field documentation for editors lives in the **"Guía del editor"** admin page — source of truth: `src/admin/extensions/EditorGuide/fields-doc.ts`. When adding or changing an editor-facing field, update its entry there (that file replaced the ~113 tooltips).
+- `info.displayName`/`info.description` are in **Spanish** (editors are es-SV); block components carry an `info.icon` (Content-Type Builder icon key) so the dynamic-zone picker is scannable. NEVER change `singularName`/`pluralName`/`collectionName` — they define uids/API routes.
 - Icon fields use `plugin::strapi-lucide-icons.icon`, which stores **kebab-case** Lucide names (`book-open`, `map-pin`). PascalCase values will not render in the frontend's `LucideIcon` component.
-- `strapi-plugin-superfields` is patched under `patches/` — do not bump that dependency without re-checking the patch.
 
 ## Database gotchas
 

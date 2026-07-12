@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_info_cards",
   "info": {
     "displayName": "Info Card",
+    "icon": "information",
     "description": "Standalone informational card: title + rich text body + optional CTA."
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la tarjeta informativa. Aparece como encabezado del bloque",
-        "description": "Título de la tarjeta"
-      }
+      "type": "string"
     },
     "body": {
       "type": "richtext"

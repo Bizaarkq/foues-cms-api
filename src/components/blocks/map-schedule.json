@@ -2,29 +2,21 @@
   "collectionName": "components_blocks_map_schedules",
   "info": {
     "displayName": "Map + Schedule",
+    "icon": "earth",
     "description": "Composite block: embedded map (left) + clinic schedule (right) in a 2-column layout"
   },
   "options": {},
   "attributes": {
     "clinic_name": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre de la clínica o sede. Se muestra como encabezado del bloque. Ej: 'Sede Central'",
-        "description": "Nombre de la clínica o sede",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "address": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Dirección física que aparece debajo del mapa. Ej: 'Av. Rivadavia 1234, Buenos Aires'",
-        "description": "Dirección del lugar"
-      }
+      "type": "string"
     },
     "embed_url": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "hours": {
       "type": "component",

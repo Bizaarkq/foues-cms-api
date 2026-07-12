@@ -2,45 +2,26 @@
   "collectionName": "components_blocks_mission_visions",
   "info": {
     "displayName": "Mission Vision",
+    "icon": "eye",
     "description": "Institutional mission and vision statement block"
   },
   "options": {},
   "attributes": {
     "mission_title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Etiqueta del panel de misión. Por defecto 'Misión', pero se puede personalizar",
-        "description": "Título del panel de misión",
-        "default": "Misión"
-      }
+      "type": "string",
+      "default": "Misión"
     },
     "mission_text": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto completo de la misión institucional. Describí el propósito y razón de ser de la organización",
-        "description": "Texto de la misión",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "vision_title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Etiqueta del panel de visión. Por defecto 'Visión', pero se puede personalizar",
-        "description": "Título del panel de visión",
-        "default": "Visión"
-      }
+      "type": "string",
+      "default": "Visión"
     },
     "vision_text": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto completo de la visión institucional. Describí hacia dónde apunta la organización a futuro",
-        "description": "Texto de la visión",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     }
   }
 }

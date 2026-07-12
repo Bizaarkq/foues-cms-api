@@ -7,12 +7,7 @@
   "options": {},
   "attributes": {
     "heading": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la columna de enlaces en el footer. Ej: 'Navegación', 'Servicios', 'Información'",
-        "description": "Título de la columna"
-      }
+      "type": "string"
     },
     "links": {
       "type": "component",

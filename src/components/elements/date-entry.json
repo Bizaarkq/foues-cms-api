@@ -14,21 +14,11 @@
       "type": "date"
     },
     "label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre de la fecha o período. Ej: 'Inscripción primer cuatrimestre', 'Examen final de Anatomía'",
-        "description": "Nombre de la fecha",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Información adicional sobre esta fecha. Ej: horarios, lugar, requisitos previos. Opcional",
-        "description": "Información adicional (opcional)"
-      }
+      "type": "string"
     }
   }
 }

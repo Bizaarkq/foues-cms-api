@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_bullet_lists",
   "info": {
     "displayName": "Bullet List",
+    "icon": "bulletList",
     "description": "Titled list of bullet points with an optional call-to-action button."
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la lista. Se muestra encima de los ítems. Ej: 'Requisitos de ingreso', 'Beneficios'",
-        "description": "Título de la lista"
-      }
+      "type": "string"
     },
     "items": {
       "type": "component",

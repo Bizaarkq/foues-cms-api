@@ -4,8 +4,8 @@
   "info": {
     "singularName": "global-theme",
     "pluralName": "global-themes",
-    "displayName": "Global Theme",
-    "description": "Brand color palette (light + dark) injected as CSS vars."
+    "displayName": "Tema del sitio",
+    "description": "Paleta de colores del sitio (modo claro y oscuro)."
   },
   "options": {
     "draftAndPublish": false

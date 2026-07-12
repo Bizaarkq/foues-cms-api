@@ -4,8 +4,8 @@
   "info": {
     "singularName": "publication",
     "pluralName": "publications",
-    "displayName": "Publication",
-    "description": "Publicación o documento con ediciones propias (revista estudiantil, informes científicos, memorias de labores, etc.)"
+    "displayName": "Publicación",
+    "description": "Publicaciones que agrupan ediciones: revista, informes científicos, memorias."
   },
   "options": {
     "draftAndPublish": false
@@ -28,7 +28,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "issues": {
       "type": "relation",

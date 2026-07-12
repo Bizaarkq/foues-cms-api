@@ -7,30 +7,15 @@
   "options": {},
   "attributes": {
     "number": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Número de orden del paso. Determina la secuencia visual (1, 2, 3...)",
-        "description": "Número del paso",
-        "required": true
-      }
+      "type": "integer",
+      "required": true
     },
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título corto del paso. Ej: 'Completá el formulario', 'Presentate a la entrevista'",
-        "description": "Título del paso",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Explicación detallada del paso. Describí qué tiene que hacer el usuario en esta etapa",
-        "description": "Descripción del paso"
-      }
+      "type": "string"
     },
     "icon": {
       "type": "customField",

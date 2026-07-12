@@ -2,40 +2,32 @@
   "collectionName": "components_blocks_hero_pages",
   "info": {
     "displayName": "Hero Page",
+    "icon": "slideshow",
     "description": "Compact hero for interior pages with title and optional breadcrumb"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la sección o página interior. Aparece como encabezado compacto",
-        "description": "Título de la página"
-      }
+      "type": "string"
     },
     "subtitle": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Texto complementario debajo del título de la página. Opcional",
-        "description": "Subtítulo (opcional)"
-      }
+      "type": "string"
     },
     "backgroundImage": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "gradient": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Color de degradado superpuesto sobre la imagen de fondo. 'none': sin degradado · 'primary': color primario · 'secondary': color secundario",
-        "description": "Degradado del fondo",
-        "enumValues": "none\nprimary\nsecondary"
-      }
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "primary",
+        "secondary"
+      ]
     }
   }
 }

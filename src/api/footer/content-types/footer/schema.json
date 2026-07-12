@@ -4,8 +4,8 @@
   "info": {
     "singularName": "footer",
     "pluralName": "footers",
-    "displayName": "Footer",
-    "description": "Global site footer — singleton, configurable by columns."
+    "displayName": "Pie de página",
+    "description": "Pie de página global del sitio, configurable por columnas."
   },
   "options": {
     "draftAndPublish": false

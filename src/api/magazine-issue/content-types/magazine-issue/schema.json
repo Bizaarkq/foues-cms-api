@@ -4,8 +4,8 @@
   "info": {
     "singularName": "magazine-issue",
     "pluralName": "magazine-issues",
-    "displayName": "Magazine Issue",
-    "description": "Ediciones de la revista de la Facultad de Odontología UES"
+    "displayName": "Edición de revista",
+    "description": "Ediciones en PDF: subí el archivo y el sistema genera las páginas para el visor."
   },
   "options": {
     "draftAndPublish": true
@@ -34,23 +34,33 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "pdf": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["files"]
+      "allowedTypes": [
+        "files"
+      ]
     },
     "pages": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "conversionStatus": {
       "type": "enumeration",
-      "enum": ["processing", "ready", "failed"]
+      "enum": [
+        "processing",
+        "ready",
+        "failed"
+      ]
     },
     "publication": {
       "type": "relation",

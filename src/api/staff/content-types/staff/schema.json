@@ -4,8 +4,8 @@
   "info": {
     "singularName": "staff",
     "pluralName": "staffs",
-    "displayName": "Staff",
-    "description": "Miembros del cuerpo docente y administrativo de la facultad"
+    "displayName": "Personal",
+    "description": "Miembros del personal de la facultad: docentes, autoridades y administrativos."
   },
   "options": {
     "draftAndPublish": true
@@ -13,36 +13,23 @@
   "pluginOptions": {},
   "attributes": {
     "nombre": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre completo del miembro. Ej: 'Dr. Juan García', 'Lic. María Rodríguez'",
-        "description": "Nombre completo",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "cargo": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Cargo o función que ocupa dentro de la institución. Ej: 'Decano', 'Profesor Titular', 'Coordinador Académico'",
-        "description": "Cargo en la institución",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "foto": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "descripcion": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Breve biografía o descripción profesional del miembro. Se muestra en su perfil público",
-        "description": "Biografía breve (opcional)"
-      }
+      "type": "string"
     },
     "contacto": {
       "type": "component",

@@ -2,26 +2,17 @@
   "collectionName": "components_blocks_quick_links",
   "info": {
     "displayName": "Quick Links",
+    "icon": "link",
     "description": "A set of prominent shortcut links for navigation"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la sección de accesos rápidos. Se muestra encima de los botones",
-        "description": "Título de la sección"
-      }
+      "type": "string"
     },
     "ql_columns": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Columnas por fila (0 = automático, 1–12 = fijo). Ej: 4 muestra 4 elementos por fila en escritorio.",
-        "description": "Columnas por fila (0 = auto)",
-        "default": 0
-      }
+      "type": "integer",
+      "default": 0
     },
     "links": {
       "type": "component",

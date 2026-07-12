@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_calendars",
   "info": {
     "displayName": "Calendar",
+    "icon": "calendar",
     "description": "Academic calendar or events schedule"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título del calendario o cronograma. Ej: 'Calendario académico 2025'",
-        "description": "Título del calendario"
-      }
+      "type": "string"
     },
     "items": {
       "type": "component",

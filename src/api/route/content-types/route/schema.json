@@ -4,8 +4,8 @@
   "info": {
     "singularName": "route",
     "pluralName": "routes",
-    "displayName": "Route",
-    "description": "Defines the available routes/paths for the Next.js frontend."
+    "displayName": "Ruta (menú)",
+    "description": "Entradas del menú de navegación: dirección, etiqueta y orden de cada página o sección del sitio."
   },
   "options": {
     "draftAndPublish": false
@@ -18,31 +18,20 @@
       "unique": true
     },
     "label": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre visible de la ruta en el menú de navegación. Ej: 'Inicio', 'Acerca de', 'Carreras'",
-        "description": "Etiqueta del menú"
-      }
+      "type": "string"
     },
     "type": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Tipo de ruta. 'page': página con contenido · 'section': agrupa sub-rutas sin página propia · 'header': ítem del encabezado de navegación",
-        "description": "Tipo de ruta",
-        "enumValues": "page\nsection\nheader",
-        "required": true
-      }
+      "type": "enumeration",
+      "enum": [
+        "page",
+        "section",
+        "header"
+      ],
+      "required": true
     },
     "order": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-number-field",
-      "options": {
-        "tooltip-content": "Posición de esta ruta en el menú. Números menores aparecen primero. Ej: 1 = primer ítem, 2 = segundo",
-        "description": "Orden en el menú",
-        "default": 0
-      }
+      "type": "integer",
+      "default": 0
     },
     "active": {
       "type": "boolean",
@@ -72,7 +61,10 @@
     },
     "visibility": {
       "type": "enumeration",
-      "enum": ["public", "requires-login"],
+      "enum": [
+        "public",
+        "requires-login"
+      ],
       "default": "public",
       "required": false
     }

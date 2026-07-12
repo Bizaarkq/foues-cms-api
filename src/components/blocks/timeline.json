@@ -2,17 +2,13 @@
   "collectionName": "components_blocks_timelines",
   "info": {
     "displayName": "Timeline",
+    "icon": "clock",
     "description": "Chronological list of events or milestones"
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Título de la línea de tiempo. Se muestra encima de los eventos",
-        "description": "Título de la sección"
-      }
+      "type": "string"
     },
     "items": {
       "type": "component",

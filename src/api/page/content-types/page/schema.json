@@ -4,8 +4,8 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page",
-    "description": "Contenido estructural de una ruta."
+    "displayName": "Página",
+    "description": "Página del sitio: título, diseño y bloques de contenido."
   },
   "options": {
     "draftAndPublish": true
@@ -13,23 +13,16 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-field",
-      "options": {
-        "tooltip-content": "Nombre interno de la página. Se usa como referencia en el admin y como título SEO si no hay otro configurado",
-        "description": "Nombre de la página",
-        "required": true
-      }
+      "type": "string",
+      "required": true
     },
     "layout": {
-      "type": "customField",
-      "customField": "plugin::superfields.tooltip-enum-field",
-      "options": {
-        "tooltip-content": "Diseño de la página. 'default': ancho contenido estándar con márgenes · 'full-width': ocupa todo el ancho de la pantalla",
-        "description": "Diseño de la página",
-        "enumValues": "default\nfull-width",
-        "required": true
-      }
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "full-width"
+      ],
+      "required": true
     },
     "content": {
       "type": "dynamiczone",
