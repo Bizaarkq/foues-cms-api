@@ -5,7 +5,7 @@
 With the stack up, generate both tokens in one shot:
 
 ```bash
-docker compose run --rm foues-cms-api node scripts/create-api-tokens.js
+docker compose run --rm cms node scripts/create-api-tokens.js
 ```
 
 Creates (or reports as existing) two tokens and prints their values **once**:
