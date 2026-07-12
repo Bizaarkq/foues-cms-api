@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "site_users",
+  "info": {
+    "singularName": "site-user",
+    "pluralName": "site-users",
+    "displayName": "Usuario del sitio",
+    "description": "Registro de quiénes han iniciado sesión en el sitio: correo institucional, último acceso y rol. Se actualiza automáticamente en cada login."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::user-role.user-role"
+    },
+    "last_login": {
+      "type": "datetime"
+    },
+    "login_count": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
