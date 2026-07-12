@@ -40,3 +40,5 @@ npx tsc --noEmit    # gate de verificación — correr antes de commitear
 ## Documentación
 
 La arquitectura, decisiones y convenciones viven en [`CLAUDE.md`](./CLAUDE.md). Bugs y pendientes en [GitHub Issues](https://github.com/Bizaarkq/foues-cms-api/issues).
+
+**Deploy y operación**: la guía completa (deploy desde cero, actualizaciones, reset total, runbook de caídas por escenario, backups) está en [`deploy.md`](./deploy.md).
