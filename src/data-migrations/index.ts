@@ -8,6 +8,7 @@ import publisherPublicationPerms from './004-publisher-publication-perms';
 import mobileNavbar from './005-mobile-navbar';
 import magazineStatUnique from './006-magazine-stat-unique';
 import userRoles from './007-user-roles';
+import mobileNavbarTitle from './008-mobile-navbar-title';
 
 // Ordered registry — append new migrations at the end, never reorder.
 const migrations = [
@@ -18,6 +19,7 @@ const migrations = [
   mobileNavbar,
   magazineStatUnique,
   userRoles,
+  mobileNavbarTitle,
 ];
 
 export async function runAllDataMigrations(strapi: Core.Strapi): Promise<void> {

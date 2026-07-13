@@ -783,6 +783,17 @@ export const FIELDS_DOC: SectionDoc[] = [
     title: "Navegación móvil",
     entries: [
       {
+        title: "Barra de navegación móvil",
+        description: "Configuración general de la barra de navegación móvil (hasta 3 accesos directos entre Inicio y Menú)",
+        fields: [
+          {
+            name: "title",
+            label: "Título interno",
+            help: "Nombre con el que aparece este registro en el panel de administración. No se muestra en el sitio — dejalo como está",
+          },
+        ],
+      },
+      {
         title: "Mobile Nav Item",
         description: "Acceso directo de la barra de navegación móvil",
         fields: [
