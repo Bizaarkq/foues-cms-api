@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Barra de navegación móvil"
+    },
     "items": {
       "type": "component",
       "repeatable": true,
