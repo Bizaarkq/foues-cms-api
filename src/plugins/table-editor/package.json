@@ -1,0 +1,23 @@
+{
+  "name": "table-editor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Editable data-table custom field with in-browser CSV/Excel import.",
+  "strapi": {
+    "kind": "plugin",
+    "name": "table-editor",
+    "displayName": "Table Editor",
+    "description": "Editable data-table custom field with in-browser CSV/Excel import."
+  },
+  "exports": {
+    "./strapi-admin": {
+      "import": "./admin/src/index.ts",
+      "source": "./admin/src/index.ts"
+    },
+    "./strapi-server": {
+      "require": "./strapi-server.js",
+      "default": "./strapi-server.js"
+    },
+    "./package.json": "./package.json"
+  }
+}

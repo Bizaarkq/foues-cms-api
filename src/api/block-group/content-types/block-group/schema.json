@@ -43,7 +43,11 @@
         "blocks.icon-strip",
         "blocks.map-schedule",
         "blocks.form",
-        "blocks.magazine-archive"
+        "blocks.magazine-archive",
+        "blocks.accordion",
+        "blocks.tabs",
+        "blocks.carousel",
+        "blocks.table"
       ]
     }
   }

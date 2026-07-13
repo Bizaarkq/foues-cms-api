@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_tabs",
+  "info": {
+    "displayName": "Tabs",
+    "icon": "layout",
+    "description": "Contenido organizado en pestañas; la primera queda activa por defecto."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.tab-item"
+    }
+  }
+}

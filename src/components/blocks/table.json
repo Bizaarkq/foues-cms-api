@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_tables",
+  "info": {
+    "displayName": "Table",
+    "icon": "grid",
+    "description": "Tabla de datos editada en una grilla, con importación desde CSV/Excel."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "data": {
+      "type": "customField",
+      "customField": "plugin::table-editor.table",
+      "required": true
+    }
+  }
+}
