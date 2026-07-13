@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_carousels",
+  "info": {
+    "displayName": "Carousel",
+    "icon": "slideshow",
+    "description": "Presentación secuencial de diapositivas con imagen y texto/enlace opcionales."
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.slide"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

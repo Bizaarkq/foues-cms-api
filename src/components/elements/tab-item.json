@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_elements_tab_items",
+  "info": {
+    "displayName": "Tab Item",
+    "description": "Una pestaña: etiqueta visible y contenido en markdown."
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

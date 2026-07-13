@@ -48,7 +48,11 @@
         "blocks.map-schedule",
         "blocks.section",
         "blocks.form",
-        "blocks.magazine-archive"
+        "blocks.magazine-archive",
+        "blocks.accordion",
+        "blocks.tabs",
+        "blocks.carousel",
+        "blocks.table"
       ]
     },
     "route": {

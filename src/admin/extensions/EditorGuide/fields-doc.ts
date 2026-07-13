@@ -29,6 +29,22 @@ export const FIELDS_DOC: SectionDoc[] = [
     title: "Bloques de página",
     entries: [
       {
+        title: "Accordion",
+        description: "Lista de paneles desplegables (preguntas frecuentes, requisitos, etc.)",
+        fields: [
+          {
+            name: "title",
+            label: "Título de la sección",
+            help: "Título opcional que se muestra encima del acordeón. Ej: 'Preguntas frecuentes'",
+          },
+          {
+            name: "items",
+            label: "Paneles",
+            help: "Paneles desplegables del acordeón. Sin paneles, el bloque no se muestra en el sitio",
+          },
+        ],
+      },
+      {
         title: "Bullet List",
         description: "Titled list of bullet points with an optional call-to-action button.",
         fields: [
@@ -63,6 +79,27 @@ export const FIELDS_DOC: SectionDoc[] = [
             name: "title",
             label: "Título del calendario",
             help: "Título del calendario o cronograma. Ej: 'Calendario académico 2025'",
+          },
+        ],
+      },
+      {
+        title: "Carousel",
+        description: "Presentación secuencial de diapositivas con imagen y texto/enlace opcionales",
+        fields: [
+          {
+            name: "title",
+            label: "Título de la sección",
+            help: "Título opcional que se muestra encima del carrusel",
+          },
+          {
+            name: "slides",
+            label: "Diapositivas",
+            help: "Diapositivas del carrusel. Sin diapositivas, el bloque no se muestra; con una sola, se muestra estática sin controles",
+          },
+          {
+            name: "autoplay",
+            label: "Reproducción automática",
+            help: "Si está activo, las diapositivas avanzan solas. El visitante siempre puede pausar la reproducción",
           },
         ],
       },
@@ -376,6 +413,43 @@ export const FIELDS_DOC: SectionDoc[] = [
         ],
       },
       {
+        title: "Table",
+        description: "Tabla de datos editada en una grilla, con importación desde CSV/Excel",
+        fields: [
+          {
+            name: "title",
+            label: "Título de la sección",
+            help: "Título opcional que se muestra encima de la tabla. Ej: 'Aranceles 2026'",
+          },
+          {
+            name: "description",
+            label: "Descripción",
+            help: "Texto opcional que se muestra entre el título y la tabla. Útil para aclarar la fuente o el período de los datos",
+          },
+          {
+            name: "data",
+            label: "Datos de la tabla",
+            help: "Contenido de la tabla. Editá las celdas directamente en la grilla (encabezados incluidos), agregá o eliminá filas y columnas, o importá un archivo CSV/Excel para llenarla. Sin encabezados, el bloque no se muestra en el sitio",
+          },
+        ],
+      },
+      {
+        title: "Tabs",
+        description: "Contenido organizado en pestañas; la primera queda activa por defecto",
+        fields: [
+          {
+            name: "title",
+            label: "Título de la sección",
+            help: "Título opcional que se muestra encima de las pestañas",
+          },
+          {
+            name: "items",
+            label: "Pestañas",
+            help: "Pestañas del bloque. Sin pestañas, el bloque no se muestra; con una sola, se muestra como sección simple sin barra de pestañas",
+          },
+        ],
+      },
+      {
         title: "Timeline",
         description: "Chronological list of events or milestones",
         fields: [
@@ -391,6 +465,22 @@ export const FIELDS_DOC: SectionDoc[] = [
   {
     title: "Elementos reutilizables",
     entries: [
+      {
+        title: "Accordion Item",
+        description: "Un panel del acordeón: etiqueta visible y contenido desplegable",
+        fields: [
+          {
+            name: "label",
+            label: "Etiqueta del panel",
+            help: "Texto visible del panel (la pregunta o el título). Ej: '¿Cuáles son los requisitos?'",
+          },
+          {
+            name: "content",
+            label: "Contenido del panel",
+            help: "Contenido que se muestra al desplegar el panel. Admite formato de texto enriquecido (markdown)",
+          },
+        ],
+      },
       {
         title: "Button",
         description: "Standard action button with link",
@@ -601,6 +691,32 @@ export const FIELDS_DOC: SectionDoc[] = [
         ],
       },
       {
+        title: "Slide",
+        description: "Una diapositiva del carrusel",
+        fields: [
+          {
+            name: "image",
+            label: "Imagen",
+            help: "Imagen de la diapositiva (obligatoria). Usá imágenes horizontales de buena resolución",
+          },
+          {
+            name: "title",
+            label: "Título (opcional)",
+            help: "Título que se muestra sobre la imagen, en la parte inferior de la diapositiva",
+          },
+          {
+            name: "text",
+            label: "Texto (opcional)",
+            help: "Texto breve de apoyo debajo del título de la diapositiva",
+          },
+          {
+            name: "link",
+            label: "Enlace (opcional)",
+            help: "Destino al hacer clic en la diapositiva. Puede ser relativo ('/admision') o absoluto ('https://...')",
+          },
+        ],
+      },
+      {
         title: "Step",
         description: "A single numbered step in a process-steps block",
         fields: [
@@ -618,6 +734,22 @@ export const FIELDS_DOC: SectionDoc[] = [
             name: "description",
             label: "Descripción del paso",
             help: "Explicación detallada del paso. Describí qué tiene que hacer el usuario en esta etapa",
+          },
+        ],
+      },
+      {
+        title: "Tab Item",
+        description: "Una pestaña del bloque de pestañas",
+        fields: [
+          {
+            name: "label",
+            label: "Etiqueta de la pestaña",
+            help: "Texto visible en la barra de pestañas. Debe ser corto. Ej: 'Pregrado', 'Posgrado'",
+          },
+          {
+            name: "content",
+            label: "Contenido de la pestaña",
+            help: "Contenido que se muestra al seleccionar la pestaña. Admite formato de texto enriquecido (markdown)",
           },
         ],
       },

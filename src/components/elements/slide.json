@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_elements_slides",
+  "info": {
+    "displayName": "Slide",
+    "description": "Una diapositiva del carrusel: imagen obligatoria con título, texto y enlace opcionales."
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}
