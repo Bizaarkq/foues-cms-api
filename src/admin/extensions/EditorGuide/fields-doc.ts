@@ -921,6 +921,20 @@ export const FIELDS_DOC: SectionDoc[] = [
             label: "Orden en el menú",
             help: "Posición de esta ruta en el menú. Números menores aparecen primero. Ej: 1 = primer ítem, 2 = segundo",
           },
+          {
+            name: "visibility",
+            label: "Visibilidad",
+            help: "Quién puede ver esta ruta. 'public': cualquier visitante · 'requires-login': solo usuarios con sesión iniciada (cuenta @ues.edu.sv). Las rutas ocultas no aparecen en el menú",
+            values: [
+              "public",
+              "requires-login",
+            ],
+          },
+          {
+            name: "allowed_roles",
+            label: "Roles permitidos",
+            help: "Restringe la ruta a ciertos roles de usuario (Estudiante, Catedrático…). Vacío = sin restricción por rol (manda la Visibilidad). Con roles seleccionados, la ruta exige sesión iniciada Y que el rol del usuario esté en la lista; para el resto no aparece en el menú. Ojo: el rol se lee al iniciar sesión — tras cambiar el rol de un usuario, pedile que cierre sesión y vuelva a entrar",
+          },
         ],
       },
       {

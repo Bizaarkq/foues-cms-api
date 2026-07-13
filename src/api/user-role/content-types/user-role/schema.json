@@ -26,6 +26,12 @@
     "is_default": {
       "type": "boolean",
       "default": false
+    },
+    "routes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::route.route",
+      "mappedBy": "allowed_roles"
     }
   }
 }

@@ -67,6 +67,12 @@
       ],
       "default": "public",
       "required": false
+    },
+    "allowed_roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-role.user-role",
+      "inversedBy": "routes"
     }
   }
 }
