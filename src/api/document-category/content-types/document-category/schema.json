@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_categories",
+  "info": {
+    "singularName": "document-category",
+    "pluralName": "document-categories",
+    "displayName": "Categoría de documento",
+    "description": "Agrupa documentos del repositorio institucional. `allowed_roles` vacío = cualquier usuario con sesión iniciada puede leer; `upload_enabled`/`upload_roles`/`requires_approval` son de la etapa 2 (subidas desde el sitio) y no se usan en la etapa 1."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text"
+    },
+    "allowed_roles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-role.user-role"
+    },
+    "upload_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "upload_roles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-role.user-role"
+    },
+    "requires_approval": {
+      "type": "boolean",
+      "default": true
+    },
+    "documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document",
+      "mappedBy": "category"
+    }
+  }
+}

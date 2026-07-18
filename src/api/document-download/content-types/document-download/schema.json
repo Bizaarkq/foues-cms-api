@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_downloads",
+  "info": {
+    "singularName": "document-download",
+    "pluralName": "document-downloads",
+    "displayName": "Descarga de documento",
+    "description": "Registro de auditoría: quién descargó qué documento y cuándo."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "document": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document.document"
+    },
+    "user_email": {
+      "type": "email"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "downloaded_at": {
+      "type": "datetime"
+    }
+  }
+}

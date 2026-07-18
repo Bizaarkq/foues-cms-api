@@ -16,6 +16,7 @@ const config: Core.Config.Middlewares = [
   'strapi::query',
   'strapi::body',
   'strapi::session',
+  'global::document-access',
   'strapi::favicon',
   'strapi::public',
 ];
