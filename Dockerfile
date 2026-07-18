@@ -36,7 +36,10 @@ EXPOSE 1337
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
     CMD wget --spider --quiet http://localhost:1337/_health || exit 1
 
-CMD ["pnpm", "run", "start"]
+# Run strapi directly (PATH includes node_modules/.bin): avoids corepack
+# re-downloading pnpm at boot (its cache belongs to root, runtime user is
+# node) and makes Strapi PID 1 so SIGTERM reaches it on docker stop.
+CMD ["strapi", "start"]
 
 # ---- Stage: Desarrollo ----
 FROM base AS development
