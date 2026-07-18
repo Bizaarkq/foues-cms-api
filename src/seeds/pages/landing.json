@@ -64,11 +64,12 @@
       "titulo": "AUTORIDADES"
     },
     {
-      "__component": "blocks.content-grid",
+      "__component": "blocks.article-list",
       "title": "NOTICIAS Y EVENTOS",
-      "collection_type": "news",
+      "category_filter": "all",
+      "page_size": 9,
       "card_style": "default",
-      "columns": "col_3"
+      "columns": 3
     },
     {
       "__component": "blocks.rich-text",
