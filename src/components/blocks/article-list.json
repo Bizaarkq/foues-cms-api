@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_blocks_article_lists",
+  "info": {
+    "displayName": "Listado de artículos",
+    "icon": "layer",
+    "description": "Listado paginado de artículos (noticias y eventos) que se llena automáticamente"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "category_filter": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "event",
+        "all"
+      ],
+      "default": "all",
+      "required": true
+    },
+    "page_size": {
+      "type": "integer",
+      "default": 9,
+      "min": 1,
+      "max": 24
+    },
+    "card_style": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "compact",
+        "featured",
+        "horizontal"
+      ],
+      "default": "default"
+    },
+    "columns": {
+      "type": "integer",
+      "default": 3,
+      "min": 1,
+      "max": 12
+    }
+  }
+}

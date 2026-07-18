@@ -5,7 +5,7 @@
     "singularName": "article",
     "pluralName": "articles",
     "displayName": "Artículo",
-    "description": "Artículos de noticias y eventos. Reservado para el diseño final del sitio."
+    "description": "Artículos de noticias y eventos publicados en el sitio."
   },
   "options": {
     "draftAndPublish": true
@@ -38,6 +38,18 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "event"
+      ],
+      "required": true,
+      "default": "news"
+    },
+    "event_date": {
+      "type": "datetime"
     }
   }
 }

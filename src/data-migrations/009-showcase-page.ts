@@ -231,33 +231,12 @@ const migration: DataMigration = {
       },
 
       {
-        __component: 'blocks.content-grid',
-        title: 'Cuadrícula de Contenido',
+        __component: 'blocks.article-list',
+        title: 'Noticias y Eventos',
+        category_filter: 'all',
+        page_size: 9,
         card_style: 'default',
-        columns: 'col_3',
-        items: [
-          {
-            title: 'Programa de Odontología General',
-            description:
-              'Formación integral en ciencias de la salud oral con énfasis en prevención y tratamiento.',
-            tag: 'Pregrado',
-            url: '#',
-          },
-          {
-            title: 'Especialización en Ortodoncia',
-            description:
-              'Posgrado con enfoque en corrección de maloclusiones y alineación dental.',
-            tag: 'Posgrado',
-            url: '#',
-          },
-          {
-            title: 'Diplomado en Endodoncia',
-            description:
-              'Programa de educación continua para profesionales en ejercicio.',
-            tag: 'Educación Continua',
-            url: '#',
-          },
-        ],
+        columns: 3,
       },
 
       {

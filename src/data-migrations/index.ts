@@ -10,6 +10,7 @@ import magazineStatUnique from './006-magazine-stat-unique';
 import userRoles from './007-user-roles';
 import mobileNavbarTitle from './008-mobile-navbar-title';
 import showcasePage from './009-showcase-page';
+import contentGridToArticleList from './010-content-grid-to-article-list';
 
 // Ordered registry — append new migrations at the end, never reorder.
 const migrations = [
@@ -22,6 +23,7 @@ const migrations = [
   userRoles,
   mobileNavbarTitle,
   showcasePage,
+  contentGridToArticleList,
 ];
 
 export async function runAllDataMigrations(strapi: Core.Strapi): Promise<void> {

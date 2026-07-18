@@ -29,7 +29,7 @@
       "components": [
         "blocks.hero-landing",
         "blocks.hero-page",
-        "blocks.content-grid",
+        "blocks.article-list",
         "blocks.photo-gallery",
         "blocks.quick-links",
         "blocks.timeline",
