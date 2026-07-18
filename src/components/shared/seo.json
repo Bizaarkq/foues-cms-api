@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "displayName": "SEO",
+    "icon": "search",
+    "description": "Per-page SEO overrides; all fields optional with sensible frontend fallbacks"
+  },
+  "options": {},
+  "attributes": {
+    "meta_title": {
+      "type": "string",
+      "maxLength": 70
+    },
+    "meta_description": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "og_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "no_index": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
