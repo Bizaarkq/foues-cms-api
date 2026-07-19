@@ -86,9 +86,10 @@ services:
     ports:
       - "80:80"
     environment:
-      # Dominios públicos — sustituidos por envsubst en el template al arrancar
-      FRONTEND_DOMAIN: ${FRONTEND_DOMAIN:-test.odontologia.ues.edu.sv}
-      CMS_DOMAIN: ${CMS_DOMAIN:-cms.test.odontologia.ues.edu.sv}
+      # Dominios públicos — sustituidos por envsubst en el template al arrancar.
+      # Sin fallback a propósito: los dominios se declaran en .env
+      FRONTEND_DOMAIN: ${FRONTEND_DOMAIN:?FRONTEND_DOMAIN is required — set it in .env}
+      CMS_DOMAIN: ${CMS_DOMAIN:?CMS_DOMAIN is required — set it in .env}
     volumes:
       - ./nginx/templates:/etc/nginx/templates:ro
     networks:
