@@ -1,0 +1,24 @@
+# `limit_req_zone` must live in nginx's `http {}` context, but this repo's
+# only mounted template (`default.conf.template`) contains nothing but
+# `server {}` blocks. The official `nginx:alpine` image's docker-entrypoint
+# envsubst-renders every `*.template` file under the mounted
+# `/etc/nginx/templates/` directory into `/etc/nginx/conf.d/*.conf`
+# (stripping the `.template` suffix, preserving the rest of the filename),
+# and the image's stock `nginx.conf` does `include /etc/nginx/conf.d/*.conf;`
+# from INSIDE its `http {}` block — so a template with no `server {}` wrapper
+# at all still lands in a context where a bare `limit_req_zone` directive is
+# valid. This file is named with a `00-` prefix so it sorts (and therefore
+# gets included) before `default.conf.template`/`default.conf` alphabetically
+# — `limit_req_zone` must be declared before any `location`'s `limit_req`
+# directive references its zone by name.
+#
+# Rate limits the public, ticket-gated upload endpoint
+# (`^/api/documents/upload/` in default.conf.template's CMS_DOMAIN server
+# block): 6 requests/minute per client IP, burst of 3 allowed immediately
+# (`nodelay`) before throttling kicks in. This sits alongside (not instead
+# of) `global::upload-ticket-gate`'s app-level Content-Length + ticket
+# pre-check (src/middlewares/upload-ticket-gate.ts) — the CMS-level gate
+# still validates the ticket even if a request gets past this IP-based
+# limit, and this nginx-level limit stops request-flood traffic before it
+# ever reaches the CMS process at all.
+limit_req_zone $binary_remote_addr zone=docupload:1m rate=6r/m;

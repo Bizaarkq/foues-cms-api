@@ -47,7 +47,7 @@ const TOKENS = [
       'api::document-category.document-category.find',
       'api::document-category.document-category.findOne',
       'api::document-download.document-download.create',
-      'api::document.upload.upload',
+      'api::document-upload-ticket.issue.issue',
     ],
   },
 ];

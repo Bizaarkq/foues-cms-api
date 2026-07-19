@@ -81,6 +81,12 @@ REVALIDATE_SECRET=$(rand 32)
 # frontend's download proxy header (x-document-access-secret). Must match on
 # both sides.
 DOCUMENT_ACCESS_SECRET=$(rand 32)
+# Public site origin allowed by the CMS's CORS config, for the direct
+# browser -> CMS ticket-gated upload endpoint (POST /documents/upload/:ticket).
+# Empty/unset = only http://localhost:3000 is allowed, which is fine for
+# local dev. Set this to the real public site origin in production, e.g.
+# https://odontologia.ues.edu.sv
+SITE_ORIGIN=
 
 # --- Frontend extras ---
 # URL del Campus Virtual mostrada en el navbar (opcional; vacía = link oculto)
