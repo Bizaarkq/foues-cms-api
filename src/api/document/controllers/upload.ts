@@ -29,11 +29,66 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import type { Core } from '@strapi/strapi';
 
-const MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024; // 15 MB
+// Hard ceiling: the frontend's next.config.ts pins
+// `serverActions.bodySizeLimit` to 16 MB at build time (that file
+// deliberately never reads env/CMS config), so anything the CMS resolves
+// here can only ever LOWER the effective limit below 15 MB, never raise it
+// past what the frontend already allows through. See
+// docs/document-repository.md → "Configurable parameters".
+const MAX_UPLOAD_MB_FALLBACK = 15;
+const MAX_UPLOAD_MB_MIN = 1;
+const MAX_UPLOAD_MB_MAX = 15;
 const MAX_TITLE_LENGTH = 200;
 const MAX_NAME_LENGTH = 255;
 const PDF_MAGIC_BYTES = Buffer.from('%PDF-', 'ascii');
 const ROOT_FOLDER_NAME = 'Documents';
+
+// Module-level guards so a sustained misconfiguration (missing entry, or a
+// persistently failing read) logs once instead of once per upload request —
+// the upload endpoint can see meaningful traffic and this must not spam the
+// logs. Reset on the next successful read so a real recovery is observable
+// again if it later regresses.
+let hasLoggedMissingSiteSetting = false;
+let hasLoggedSiteSettingReadError = false;
+
+/**
+ * Resolves the effective max upload size (in MB) from the `site-setting`
+ * single type, clamped to [1, 15]. Falls back to the safe default of 15 MB
+ * whenever the single type has no entry yet or the read fails for any
+ * reason — a config-read failure must never fail the upload itself.
+ */
+async function resolveMaxUploadMb(strapi: Core.Strapi): Promise<number> {
+  try {
+    const setting = (await strapi
+      .documents('api::site-setting.site-setting')
+      .findFirst()) as { max_upload_mb?: number } | null;
+
+    if (!setting || typeof setting.max_upload_mb !== 'number') {
+      if (!hasLoggedMissingSiteSetting) {
+        strapi.log.debug(
+          '[document.upload] site-setting has no entry yet — falling back to the default ' +
+            `${MAX_UPLOAD_MB_FALLBACK} MB upload limit`
+        );
+        hasLoggedMissingSiteSetting = true;
+      }
+      return MAX_UPLOAD_MB_FALLBACK;
+    }
+
+    hasLoggedMissingSiteSetting = false;
+    hasLoggedSiteSettingReadError = false;
+    return Math.min(MAX_UPLOAD_MB_MAX, Math.max(MAX_UPLOAD_MB_MIN, setting.max_upload_mb));
+  } catch (error) {
+    if (!hasLoggedSiteSettingReadError) {
+      strapi.log.warn(
+        '[document.upload] failed to read site-setting for max_upload_mb — falling back to ' +
+          `the default ${MAX_UPLOAD_MB_FALLBACK} MB upload limit`,
+        error as Error
+      );
+      hasLoggedSiteSettingReadError = true;
+    }
+    return MAX_UPLOAD_MB_FALLBACK;
+  }
+}
 
 // Same tolerance level as the site-user email check (lib/env.ts on the
 // frontend and the signIn callback are the actual domain authorities) —
@@ -187,12 +242,20 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         return badRequest(ctx, 'invalid_mime_type', 'file must have MIME type application/pdf');
       }
 
-      if (typeof file.size !== 'number' || file.size <= 0 || file.size > MAX_FILE_SIZE_BYTES) {
-        return badRequest(
+      const maxUploadMb = await resolveMaxUploadMb(strapi);
+      const maxFileSizeBytes = maxUploadMb * 1024 * 1024;
+
+      if (typeof file.size !== 'number' || file.size <= 0 || file.size > maxFileSizeBytes) {
+        badRequest(
           ctx,
           'file_too_large',
-          'file must be a non-empty PDF no larger than 15 MB'
+          `file must be a non-empty PDF no larger than ${maxUploadMb} MB`
         );
+        // The CMS limit is authoritative and read fresh per request; expose it
+        // so the frontend can show the current ceiling even if its cached
+        // site-settings copy is stale.
+        (ctx.body as Record<string, unknown>).limit_mb = maxUploadMb;
+        return;
       }
 
       const magic = await readMagicBytes(file.filepath, PDF_MAGIC_BYTES.length);

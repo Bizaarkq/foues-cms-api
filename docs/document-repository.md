@@ -224,6 +224,23 @@ automatically. Either:
 Until one of those happens, stage 2 uploads will 403 even though everything
 else in this doc works.
 
+### Configurable parameters
+
+`max_upload_mb` lives on the `api::site-setting.site-setting` single type
+(`src/api/site-setting/`), editable from the Strapi admin (Content Manager →
+Site setting). It sets the effective upload size ceiling enforced by
+`src/api/document/controllers/upload.ts`'s `file_too_large` check.
+
+- **Hard ceiling of 15 MB**, enforced by the schema (`max: 15`) and clamped
+  again in the controller: the frontend's `next.config.ts` pins
+  `serverActions.bodySizeLimit` to `'16mb'` at **build time** and deliberately
+  never reads env/CMS config, so a CMS-configured value can only ever *lower*
+  the effective limit — raising it past 15 MB would require a frontend
+  rebuild regardless of what this single type says.
+- **Fallback is 15 MB** whenever the single type has no entry yet, or the
+  read fails for any reason — a config-read failure must never fail an
+  upload; it silently falls back to the safe default instead.
+
 ### Known v1 gaps
 
 - **Folder find-or-create race**: two concurrent first-uploads to a category

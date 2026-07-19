@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_setting",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site setting",
+    "description": "Site-wide configurable parameters, editable from the admin"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "max_upload_mb": {
+      "type": "integer",
+      "default": 15,
+      "min": 1,
+      "max": 15
+    }
+  }
+}
