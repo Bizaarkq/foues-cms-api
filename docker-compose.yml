@@ -56,6 +56,14 @@ services:
       # Sin fallback a propósito: mejor fallar el arranque que un secret conocido
       JWT_SECRET: ${STRAPI_JWT_SECRET:?STRAPI_JWT_SECRET is required — run scripts/generate-env.sh}
       NODE_ENV: ${BUILD_ENV:-production}
+      # Origen público del sitio Next (allowlist CORS para la subida directa de
+      # documentos). Se compone desde FRONTEND_DOMAIN — un solo valor fuente; el
+      # esquema se declara aquí porque el dominio solo no basta para CORS.
+      SITE_ORIGIN: https://${FRONTEND_DOMAIN:-test.odontologia.ues.edu.sv}
+      # Secreto compartido con el frontend: deja pasar las lecturas server-to-server
+      # del proxy de descargas a los archivos protegidos bajo "Documents".
+      # Sin fallback a propósito (misma política que JWT_SECRET).
+      DOCUMENT_ACCESS_SECRET: ${DOCUMENT_ACCESS_SECRET:?DOCUMENT_ACCESS_SECRET is required — run scripts/generate-env.sh}
     networks:
       - backend
       - foues
@@ -113,6 +121,11 @@ services:
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
       MAGAZINE_TRACK_TOKEN: ${MAGAZINE_TRACK_TOKEN}
       SITE_USER_TOKEN: ${SITE_USER_TOKEN}
+      # Repositorio de documentos: token restringido (lecturas + emisión de
+      # tickets + log de descargas) y el secreto compartido con el middleware
+      # document-access del CMS. lib/env.ts falla el arranque si faltan.
+      DOCUMENT_TOKEN: ${DOCUMENT_TOKEN:?DOCUMENT_TOKEN is required — run scripts/create-api-tokens.js}
+      DOCUMENT_ACCESS_SECRET: ${DOCUMENT_ACCESS_SECRET:?DOCUMENT_ACCESS_SECRET is required — run scripts/generate-env.sh}
       # Opcional: URL del Campus Virtual en el navbar; vacía = link oculto
       CAMPUS_VIRTUAL_URL: ${CAMPUS_VIRTUAL_URL:-}
     networks:
