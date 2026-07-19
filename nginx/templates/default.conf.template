@@ -2,6 +2,16 @@ server {
     listen 80;
     server_name ${FRONTEND_DOMAIN};
 
+    # Document-repository uploads (browser -> this domain -> foues:3000 ->
+    # cms:1337 over the internal Docker network, streamed all the way
+    # through) need this raised past nginx's tiny 1M default — the frontend
+    # and CMS both enforce a 500 MB ceiling (site-setting -> Content-Length
+    # gate -> formidable maxFileSize), so this must stay >= that, with
+    # headroom for the multipart envelope. See
+    # docs/document-repository.md → "Configurable parameters" for the full
+    # ceiling chain.
+    client_max_body_size 510M;
+
     location / {
         proxy_pass http://foues:3000;
         proxy_http_version 1.1;
@@ -19,7 +29,33 @@ server {
     listen 80;
     server_name ${CMS_DOMAIN};
 
-    client_max_body_size 100M;
+    # Kept in lockstep with the FRONTEND_DOMAIN block above (same 500 MB
+    # ceiling) so direct admin-panel media uploads through this domain
+    # aren't capped lower than what formidable itself now allows.
+    client_max_body_size 510M;
+
+    # Rate limit the public, ticket-gated direct-upload endpoint (browsers
+    # POST here unauthenticated, gated only by a short-lived ticket — see
+    # docs/document-repository.md -> "CORS and anti-abuse"). `docupload`
+    # zone is declared in ../templates/00-limits.conf.template (must live in
+    # nginx's http {} context, which no server {} block here provides — see
+    # that file's header comment for why it's a separate template).
+    # `burst=3 nodelay` lets a small burst through immediately, then throttles
+    # to the zone's 6r/m; this sits ALONGSIDE (not instead of)
+    # `global::upload-ticket-gate`'s app-level Content-Length + ticket
+    # pre-check, which still applies to whatever gets through here.
+    location ~ ^/api/documents/upload/ {
+        limit_req zone=docupload burst=3 nodelay;
+        proxy_pass http://cms:1337;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
 
     location / {
         proxy_pass http://cms:1337;

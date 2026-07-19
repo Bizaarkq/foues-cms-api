@@ -102,6 +102,13 @@ BUILD_ENV=production
 
 # Opcional: link de Campus Virtual en el navbar (vacío = no se muestra)
 CAMPUS_VIRTUAL_URL=https://campus.ues.edu.sv
+
+# Origen público del sitio, habilitado en el CORS del CMS: el navegador
+# ahora sube documentos directo al CMS (POST /documents/upload/:ticket, sin
+# pasar por el frontend), así que el CMS debe permitir explícitamente ese
+# origen. Vacío = solo se permite http://localhost:3000 (sirve para dev
+# local, pero rompe las subidas directas en producción).
+SITE_ORIGIN=https://FRONTEND_DOMAIN
 ```
 
 Los 3 tokens (`STRAPI_API_TOKEN`, `FORM_SUBMIT_TOKEN`, `MAGAZINE_TRACK_TOKEN`)
@@ -325,8 +332,10 @@ healthy de esa cadena es el culpable; los de después son víctimas.
   ¿`FRONTEND_DOMAIN`/`CMS_DOMAIN` del `.env` coinciden con los del DNS?
   (nginx solo rutea los `Host` exactos que le configuraste).
 - Página en blanco solo en `/admin` → el `CMS_DOMAIN` no permite subir
-  archivos grandes… no: el template ya trae `client_max_body_size 100M` para
-  el CMS. Revisá la consola del navegador y §6.2.
+  archivos grandes… no: el template ya trae `client_max_body_size 510M` para
+  el CMS (y el mismo valor en el bloque de `FRONTEND_DOMAIN`, por el
+  repositorio de documentos — ver `docs/document-repository.md`). Revisá la
+  consola del navegador y §6.2.
 
 ### 6.5 Todo "healthy" pero el sitio no carga
 

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_upload_tickets",
+  "info": {
+    "singularName": "document-upload-ticket",
+    "pluralName": "document-upload-tickets",
+    "displayName": "Ticket de subida de documento",
+    "description": "Credencial de un solo uso y vida corta que vincula una categoría, un título y un solicitante a una subida directa navegador→CMS al repositorio de documentos."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ticket": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document-category.document-category"
+    },
+    "title": {
+      "type": "string"
+    },
+    "uploaded_by_name": {
+      "type": "string"
+    },
+    "uploaded_by_email": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "datetime",
+      "required": true
+    },
+    "used": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
