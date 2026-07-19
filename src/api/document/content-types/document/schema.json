@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "singularName": "document",
+    "pluralName": "documents",
+    "displayName": "Documento",
+    "description": "Documento del repositorio institucional (PDF). El flujo de aprobación se maneja con borrador/publicado — un editor publica la entrada cuando el documento está listo para leerse."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document-category.document-category",
+      "inversedBy": "documents",
+      "required": true
+    },
+    "uploaded_by_name": {
+      "type": "string"
+    },
+    "uploaded_by_email": {
+      "type": "email"
+    }
+  }
+}

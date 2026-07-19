@@ -132,7 +132,13 @@ Pegá los tres valores impresos en el `.env`:
 STRAPI_API_TOKEN=...      # lectura GraphQL del frontend
 FORM_SUBMIT_TOKEN=...     # envío de formularios (scope mínimo)
 MAGAZINE_TRACK_TOKEN=...  # métricas de la revista (scope mínimo)
+DOCUMENT_TOKEN=...        # repositorio de documentos (scope mínimo)
 ```
+
+Además, `DOCUMENT_ACCESS_SECRET` (generado por `generate-env.sh`) debe
+coincidir en ambos lados — lo revisa el middleware `document-access` del CMS
+contra el header `x-document-access-secret` que envía el proxy de descargas
+del frontend.
 
 ### 3.5 Rebuild del frontend con los tokens
 
@@ -156,8 +162,8 @@ administrador. Ese usuario es el dueño del CMS: guardá la contraseña bien.
    - Eventos: create/update/delete (+publish/unpublish) de **TODOS los content
      types que alimentan el render** — page, route, footer, global-theme,
      block-group, staff, organizational-unit, form, magazine-issue,
-     publication, mobile-navbar. Si falta uno, sus cambios tardan hasta 24 h
-     en verse (caché ISR).
+     publication, mobile-navbar, document, document-category. Si falta uno,
+     sus cambios tardan hasta 24 h en verse (caché ISR).
 3. **mainField de relaciones** (cosmético pero ayuda mucho al editor):
    Content Manager → ⚙ Configure the view → en los pickers de relación elegir
    qué campo se muestra (form→title, publications→name, route→label,

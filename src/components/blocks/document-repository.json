@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_document_repositories",
+  "info": {
+    "displayName": "Document Repository",
+    "icon": "folder",
+    "description": "Role-gated document repository listing (self-fetching)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document-category.document-category"
+    }
+  }
+}

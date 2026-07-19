@@ -37,6 +37,18 @@ const TOKENS = [
       'api::site-user.track-login.trackLogin',
     ],
   },
+  {
+    name: 'DOCUMENT_TOKEN',
+    description: 'Restricted token for document repository reads and download logging',
+    type: 'custom',
+    permissions: [
+      'api::document.document.find',
+      'api::document.document.findOne',
+      'api::document-category.document-category.find',
+      'api::document-category.document-category.findOne',
+      'api::document-download.document-download.create',
+    ],
+  },
 ];
 
 const appDir = path.resolve(__dirname, '..');

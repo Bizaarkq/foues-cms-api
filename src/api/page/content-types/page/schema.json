@@ -49,6 +49,7 @@
         "blocks.section",
         "blocks.form",
         "blocks.magazine-archive",
+        "blocks.document-repository",
         "blocks.accordion",
         "blocks.tabs",
         "blocks.carousel",

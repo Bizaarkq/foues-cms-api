@@ -63,6 +63,7 @@ STRAPI_API_TOKEN=
 FORM_SUBMIT_TOKEN=
 MAGAZINE_TRACK_TOKEN=
 SITE_USER_TOKEN=
+DOCUMENT_TOKEN=
 
 # --- NextAuth ---
 # Set AUTH_URL / NEXTAUTH_URL to the public URL of the frontend (e.g. http://<server-ip>:3000).
@@ -74,6 +75,12 @@ GOOGLE_CLIENT_SECRET=dummy
 
 # --- Cache revalidation ---
 REVALIDATE_SECRET=$(rand 32)
+
+# --- Document repository ---
+# Shared secret checked by the CMS's document-access middleware against the
+# frontend's download proxy header (x-document-access-secret). Must match on
+# both sides.
+DOCUMENT_ACCESS_SECRET=$(rand 32)
 
 # --- Frontend extras ---
 # URL del Campus Virtual mostrada en el navbar (opcional; vacía = link oculto)
