@@ -139,14 +139,105 @@ log, nothing renders from it.)
 
 ## Stage 2 gotcha (for later): content-API uploads and the "API Uploads" folder
 
-When site uploads land, do **not** point them at the stock
-`POST /api/upload` content-API route: it force-assigns the uploaded file to
-Strapi's built-in **"API Uploads"** folder, ignoring any `fileInfo.folder`
-you pass — so a raw content-API upload can never land inside (or under) the
+Stock `POST /api/upload` force-assigns the uploaded file to Strapi's
+built-in **"API Uploads"** folder, ignoring any `fileInfo.folder` you pass —
+so a raw content-API upload can never land inside (or under) the
 "Documents" root, and would end up unprotected regardless of which
-`document-category` it's linked to. Stage 2 will need a **custom
-controller** that calls
-`strapi.plugin('upload').service('upload').upload()` directly, passing
-`fileInfo.folder` (or `folderPath`) so the file is created inside the right
-subfolder of "Documents" (or the category's own upload target) from the
-start.
+`document-category` it's linked to. This is exactly why stage 2 (below)
+ships its own controller instead of using that route.
+
+## Site uploads (stage 2)
+
+Lets an authenticated site user (session held by the Next.js frontend)
+upload a PDF into the repository from the public site, instead of an editor
+uploading it from the admin panel.
+
+### Endpoint contract
+
+`POST /documents/upload`, multipart/form-data:
+
+- File field **`file`** — exactly one file, `.pdf` extension,
+  `application/pdf` MIME type, magic-byte signature `%PDF-`, ≤ 15 MB.
+- Body field **`category`** — the target `document-category`'s
+  `documentId`.
+- Body field **`title`** — required, trimmed, ≤ 200 characters.
+- Body fields **`uploaded_by_name`** / **`uploaded_by_email`** — who is
+  uploading (populated by the frontend from the authenticated site user,
+  same fields stage 1 fills in manually).
+
+Response `200`: `{ ok: true, published: boolean, documentId: string }`.
+Validation failures are `400` with a short machine-readable `error` code
+(`invalid_title`, `invalid_category`, `category_not_found`,
+`upload_not_enabled`, `invalid_file_count`, `invalid_extension`,
+`invalid_mime_type`, `file_too_large`, `invalid_file_signature`,
+`invalid_email`) plus an English `message`. Unexpected failures are `500`
+`{ ok: false, error: 'internal_error' }` — the response never leaks
+internals; details go to `strapi.log.error` only.
+
+Controller: `src/api/document/controllers/upload.ts`. Route:
+`src/api/document/routes/upload.ts`, auth scope
+`api::document.upload.upload`.
+
+### Where the file lands
+
+The upload goes straight through
+`strapi.plugin('upload').service('upload').upload()` (never the stock
+content-API route — see the gotcha above), targeting a **per-category
+subfolder** under the protected "Documents" root: the endpoint resolves (or
+lazily re-creates) the "Documents" root folder, then finds or creates a
+subfolder named after the category's **`slug`** underneath it
+(`strapi.plugin('upload').service('folder').create()` — same call the
+`011-document-repository-folder` migration uses for the root). This means
+every upload automatically lands under the `document-access`-protected
+tree, subfoldered per category, with no manual folder bookkeeping.
+
+### Draft vs. published
+
+The created `document` entry's status follows the category's
+**`requires_approval`** flag: `true` → created as `draft` (an editor must
+publish it, same approval step as stage 1's manual flow); `false` →
+created directly as `published` (immediately readable, no review step).
+
+### `upload_roles` semantics
+
+`upload_roles` is enforced by the **frontend's Server Action**, which holds
+the session and therefore knows the caller's role — this endpoint only
+re-checks `upload_enabled` defensively (a category with uploads disabled
+never accepts a file regardless of role). Same empty-means-open convention
+as `allowed_roles` for reads: **empty `upload_roles` + `upload_enabled` =
+any logged-in user may upload** to that category; a non-empty list
+restricts uploads to sessions holding one of those roles.
+
+### Token scope note
+
+`DOCUMENT_TOKEN`'s permission list now includes `api::document.upload.upload`
+(see `scripts/create-api-tokens.js`). The token-creation script **skips
+tokens that already exist** — if `DOCUMENT_TOKEN` was already deployed
+before this change shipped, it does **not** pick up the new scope
+automatically. Either:
+
+- run `node scripts/create-api-tokens.js --rotate` to regenerate it (update
+  the `.env` value on both sides afterward), or
+- add the `Document - upload.upload` permission to the existing token
+  manually from Settings → API Tokens in the admin panel.
+
+Until one of those happens, stage 2 uploads will 403 even though everything
+else in this doc works.
+
+### Known v1 gaps
+
+- **Folder find-or-create race**: two concurrent first-uploads to a category
+  can both find the root/category folder missing and both call
+  `folderService.create()`. The controller retries with `findOne` on a create
+  failure and uses the folder the other request just created; only rethrows
+  if the folder still doesn't exist afterward.
+- **Orphaned media on a rare create failure**: if the media file uploads
+  successfully but the follow-up `document` entry creation throws, the
+  controller attempts a compensating deletion of the uploaded file
+  (`uploadService.remove()`) so it doesn't sit unreferenced in the protected
+  tree. If that cleanup itself fails, the orphaned file's id and the
+  category's slug are logged via `strapi.log.error` either way, for manual
+  cleanup.
+- **No upload idempotency key**: a user who retries after a client-side
+  network timeout can create a duplicate `document` entry if the original
+  request actually succeeded server-side before the client gave up.
