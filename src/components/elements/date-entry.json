@@ -19,6 +19,16 @@
     },
     "description": {
       "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "academico",
+        "evento",
+        "fecha_limite",
+        "asueto",
+        "otro"
+      ]
     }
   }
 }

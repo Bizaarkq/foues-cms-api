@@ -367,34 +367,36 @@ const migration: DataMigration = {
       },
 
       {
-        __component: 'blocks.calendar',
+        __component: 'blocks.key-dates',
         title: 'Calendario Académico',
+        display_mode: 'list',
         items: [
           {
-            date: '2026-08-01',
-            title: 'Inicio del ciclo II-2026',
-            category: 'academic',
+            start_date: '2026-08-01',
+            label: 'Inicio del ciclo II-2026',
+            category: 'academico',
           },
           {
-            date: '2026-08-15',
-            title: 'Jornada de bienvenida',
+            start_date: '2026-08-15',
+            end_date: '2026-08-16',
+            label: 'Jornada de bienvenida',
             description:
               'Actividades de integración para estudiantes de nuevo ingreso.',
-            category: 'event',
+            category: 'evento',
           },
           {
-            date: '2026-09-15',
-            title: 'Fecha límite de retiro',
+            start_date: '2026-09-15',
+            label: 'Fecha límite de retiro',
             description:
               'Último día para retiro extraordinario de materias.',
-            category: 'deadline',
+            category: 'fecha_limite',
           },
           {
-            date: '2026-10-01',
-            title: 'Día del odontólogo',
+            start_date: '2026-10-01',
+            label: 'Día del odontólogo',
             description:
               'Celebración con actividades académicas y culturales.',
-            category: 'holiday',
+            category: 'asueto',
           },
         ],
       },

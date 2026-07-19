@@ -1,9 +1,9 @@
 {
   "collectionName": "components_blocks_key_dates",
   "info": {
-    "displayName": "Key Dates",
-    "icon": "pin",
-    "description": "Important dates rendered as a calendar (single month) or chronological list."
+    "displayName": "Calendario",
+    "icon": "calendar",
+    "description": "Fechas importantes en vista de calendario (un mes) o lista cronológica, con categoría opcional por fecha."
   },
   "options": {},
   "attributes": {

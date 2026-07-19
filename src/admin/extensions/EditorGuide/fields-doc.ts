@@ -72,17 +72,6 @@ export const FIELDS_DOC: SectionDoc[] = [
         ],
       },
       {
-        title: "Calendar",
-        description: "Academic calendar or events schedule",
-        fields: [
-          {
-            name: "title",
-            label: "Título del calendario",
-            help: "Título del calendario o cronograma. Ej: 'Calendario académico 2025'",
-          },
-        ],
-      },
-      {
         title: "Carousel",
         description: "Presentación secuencial de diapositivas con imagen y texto/enlace opcionales",
         fields: [
@@ -239,8 +228,8 @@ export const FIELDS_DOC: SectionDoc[] = [
         ],
       },
       {
-        title: "Key Dates",
-        description: "Important dates rendered as a calendar (single month) or chronological list.",
+        title: "Calendario",
+        description: "Fechas importantes en vista de calendario (un mes) o lista cronológica, con categoría opcional por fecha. (Antes existían dos bloques, Calendar y Key Dates — este los unifica.)",
         fields: [
           {
             name: "title",
@@ -543,8 +532,18 @@ export const FIELDS_DOC: SectionDoc[] = [
       },
       {
         title: "Date Entry",
-        description: "A label + date range (single date if end_date is empty). Used by Key Dates.",
+        description: "Etiqueta + rango de fechas (fecha única si end_date queda vacío). Usado por el bloque Calendario.",
         fields: [
+          {
+            name: "start_date",
+            label: "Fecha de inicio",
+            help: "Fecha del evento. Si dura varios días, esta es la fecha de inicio",
+          },
+          {
+            name: "end_date",
+            label: "Fecha de finalización (opcional)",
+            help: "Completala solo si el evento dura varios días — el sitio mostrará el rango completo. Ej: un congreso del 12 al 15 de agosto",
+          },
           {
             name: "label",
             label: "Nombre de la fecha",
@@ -554,6 +553,18 @@ export const FIELDS_DOC: SectionDoc[] = [
             name: "description",
             label: "Información adicional (opcional)",
             help: "Información adicional sobre esta fecha. Ej: horarios, lugar, requisitos previos. Opcional",
+          },
+          {
+            name: "category",
+            label: "Categoría (opcional)",
+            help: "Categoría de la fecha, le da un distintivo visual en el sitio. 'academico': actividad académica · 'evento': evento o jornada · 'fecha_limite': fecha límite o vencimiento · 'asueto': feriado o asueto · 'otro': cualquier otra",
+            values: [
+              "academico",
+              "evento",
+              "fecha_limite",
+              "asueto",
+              "otro",
+            ],
           },
         ],
       },
@@ -659,34 +670,6 @@ export const FIELDS_DOC: SectionDoc[] = [
             name: "time_range",
             label: "Horario de atención",
             help: "Horario de atención correspondiente a los días indicados. Ej: '8:00 – 17:00', '9:00 – 13:00'",
-          },
-        ],
-      },
-      {
-        title: "Schedule Item",
-        description: "A single entry in an academic calendar or schedule block",
-        fields: [
-          {
-            name: "title",
-            label: "Nombre del evento",
-            help: "Nombre del evento o actividad del calendario. Ej: 'Inicio de clases', 'Examen parcial'",
-          },
-          {
-            name: "description",
-            label: "Información adicional (opcional)",
-            help: "Información adicional sobre el evento. Ej: horarios, lugar, instrucciones especiales",
-          },
-          {
-            name: "category",
-            label: "Categoría del evento",
-            help: "Categoría del evento para filtrado y color visual. 'academic': académico · 'event': evento · 'deadline': fecha límite · 'holiday': feriado · 'other': otro",
-            values: [
-              "academic",
-              "event",
-              "deadline",
-              "holiday",
-              "other",
-            ],
           },
         ],
       },
