@@ -59,7 +59,7 @@ services:
       # Origen público del sitio Next (allowlist CORS para la subida directa de
       # documentos). Se compone desde FRONTEND_DOMAIN — un solo valor fuente; el
       # esquema se declara aquí porque el dominio solo no basta para CORS.
-      SITE_ORIGIN: https://${FRONTEND_DOMAIN:-test.odontologia.ues.edu.sv}
+      SITE_ORIGIN: https://${FRONTEND_DOMAIN:?FRONTEND_DOMAIN is required — set it in .env}
       # Secreto compartido con el frontend: deja pasar las lecturas server-to-server
       # del proxy de descargas a los archivos protegidos bajo "Documents".
       # Sin fallback a propósito (misma política que JWT_SECRET).
