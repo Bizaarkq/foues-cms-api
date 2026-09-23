@@ -10,6 +10,9 @@ import areasClinicasSeed from '../seeds/pages/areas-clinicas.json';
 import proyeccionSocialSeed from '../seeds/pages/proyeccion-social.json';
 import centroImagenes3dSeed from '../seeds/pages/centro-imagenes-3d.json';
 import centroInvestigacionesSeed from '../seeds/pages/centro-investigaciones.json';
+import posgradoSeed from '../seeds/pages/posgrado.json';
+import contactoSeed from '../seeds/pages/contacto.json';
+import { createMediaCache, resolvePageContent } from '../seeds/resolve-page-content';
 
 type PageSeed = {
   routePath: string;
@@ -28,6 +31,8 @@ const PAGE_SEEDS: PageSeed[] = [
   proyeccionSocialSeed,
   centroImagenes3dSeed,
   centroInvestigacionesSeed,
+  posgradoSeed,
+  contactoSeed,
 ] as PageSeed[];
 
 const migration: DataMigration = {
@@ -45,6 +50,9 @@ const migration: DataMigration = {
         route,
       ])
     );
+
+    // One cache per run so pages sharing an image upload it once.
+    const mediaCache = createMediaCache();
 
     for (const seed of PAGE_SEEDS) {
       const routeRecord = routeByPath.get(seed.routePath);
@@ -65,12 +73,14 @@ const migration: DataMigration = {
         continue;
       }
 
+      const content = await resolvePageContent(strapi, seed.content, mediaCache);
+
       await strapi.documents('api::page.page').create({
         data: {
           title: seed.title,
           layout: seed.layout,
           route: routeRecord.documentId,
-          content: seed.content,
+          content,
         } as never,
         status: 'published',
       });

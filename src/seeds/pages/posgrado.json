@@ -1,0 +1,13 @@
+{
+  "routePath": "/posgrado",
+  "title": "Escuela de Posgrado",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Escuela de Posgrado",
+      "gradient": "primary",
+      "backgroundImage": "@media:posgrado-hero.jpg"
+    }
+  ]
+}

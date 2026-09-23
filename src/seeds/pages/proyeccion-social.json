@@ -6,29 +6,76 @@
     {
       "__component": "blocks.hero-page",
       "title": "Proyección Social",
-      "gradient": "primary"
+      "gradient": "primary",
+      "backgroundImage": "@media:proyeccion-social-hero.jpg"
     },
     {
-      "__component": "blocks.rich-text",
-      "content": "## Programa Preventivo Escolar\n\n**Prevenir es mejor que Curar.**\n\n¿Sabías que la probabilidad de que tú o algún miembro de tu familia necesiten ir al dentista por emergencia es del 90%?\n\n### ¿Qué servicios te incluye este plan?\n\nEl objetivo principal de este plan es que tengas un chequeo periódico de manera preventiva, y al mismo tiempo un resguardo de emergencia dental al año.\n\nPor esta razón el plan cubre en la parte preventiva los siguientes servicios:\n\n- Consultas odontológicas ilimitadas al año\n- 2 Sellantes de Fosetas y Fisuras\n- Dos limpiezas dentales\n- Cobertura para una atención de emergencia al año\n\nBeneficio económico y de ahorro incluido, ya que la balanza costo-beneficio siempre es a tu favor: con nuestro sistema de salud dental puedes ahorrarte al año mucho más en comparación con lo que te cuesta el precio real de todos estos servicios, pudiéndote ahorrar más del 95% en el costo real que trae incluido este servicio.\n\nTambién el programa trae incluida la membresía familiar, la cual le incluye una tarjeta de descuento para obtener descuentos en otros servicios.\n\nEsta tarjeta de descuento cuenta con cobertura familiar y le permite ahorrarse hasta un 50% de descuento en algunos servicios médicos. La tarjeta de descuento también le permite participar en el programa de incentivos para pacientes afiliados."
+      "__component": "blocks.section",
+      "name": "Programa Preventivo Escolar",
+      "section_columns": 12,
+      "groups": [
+        {
+          "name": "Proyección Social - Programa Preventivo (imagen)",
+          "group_columns": 5,
+          "blocks": [
+            {
+              "__component": "blocks.photo-gallery",
+              "title": "",
+              "subtitle": "",
+              "photo_columns": "col_2",
+              "images": [
+                "@media:proyeccion-programa-preventivo.jpg"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Proyección Social - Programa Preventivo (texto)",
+          "group_columns": 7,
+          "blocks": [
+            {
+              "__component": "blocks.rich-text",
+              "content": "## Programa Preventivo Escolar\n\n**Prevenir es mejor que Curar.**\n\n¿Sabías que la probabilidad de que tú o algún miembro de tu familia necesiten ir al dentista por emergencia es del 90%?\n\n### ¿Qué servicios te incluye este plan?\n\nEl objetivo principal de este plan es que tengas un chequeo periódico de manera preventiva, y al mismo tiempo un resguardo de emergencia dental al año.\n\nPor esta razón el plan cubre en la parte preventiva los siguientes servicios:\n\n- Consultas odontológicas ilimitadas al año\n- 2 Sellantes de Fosetas y Fisuras\n- Dos limpiezas dentales\n- Cobertura para una atención de emergencia al año\n\nBeneficio económico y de ahorro incluido, ya que la balanza costo-beneficio siempre es a tu favor: con nuestro sistema de salud dental puedes ahorrarte al año mucho más en comparación con lo que te cuesta el precio real de todos estos servicios, pudiéndote ahorrar más del 95% en el costo real que trae incluido este servicio.\n\nTambién el programa trae incluida la membresía familiar, la cual le incluye una tarjeta de descuento para obtener descuentos en otros servicios.\n\nEsta tarjeta de descuento cuenta con cobertura familiar y le permite ahorrarse hasta un 50% de descuento en algunos servicios médicos. La tarjeta de descuento también le permite participar en el programa de incentivos para pacientes afiliados."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__component": "blocks.quick-links",
+      "title": "Programas",
+      "ql_columns": 3,
+      "links": [
+        {
+          "label": "Clínicas Extramurales",
+          "url": "/proyeccion-social/clinicas-extramurales",
+          "icon": "truck",
+          "description": "Atención odontológica fuera del campus"
+        },
+        {
+          "label": "PAIPAD",
+          "url": "/proyeccion-social/paipad",
+          "icon": "users",
+          "description": "Programa de atención a pacientes con discapacidad"
+        },
+        {
+          "label": "Servicio Social",
+          "url": "/proyeccion-social/servicio-social",
+          "icon": "hand-helping",
+          "description": "Jornadas de servicio a la comunidad"
+        }
+      ]
     },
     {
       "__component": "blocks.photo-gallery",
-      "title": "Clínicas Extramurales",
+      "title": "Galería",
       "subtitle": "",
-      "photo_columns": "col_2"
-    },
-    {
-      "__component": "blocks.photo-gallery",
-      "title": "PAIPAD",
-      "subtitle": "",
-      "photo_columns": "col_2"
-    },
-    {
-      "__component": "blocks.photo-gallery",
-      "title": "Servicio Social",
-      "subtitle": "",
-      "photo_columns": "col_2"
+      "photo_columns": "col_3",
+      "images": [
+        "@media:proyeccion-clinicas-extramurales.jpg",
+        "@media:proyeccion-paipad.jpg",
+        "@media:proyeccion-servicio-social.jpg"
+      ]
     },
     {
       "__component": "blocks.quick-links",
