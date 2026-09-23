@@ -6,9 +6,13 @@
     {
       "__component": "blocks.hero-page",
       "title": "Pregrado",
-      "subtitle": "Formar profesionales competentes, capaces de desarrollarse en el quehacer institucional y de práctica privada, dentro del contexto socioeconómico y cultural del país, participando en su permanente transformación e incidiendo en la resolución de la problemática de salud del mismo, con el respaldo de una formación integral que les facilite la incorporación y acreditación a nivel nacional e internacional.",
+      "subtitle": "Formando profesionales competentes con una base integral que les permita incorporarse y acreditarse a nivel nacional e internacional.",
       "gradient": "primary",
       "backgroundImage": "@media:pregrado-hero.jpg"
+    },
+    {
+      "__component": "blocks.rich-text",
+      "content": "Formar profesionales competentes, capaces de desarrollarse en el quehacer institucional y de práctica privada, dentro del contexto socioeconómico y cultural del país, participando en su permanente transformación e incidiendo en la resolución de la problemática de salud del mismo, con el respaldo de una formación integral que les facilite la incorporación y acreditación a nivel nacional e internacional."
     },
     {
       "__component": "blocks.quick-links",
