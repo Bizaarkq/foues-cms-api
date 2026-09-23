@@ -64,7 +64,7 @@ losing editor work.
 | `servicios-pacientes.jpg` | p6, patient care | Servicios gallery | Estudiantes atendiendo a un paciente |
 | `servicios-primera-consulta.jpg` | p6, first consultation | Servicios gallery | Paciente en consulta por primera vez |
 | `proyeccion-social-hero.jpg` | p7, workshop | Proyección Social hero | Estudiantes en un taller de proyección social |
-| `proyeccion-programa-preventivo.jpg` | p7, preventive care | Programa Preventivo | Atención preventiva a un paciente escolar |
+| `proyeccion-programa-preventivo.jpg` | p7, preventive care | Proyección gallery | Atención preventiva a un paciente escolar |
 | `proyeccion-clinicas-extramurales.jpg` | p7, extramural clinics | Proyección gallery | Sistema de Gestión de Clínicas Extramurales |
 | `proyeccion-paipad.jpg` | p7, PAIPAD team | Proyección gallery | Equipo del programa PAIPAD |
 | `proyeccion-servicio-social.jpg` | p7, field care (cropped to remove the navy band) | Proyección gallery | Estudiantes en jornada de servicio social |
@@ -119,15 +119,15 @@ from today's seeds (4 columns: `book`, `clipboard-list`, `stethoscope`,
    - `title`: "Pregrado"
    - `gradient`: `primary`
    - `backgroundImage`: `pregrado-hero.jpg`
-   - `subtitle`: "Formar profesionales competentes, capaces de desarrollarse en
-     el quehacer institucional y de práctica privada, dentro del contexto
-     socioeconómico y cultural del país, participando en su permanente
-     transformación e incidiendo en la resolución de la problemática de salud
-     del mismo, con el respaldo de una formación integral que les facilite la
-     incorporación y acreditación a nivel nacional e internacional."
-2. `quick-links` "Descripción de la Carrera": unchanged from the current seed
+   - `subtitle`: the short line kept from the old seed ("Formando
+     profesionales competentes con una base integral…").
+2. `rich-text` intro with the full PDF paragraph ("Formar profesionales
+   competentes, capaces de desarrollarse en el quehacer institucional…").
+   `hero-page.subtitle` is a `string` (VARCHAR 255), so the full paragraph does
+   not fit in the hero.
+3. `quick-links` "Descripción de la Carrera": unchanged from the current seed
    (2 columns, `book-open`, `user`, `briefcase`, `map`).
-3. `section` "Áreas Docentes", with a `rich-text` block ahead of it holding only
+4. `section` "Áreas Docentes", with a `rich-text` block ahead of it holding only
    `## Áreas Docentes`. The section has two 6/12 groups, each with a
    `rich-text`:
    - Left: Área Restaurativa / Operatoria Dental; Cirugía Oral y Maxilofacial;
@@ -135,7 +135,7 @@ from today's seeds (4 columns: `book`, `clipboard-list`, `stethoscope`,
    - Right: Diagnóstico / Patología Bucal; Odontología Preventiva / Integral;
      Prostodoncia / Rehabilitación.
    - The text is the current seed text, split across the two columns.
-4. ACCESO RÁPIDO.
+5. ACCESO RÁPIDO.
 
 ### Servicios
 
@@ -143,10 +143,13 @@ from today's seeds (4 columns: `book`, `clipboard-list`, `stethoscope`,
    - `title`: "Servicios"
    - `gradient`: `secondary`
    - `backgroundImage`: `servicios-hero.jpg`
-   - `subtitle`: the PDF intro text (currently the info-card body), "La
-     Facultad de Odontología de la Universidad de El Salvador (UES) ofrece
-     atención dental integral…".
-2. `quick-links` "Nuestros Servicios" (4 columns). Each item has an icon that
+   - `subtitle`: "Atención dental integral de bajo costo en las clínicas de la
+     Facultad, realizada por estudiantes supervisados."
+2. `rich-text` intro with the full PDF text (currently the info-card body), "La
+   Facultad de Odontología de la Universidad de El Salvador (UES) ofrece
+   atención dental integral…". It sits below the hero for the same VARCHAR 255
+   reason as Pregrado.
+3. `quick-links` "Nuestros Servicios" (4 columns). Each item has an icon that
    evokes its PDF photo:
 
    | Label | URL | Icon | Description |
@@ -156,14 +159,14 @@ from today's seeds (4 columns: `book`, `clipboard-list`, `stethoscope`,
    | Servicios para Pacientes | `/servicios/servicios-pacientes` | `hand-heart` | Tratamientos de bajo costo supervisados |
    | Consulta por Primera Vez | `/servicios/consulta-primera-vez` | `clipboard-plus` | Requisitos para tu primera consulta |
 
-3. `photo-gallery`
+4. `photo-gallery`
    - `title`: "Nuestras instalaciones"
    - `photo_columns`: `col_2`
    - `images`: the four `servicios-*` photos, in the table order above.
-4. ACCESO RÁPIDO.
+5. ACCESO RÁPIDO.
 
-The current `info-card` "Áreas Clínicas" is removed. Its text moves to the hero,
-and its link is covered by the quick-links.
+The current `info-card` "Áreas Clínicas" is removed. Its text moves to the intro
+`rich-text`, and its link is covered by the quick-links.
 
 ### Proyección Social
 
@@ -171,10 +174,11 @@ and its link is covered by the quick-links.
    - `title`: "Proyección Social"
    - `gradient`: `primary`
    - `backgroundImage`: `proyeccion-social-hero.jpg`
-2. `section` "Programa Preventivo Escolar", with two groups:
-   - Group 1, 5/12: `photo-gallery` with one image
-     (`proyeccion-programa-preventivo.jpg`), `photo_columns: col_2`.
-   - Group 2, 7/12: `rich-text` with the current seed text of the program.
+2. `rich-text` with the current seed text of "Programa Preventivo Escolar",
+   full width.
+   - A 5/12 + 7/12 section with the photo was tried and dropped.
+     `photo-gallery` has at least 2 columns, so a single image inside a 5/12
+     group rendered at about 160 px. The photo moves to the gallery instead.
 3. `quick-links` "Programas" (3 columns):
 
    | Label | URL | Icon | Description |
@@ -185,8 +189,8 @@ and its link is covered by the quick-links.
 
 4. `photo-gallery`
    - `title`: "Galería"
-   - `photo_columns`: `col_3`
-   - `images`: extramurales, PAIPAD, servicio social.
+   - `photo_columns`: `col_2`
+   - `images`: programa preventivo, extramurales, PAIPAD, servicio social.
 5. ACCESO RÁPIDO.
 
 The PAIPAD description is an inference from the Pregrado area text ("atención a
@@ -255,4 +259,9 @@ The current `"—"` rich-text and empty gallery placeholders are removed.
 ## Deploy notes
 
 - The CMS-only change needs no frontend redeploy.
+- The migration's Document Service writes do not fire the Strapi webhook that
+  revalidates the frontend. After deploy, trigger `POST /api/revalidate` on the
+  frontend with `x-revalidate-secret` and body `{"model":"page"}` (or any other
+  model, which covers pages and routes), or restart the frontend container.
+  Until then it serves the cached old pages.
 - The images add about 2 MB to the repository, in PNG and JPEG.
