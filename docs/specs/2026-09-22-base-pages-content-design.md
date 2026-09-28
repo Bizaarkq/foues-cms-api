@@ -184,7 +184,7 @@ The current `info-card` "Áreas Clínicas" is removed. Its text moves to the int
    | Label | URL | Icon | Description |
    |---|---|---|---|
    | Clínicas Extramurales | `/proyeccion-social/clinicas-extramurales` | `truck` | Atención odontológica fuera del campus |
-   | PAIPAD | `/proyeccion-social/paipad` | `users` | Programa de atención a pacientes con discapacidad |
+   | PAIPAD | `/proyeccion-social/paipad` | `users` | Programa de Atención Integral para Pacientes con Alteraciones del Desarrollo |
    | Servicio Social | `/proyeccion-social/servicio-social` | `hand-helping` | Jornadas de servicio a la comunidad |
 
 4. `photo-gallery`
@@ -193,8 +193,8 @@ The current `info-card` "Áreas Clínicas" is removed. Its text moves to the int
    - `images`: programa preventivo, extramurales, PAIPAD, servicio social.
 5. ACCESO RÁPIDO.
 
-The PAIPAD description is an inference from the Pregrado area text ("atención a
-pacientes con discapacidad"). Flag it in the PR for confirmation.
+The PAIPAD description is its full name, confirmed by Edwin on 2026-09-28. It
+replaces the earlier inferred text.
 
 ### Centro de Imágenes 3D
 
