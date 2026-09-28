@@ -7,7 +7,12 @@
       "__component": "blocks.hero-page",
       "title": "Pregrado",
       "subtitle": "Formando profesionales competentes con una base integral que les permita incorporarse y acreditarse a nivel nacional e internacional.",
-      "gradient": "primary"
+      "gradient": "primary",
+      "backgroundImage": "@media:pregrado-hero.jpg"
+    },
+    {
+      "__component": "blocks.rich-text",
+      "content": "Formar profesionales competentes, capaces de desarrollarse en el quehacer institucional y de práctica privada, dentro del contexto socioeconómico y cultural del país, participando en su permanente transformación e incidiendo en la resolución de la problemática de salud del mismo, con el respaldo de una formación integral que les facilite la incorporación y acreditación a nivel nacional e internacional."
     },
     {
       "__component": "blocks.quick-links",
@@ -42,7 +47,34 @@
     },
     {
       "__component": "blocks.rich-text",
-      "content": "## Áreas Docentes\n\n**Área Restaurativa / Operatoria Dental:** Centrada en la reparación y estética dental, incluyendo adhesión y biomateriales.\n\n**Cirugía Oral y Maxilofacial:** Enfocada en extracciones, evaluación de enfermedades bucales y tomas de biopsias.\n\n**Odontología Infantil / Odontopediatría:** Atención integral para niños y tratamientos preventivos como aplicación de flúor.\n\n**Endodoncia:** Tratamientos pulpares.\n\n**Periodoncia:** Cuidado de los tejidos de soporte dental.\n\n**Diagnóstico / Patología Bucal:** Incluye el centro de imágenes (radiografías 2D/3D) y la evaluación de enfermedades de la cavidad oral.\n\n**Odontología Preventiva / Integral:** Programas de atención integral, incluyendo atención a pacientes con discapacidad.\n\n**Prostodoncia / Rehabilitación:** Prótesis fija, removible y completa."
+      "content": "## Áreas Docentes"
+    },
+    {
+      "__component": "blocks.section",
+      "name": "Áreas Docentes",
+      "section_columns": 12,
+      "groups": [
+        {
+          "name": "Pregrado - Áreas Docentes (1)",
+          "group_columns": 6,
+          "blocks": [
+            {
+              "__component": "blocks.rich-text",
+              "content": "**Área Restaurativa / Operatoria Dental:** Centrada en la reparación y estética dental, incluyendo adhesión y biomateriales.\n\n**Cirugía Oral y Maxilofacial:** Enfocada en extracciones, evaluación de enfermedades bucales y tomas de biopsias.\n\n**Odontología Infantil / Odontopediatría:** Atención integral para niños y tratamientos preventivos como aplicación de flúor.\n\n**Endodoncia:** Tratamientos pulpares.\n\n**Periodoncia:** Cuidado de los tejidos de soporte dental."
+            }
+          ]
+        },
+        {
+          "name": "Pregrado - Áreas Docentes (2)",
+          "group_columns": 6,
+          "blocks": [
+            {
+              "__component": "blocks.rich-text",
+              "content": "**Diagnóstico / Patología Bucal:** Incluye el centro de imágenes (radiografías 2D/3D) y la evaluación de enfermedades de la cavidad oral.\n\n**Odontología Preventiva / Integral:** Programas de atención integral, incluyendo atención a pacientes con discapacidad.\n\n**Prostodoncia / Rehabilitación:** Prótesis fija, removible y completa."
+            }
+          ]
+        }
+      ]
     },
     {
       "__component": "blocks.quick-links",

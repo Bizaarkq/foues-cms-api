@@ -13,6 +13,7 @@ import showcasePage from './009-showcase-page';
 import contentGridToArticleList from './010-content-grid-to-article-list';
 import documentRepositoryFolder from './011-document-repository-folder';
 import calendarToKeyDates from './012-calendar-to-key-dates';
+import basePagesContent from './013-base-pages-content';
 
 // Ordered registry — append new migrations at the end, never reorder.
 const migrations = [
@@ -28,6 +29,7 @@ const migrations = [
   contentGridToArticleList,
   documentRepositoryFolder,
   calendarToKeyDates,
+  basePagesContent,
 ];
 
 export async function runAllDataMigrations(strapi: Core.Strapi): Promise<void> {

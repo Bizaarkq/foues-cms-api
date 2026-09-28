@@ -1,0 +1,12 @@
+{
+  "routePath": "/contacto",
+  "title": "Contacto",
+  "layout": "full-width",
+  "content": [
+    {
+      "__component": "blocks.hero-page",
+      "title": "Contacto",
+      "gradient": "primary"
+    }
+  ]
+}

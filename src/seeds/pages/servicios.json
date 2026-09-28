@@ -6,46 +6,85 @@
     {
       "__component": "blocks.hero-page",
       "title": "Servicios",
-      "gradient": "secondary"
+      "subtitle": "Atención dental integral de bajo costo en las clínicas de la Facultad, realizada por estudiantes supervisados.",
+      "gradient": "secondary",
+      "backgroundImage": "@media:servicios-hero.jpg"
     },
     {
-      "__component": "blocks.info-card",
-      "title": "Áreas Clínicas",
-      "body": "La Facultad de Odontología de la Universidad de El Salvador (UES) ofrece atención dental integral de bajo costo a la población en sus clínicas, con servicios que incluyen limpiezas, extracciones, restauraciones, endodoncias y prótesis. Estos tratamientos son realizados por estudiantes supervisados, cubriendo diagnóstico, periodoncia y odontopediatría.",
-      "cta": {
-        "label": "Ver Clínicas",
-        "url": "/servicios/areas-clinicas",
-        "variant": "variant-ghost-primary"
-      }
+      "__component": "blocks.rich-text",
+      "content": "La Facultad de Odontología de la Universidad de El Salvador (UES) ofrece atención dental integral de bajo costo a la población en sus clínicas, con servicios que incluyen limpiezas, extracciones, restauraciones, endodoncias y prótesis. Estos tratamientos son realizados por estudiantes supervisados, cubriendo diagnóstico, periodoncia y odontopediatría."
     },
     {
       "__component": "blocks.quick-links",
-      "title": "Servicios para Pacientes",
-      "ql_columns": 2,
+      "title": "Nuestros Servicios",
+      "ql_columns": 4,
       "links": [
+        {
+          "label": "Administración Académica",
+          "url": "/servicios/administracion-academica",
+          "icon": "school",
+          "description": "Gestión académica y administrativa"
+        },
         {
           "label": "Áreas Clínicas",
           "url": "/servicios/areas-clinicas",
-          "icon": "stethoscope",
-          "description": ""
+          "icon": "armchair",
+          "description": "Clínicas odontológicas de la Facultad"
         },
         {
           "label": "Servicios para Pacientes",
           "url": "/servicios/servicios-pacientes",
-          "icon": "users",
-          "description": ""
+          "icon": "hand-heart",
+          "description": "Tratamientos de bajo costo supervisados"
         },
         {
           "label": "Consulta por Primera Vez",
           "url": "/servicios/consulta-primera-vez",
-          "icon": "calendar",
-          "description": ""
+          "icon": "clipboard-plus",
+          "description": "Requisitos para tu primera consulta"
+        }
+      ]
+    },
+    {
+      "__component": "blocks.photo-gallery",
+      "title": "Nuestras instalaciones",
+      "subtitle": "",
+      "photo_columns": "col_2",
+      "images": [
+        "@media:servicios-administracion-academica.jpg",
+        "@media:servicios-areas-clinicas.jpg",
+        "@media:servicios-pacientes.jpg",
+        "@media:servicios-primera-consulta.jpg"
+      ]
+    },
+    {
+      "__component": "blocks.quick-links",
+      "title": "ACCESO RÁPIDO",
+      "ql_columns": 4,
+      "links": [
+        {
+          "label": "Expediente Académico",
+          "url": "#",
+          "icon": "book",
+          "description": "Consulta y gestión de tu historial académico"
         },
         {
-          "label": "Administración Académica",
-          "url": "/servicios/administracion-academica",
+          "label": "Trámites Estudiantiles",
+          "url": "#",
           "icon": "clipboard-list",
-          "description": ""
+          "description": "Servicios administrativos y documentación"
+        },
+        {
+          "label": "Clínicas",
+          "url": "/servicios/areas-clinicas",
+          "icon": "stethoscope",
+          "description": "Información sobre clínicas odontológicas"
+        },
+        {
+          "label": "Horarios",
+          "url": "#",
+          "icon": "clock",
+          "description": "Consulta de horarios de clases y actividades"
         }
       ]
     }
