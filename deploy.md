@@ -127,7 +127,9 @@ buildear con tokens vacíos — está bien, se rebuildea en 3.5.
 
 ```bash
 # Seeds: árbol de rutas, páginas iniciales, rol Publisher, navbar móvil…
-docker compose run --rm cms pnpm data:migrate
+# (Equivale a `pnpm data:migrate`. Se llama a node directamente porque la
+# imagen no trae pnpm en caché y corepack pide descargarlo en cada `run`.)
+docker compose run --rm cms node scripts/run-data-migrations.js
 
 # Tokens de API — SE MUESTRAN UNA SOLA VEZ, copialos ya
 docker compose run --rm cms node scripts/create-api-tokens.js
@@ -197,7 +199,7 @@ git pull                       # este repo
 git -C ../foues-cms-frontend pull
 
 docker compose up -d --build   # 1) SIEMPRE build primero
-docker compose run --rm cms pnpm data:migrate   # 2) migraciones DESPUÉS
+docker compose run --rm cms node scripts/run-data-migrations.js   # 2) migraciones DESPUÉS
 ```
 
 > ### ⚠️ REGLA DE ORO: build ANTES de migrate
@@ -229,7 +231,7 @@ atrás sin backup (§7).
 docker compose down                          # apaga el stack
 docker volume rm foues-cms-db foues-cms-uploads   # ← el punto de no retorno
 docker compose up -d --build
-docker compose run --rm cms pnpm data:migrate
+docker compose run --rm cms node scripts/run-data-migrations.js
 docker compose run --rm cms node scripts/create-api-tokens.js   # tokens NUEVOS
 # pegar los 3 tokens nuevos en .env, luego:
 docker compose up -d --build foues
@@ -255,7 +257,7 @@ todo lo firmado con los viejos muere (sesiones de admin, tokens → rotar §6.9)
 docker compose down
 docker volume rm foues-cms-db        # solo la base
 docker compose up -d --build
-docker compose run --rm cms pnpm data:migrate
+docker compose run --rm cms node scripts/run-data-migrations.js
 docker compose run --rm cms node scripts/create-api-tokens.js
 # pegar tokens + rebuild foues + admin + post-instalación, igual que arriba
 ```
@@ -328,6 +330,12 @@ healthy de esa cadena es el culpable; los de después son víctimas.
 
 - 502 en el dominio del frontend → `foues` caído (§6.3).
 - 502 en el dominio del CMS → `cms` caído (§6.2).
+- 502 con `connect() failed (111: Connection refused)` en el log de nginx
+  aunque `foues`/`cms` estén healthy → nginx apunta a una IP vieja. Pasaba
+  cuando un `up -d --build` recreaba el contenedor y nginx no se
+  reiniciaba. El template ahora resuelve los upstreams en cada request
+  (`resolver 127.0.0.11` + `proxy_pass` con variable), así que ya no
+  debería pasar. Si aparece con un nginx viejo: `docker compose restart nginx`.
 - Ningún dominio responde → ¿`nginx` está Up? ¿el DNS apunta al server?
   ¿`FRONTEND_DOMAIN`/`CMS_DOMAIN` del `.env` coinciden con los del DNS?
   (nginx solo rutea los `Host` exactos que le configuraste).
@@ -457,10 +465,10 @@ secretos del `.env` son los mismos de cuando se hizo el dump.
 |---|---|
 | Ver estado de todo | `docker ps -a` |
 | Logs de un servicio | `docker logs cms --tail 50 -f` |
-| Deploy de cambios | `git pull` (ambos repos) → `docker compose up -d --build` → `docker compose run --rm cms pnpm data:migrate` |
+| Deploy de cambios | `git pull` (ambos repos) → `docker compose up -d --build` → `docker compose run --rm cms node scripts/run-data-migrations.js` |
 | Reiniciar un servicio | `docker compose restart cms` |
 | Recrear (red rota) | `docker compose up -d --force-recreate cms` |
-| Correr migraciones | `docker compose run --rm cms pnpm data:migrate` (⚠️ build antes) |
+| Correr migraciones | `docker compose run --rm cms node scripts/run-data-migrations.js` (⚠️ build antes) |
 | Rotar tokens | `docker compose run --rm cms node scripts/create-api-tokens.js --rotate` + `.env` + rebuild `foues` |
 | Revalidar caché a mano | `curl -X POST http://FRONTEND_DOMAIN/api/revalidate -H "x-revalidate-secret: …" -d '{"model":"page"}'` |
 | Backup DB | ver §7.1 |
