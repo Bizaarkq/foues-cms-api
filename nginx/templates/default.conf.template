@@ -12,8 +12,16 @@ server {
     # ceiling chain.
     client_max_body_size 510M;
 
+    # Resolve upstreams per request through Docker's embedded DNS instead of
+    # once at startup: `up -d --build` recreates foues/cms with new IPs, and a
+    # literal `proxy_pass http://foues:3000` kept the stale IP → 502
+    # "connect() failed (111: Connection refused)" until nginx restarted.
+    # proxy_pass only re-resolves when its target is a variable.
+    resolver 127.0.0.11 valid=10s ipv6=off;
+    set $foues_upstream http://foues:3000;
+
     location / {
-        proxy_pass http://foues:3000;
+        proxy_pass $foues_upstream;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -34,6 +42,10 @@ server {
     # aren't capped lower than what formidable itself now allows.
     client_max_body_size 510M;
 
+    # Same per-request resolution as the FRONTEND_DOMAIN block above.
+    resolver 127.0.0.11 valid=10s ipv6=off;
+    set $cms_upstream http://cms:1337;
+
     # Rate limit the public, ticket-gated direct-upload endpoint (browsers
     # POST here unauthenticated, gated only by a short-lived ticket — see
     # docs/document-repository.md -> "CORS and anti-abuse"). `docupload`
@@ -46,7 +58,7 @@ server {
     # pre-check, which still applies to whatever gets through here.
     location ~ ^/api/documents/upload/ {
         limit_req zone=docupload burst=3 nodelay;
-        proxy_pass http://cms:1337;
+        proxy_pass $cms_upstream;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -58,7 +70,7 @@ server {
     }
 
     location / {
-        proxy_pass http://cms:1337;
+        proxy_pass $cms_upstream;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
