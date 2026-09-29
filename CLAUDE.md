@@ -19,7 +19,7 @@ This file is the **single source of truth for architecture decisions** — there
 Package manager is **pnpm** (lockfile + `patches/` applied via pnpm).
 
 - `pnpm develop` — dev server with autoReload. Bootstrap (`src/index.ts`) runs pending data migrations on every start when `NODE_ENV !== 'production'`.
-- `pnpm data:migrate` — run pending data migrations explicitly (the production path; in Docker: `docker compose run --rm cms pnpm data:migrate`).
+- `pnpm data:migrate` — run pending data migrations explicitly (the production path; in Docker: `docker compose run --rm cms node scripts/run-data-migrations.js` — node directly, since the image has no cached pnpm and corepack prompts to download it).
 - `./scripts/generate-env.sh` — bootstrap `.env` with openssl-generated secrets (refuses to overwrite without `--force`; preserves DB credentials on `--force` so the MySQL volume stays accessible).
 - `node scripts/create-api-tokens.js` — create/rotate the `STRAPI_API_TOKEN`, `FORM_SUBMIT_TOKEN` and `MAGAZINE_TRACK_TOKEN` API tokens via `admin::api-token` service and print them once (see `docs/forms-api-token.md`).
 - `pnpm build` / `pnpm start` — build admin panel / run without autoReload.
@@ -32,7 +32,7 @@ Compose files live in this repo; `.env` sits next to them; the frontend repo mus
 
 Services: `db` (MySQL 8, internal `backend` network), `cms` (Strapi, container `:1337`), `foues` (Next.js frontend, built from `../foues-cms-frontend`), `nginx` (reverse proxy on host `:80`).
 
-- **Production (default)**: `docker compose up -d --build`, then seed with `docker compose run --rm cms pnpm data:migrate`.
+- **Production (default)**: `docker compose up -d --build`, then seed with `docker compose run --rm cms node scripts/run-data-migrations.js`.
 - ⚠️ **`data:migrate` boots Strapi with the IMAGE's compiled `dist/`** — never run it with an image older than the DB schema: Strapi's bootstrap sync DROPS the tables (data included) of any content type missing from its schema. Always `--build` first. (Learned the hard way: a stale-image `data:migrate` wiped the local `mobile_navbar` single type on 2026-07-11.)
 - **Dev**: the override must be passed explicitly — `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`. (It was renamed from `docker-compose.override.yml` to prevent accidental dev merge in prod.) Dev exposes the API on host `:8000` → container `:1337` and MySQL on loopback `:3306`.
 - **nginx** routes `${FRONTEND_DOMAIN}` → frontend and `${CMS_DOMAIN}` → Strapi via the envsubst template `nginx/templates/default.conf.template` (rendered by the nginx image at startup). Domains come from the `.env` (defaults: the test-server domains). `CMS_DOMAIN` must match `STRAPI_PUBLIC_URL`.
